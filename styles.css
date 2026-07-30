@@ -323,14 +323,14 @@ display:block;
     padding-bottom: 100px;
 }
 }
-@media(max-width:1920px){
-    .hero{
-    height: 130vh;
-    padding-top: 170px;
-    padding-bottom: 100px;
-}
-}
 
+
+@media (max-width: 430px) {
+    .hero{
+    height: 100vh !important;
+}
+    
+}
 
 @media(max-width:600px){
 
