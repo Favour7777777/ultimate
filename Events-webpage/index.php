@@ -14,8 +14,8 @@
 
     <section class="hero">
 
-        <!-- You'll replace this image later -->
-        <img src="images/tech.png" class="hero-image" alt="Events Hero">
+        <!-- I will replace this image later -->
+        <img src="images/hero-image.jpg" class="hero-image" alt="Events Hero">
 
         <div class="hero-overlay"></div>
 
@@ -72,7 +72,7 @@
         <a href="#" class="category-card">
 
             <img
-                src="images/concerts.jpg"
+                src="images/live-music.jpg"
                 alt="Concerts"
             >
 
@@ -90,7 +90,7 @@
         <a href="#" class="category-card">
 
             <img
-                src="images/weddings.jpg"
+                src="images/wedding.png"
                 alt="Weddings"
             >
 
@@ -108,7 +108,7 @@
         <a href="#" class="category-card">
 
             <img
-                src="images/corporate.jpg"
+                src="images/conference.jpg"
                 alt="Corporate Events"
             >
 
@@ -144,7 +144,7 @@
         <a href="#" class="category-card">
 
             <img
-                src="images/birthdays.jpg"
+                src="images/birthday.jpg"
                 alt="Birthdays"
             >
 
@@ -180,7 +180,7 @@
         <a href="#" class="category-card">
 
             <img
-                src="images/religious.jpg"
+                src="images/worship.jpg"
                 alt="Religious Events"
             >
 
@@ -243,7 +243,7 @@
 
                     <div class="event-image">
 
-                        <img src="images/event-1.jpg" alt="Music Concert">
+                        <img src="images/music" alt="Music Concert">
 
                         <span class="event-date">
                             AUG 28
@@ -295,7 +295,7 @@
 
                     <div class="event-image">
 
-                        <img src="images/event-2.jpg" alt="Business Conference">
+                        <img src="images/innovation-summit.jpg" alt="Business Conference">
 
                         <span class="event-date">
                             SEP 05
@@ -347,7 +347,7 @@
 
                     <div class="event-image">
 
-                        <img src="images/event-3.jpg" alt="Art Exhibition">
+                        <img src="images/arts-exhibition.jpg" alt="Art Exhibition">
 
                         <span class="event-date">
                             SEP 12
@@ -398,7 +398,7 @@
 
                     <div class="event-image">
 
-                        <img src="images/event-3.jpg" alt="Art Exhibition">
+                        <img src="images/food-event.jpg" alt="Art Exhibition">
 
                         <span class="event-date">
                             SEP 12
@@ -410,18 +410,17 @@
                     <div class="event-content">
 
                         <h3>
-                            Contemporary Art Exhibition
+                            Food & Culinary Festivals
                         </h3>
 
                         <p class="event-location">
                             <i class="fa-solid fa-location-dot"></i>
-                            Victoria Island, Lagos
+                            Lekki, Abuja
                         </p>
 
                         <p class="event-description">
 
-                            Explore creative works from talented
-                            artists and creators.
+                            Taste your way through the best chefs, flavours, and food experiences in Abuja.
 
                         </p>
 
@@ -459,19 +458,17 @@
                     <div class="event-content">
 
                         <h3>
-                            Contemporary Art Exhibition
+                            Fashion Shows & Runways
                         </h3>
 
                         <p class="event-location">
                             <i class="fa-solid fa-location-dot"></i>
-                            Victoria Island, Lagos
+                            Maryland, Lagos.
                         </p>
 
                         <p class="event-description">
 
-                            Explore creative works from talented
-                            artists and creators.
-
+                           Experience style, glamour, and creativity from top designers and models
                         </p>
 
 
