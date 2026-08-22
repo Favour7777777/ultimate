@@ -327,7 +327,7 @@ display:block;
 
 @media (max-width: 430px) {
     .hero{
-    height: 70vh !important;
+    height: 80vh !important;
 }
     
 }
@@ -5775,19 +5775,28 @@ BUTTON SHINE
 .newsletter-box,
 .footer-ending{
 
-    opacity:0;
+    opacity:1;
 
-    transform:translateY(70px);
+    transform:translateY(0);
 
 }
 
-.footer-show .footer-brand{
+.footer-show .footer-brand,
+.footer-show .footer-card,
+.footer-show .newsletter-box,
+.footer-show .footer-ending{
 
     opacity:1;
 
     transform:translateY(0);
 
     transition:1s;
+
+}
+
+.footer-show .footer-card{
+
+    transition:.8s;
 
 }
 

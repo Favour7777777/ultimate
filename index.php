@@ -1,3 +1,17 @@
+
+<?php
+
+require "config.php";
+
+$categoryQuery = "SELECT id, title, description, icon, image
+                  FROM categories
+                  ORDER BY created_at DESC
+                  LIMIT 7";
+
+$categoryResult = mysqli_query($conn, $categoryQuery);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,58 +29,16 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 <body>
 
+<?php
+include "includes/navbar.php";
+?>
+
 <!-- HERO -->
 
 <section class="hero">
 
 <div class="overlay"></div>
 
-<!-- NAVBAR -->
-
-<nav class="navbar">
-
-<div class="logo">
-
-Ultimate
-
-</div>
-
-<ul class="nav-links">
-
-<li><a href="#">Home</a></li>
-
-<li><a href="#">Categories</a></li>
-
-<li><a href="#">Services</a></li>
-
-<li><a href="#">Sell</a></li>
-
-<li><a href="#">Support</a></li>
-
-<li><a href="#">Sign In</a></li>
-
-</ul>
-
-<div class="menu-btn">
-
-<i class="fa-solid fa-bars"></i>
-
-</div>
-
-</nav>
-
-<!-- MOBILE MENU -->
-
-<div class="mobile-menu">
-
-<a href="#">Home</a>
-<a href="#">Categories</a>
-<a href="#">Services</a>
-<a href="#">Sell</a>
-<a href="#">Support</a>
-<a href="#">Sign In</a>
-
-</div>
 
 <!-- HERO CONTENT -->
 
@@ -208,7 +180,7 @@ CHOOSE YOUR EXPERIENCE
     <div class="categories-grid">
 
         <!-- Shop -->
-        <a href="#" class="category-card">
+        <!-- <a href="#" class="category-card">
 
             <img src="images/shop.jpg" alt="Shop">
 
@@ -222,10 +194,10 @@ CHOOSE YOUR EXPERIENCE
 
             </div>
 
-        </a>
+        </a> -->
 
         <!-- Services -->
-        <a href="#" class="category-card">
+        <!-- <a href="#" class="category-card">
 
             <img src="images/services.jpg" alt="Services">
 
@@ -239,10 +211,10 @@ CHOOSE YOUR EXPERIENCE
 
             </div>
 
-        </a>
+        </a> -->
 
         <!-- Vehicles -->
-        <a href="#" class="category-card">
+        <!-- <a href="#" class="category-card">
 
             <img src="images/vehicles.jpg" alt="Vehicles">
 
@@ -256,10 +228,10 @@ CHOOSE YOUR EXPERIENCE
 
             </div>
 
-        </a>
+        </a> -->
 
         <!-- Real Estate -->
-        <a href="#" class="category-card">
+        <!-- <a href="#" class="category-card">
 
             <img src="images/real-estate.png" alt="Real Estate">
 
@@ -273,10 +245,10 @@ CHOOSE YOUR EXPERIENCE
 
             </div>
 
-        </a>
+        </a> -->
 
         <!-- Tech -->
-        <a href="#" class="category-card">
+        <!-- <a href="#" class="category-card">
 
             <img src="images/tech.png" alt="Tech">
 
@@ -290,10 +262,10 @@ CHOOSE YOUR EXPERIENCE
 
             </div>
 
-        </a>
+        </a> -->
 
         <!-- Fashion -->
-        <a href="#" class="category-card">
+        <!-- <a href="#" class="category-card">
 
             <img src="images/fashion.jpg" alt="Fashion">
 
@@ -307,10 +279,10 @@ CHOOSE YOUR EXPERIENCE
 
             </div>
 
-        </a>
+        </a> -->
 
         <!-- Food -->
-        <a href="#" class="category-card">
+        <!-- <a href="#" class="category-card">
 
             <img src="images/food.png" alt="Food">
 
@@ -324,10 +296,10 @@ CHOOSE YOUR EXPERIENCE
 
             </div>
 
-        </a>
+        </a> -->
 
         <!-- Beauty -->
-        <a href="#" class="category-card">
+        <!-- <a href="#" class="category-card">
 
             <img src="images/beauty.jpg" alt="Beauty">
 
@@ -341,10 +313,10 @@ CHOOSE YOUR EXPERIENCE
 
             </div>
 
-        </a>
+        </a> -->
 
         <!-- Education -->
-        <a href="#" class="category-card">
+        <!-- <a href="#" class="category-card">
 
             <img src="images/education.jpg" alt="Education">
 
@@ -358,10 +330,10 @@ CHOOSE YOUR EXPERIENCE
 
             </div>
 
-        </a>
+        </a> -->
 
         <!-- Events -->
-        <a href="#" class="category-card">
+        <!-- <a href="#" class="category-card">
 
             <img src="images/events.jpg" alt="Events">
 
@@ -375,13 +347,37 @@ CHOOSE YOUR EXPERIENCE
 
             </div>
 
-        </a>
+        </a> -->
+
+        <?php while($category = mysqli_fetch_assoc($categoryResult)): ?>
+
+    <a href="categories_details.php?id=<?= $category['id']; ?>" class="category-card">
+
+        <img 
+            src="admin/<?= htmlspecialchars($category['image']); ?>" 
+            alt="<?= htmlspecialchars($category['title']); ?>"
+        >
+
+        <div class="category-overlay">
+
+            <div class="category-icon">
+                <i class="<?= htmlspecialchars($category['icon']); ?>"></i>
+            </div>
+
+            <h3><?= htmlspecialchars($category['title']); ?></h3>
+
+        </div>
+
+    </a>
+
+<?php endwhile; ?>
+
 
     </div>
 
     <div class="view-all-container">
 
-        <a href="#" class="view-all-btn">
+        <a href="view-categories.php" class="view-all-btn">
             View All Categories
         </a>
 
@@ -621,6 +617,14 @@ CHOOSE YOUR EXPERIENCE
             </div>
 
         </div>
+
+        <div class="view-all-container">
+
+        <a href="view-products-categories.php" class="view-all-btn">
+            View All Products Categories
+        </a>
+
+    </div>
 
     </div>
 
@@ -2370,280 +2374,9 @@ CHOOSE YOUR EXPERIENCE
 
 </section>
 
-<!--==================================================
-                PREMIUM FOOTER
-===================================================-->
-
-<footer class="ultimate-footer">
-
-    <!-- Decorative Background -->
-    <div class="footer-glow glow-left"></div>
-    <div class="footer-glow glow-right"></div>
-
-    <!-- Animated Divider -->
-    <div class="footer-divider"></div>
-
-    <div class="footer-container">
-
-        <!--=================================
-                    BRAND
-        =================================-->
-
-        <div class="footer-brand">
-
-            <h2 class="footer-logo">
-
-                Ultimate
-
-            </h2>
-
-            <p class="footer-tagline">
-
-                Everything you need.
-                <br>
-                All in one place.
-
-            </p>
-
-        </div>
-
-        <!--=================================
-                GLASS CARDS
-        =================================-->
-
-        <div class="footer-grid">
-
-            <!-- Marketplace -->
-
-            <div class="footer-card">
-
-                <div class="footer-icon">
-
-                    <i class="fa-solid fa-store"></i>
-
-                </div>
-
-                <h3>Marketplace</h3>
-
-                <a href="#">Products</a>
-
-                <a href="#">Services</a>
-
-                <a href="#">Vehicles</a>
-
-                <a href="#">Real Estate</a>
-
-                <a href="#">Events</a>
-
-            </div>
-
-            <!-- Company -->
-
-            <div class="footer-card">
-
-                <div class="footer-icon">
-
-                    <i class="fa-solid fa-building"></i>
-
-                </div>
-
-                <h3>Company</h3>
-
-                <a href="#">About Us</a>
-
-                <a href="#">Careers</a>
-
-                <a href="#">Contact</a>
-
-                <a href="#">Blog</a>
-
-                <a href="#">News</a>
-
-            </div>
-
-            <!-- Support -->
-
-            <div class="footer-card">
-
-                <div class="footer-icon">
-
-                    <i class="fa-solid fa-headset"></i>
-
-                </div>
-
-                <h3>Support</h3>
-
-                <a href="#">Help Center</a>
-
-                <a href="#">FAQs</a>
-
-                <a href="#">Privacy Policy</a>
-
-                <a href="#">Terms & Conditions</a>
-
-                <a href="#">Report an Issue</a>
-
-            </div>
-
-            <!-- Community -->
-
-            <div class="footer-card">
-
-                <div class="footer-icon">
-
-                    <i class="fa-solid fa-users"></i>
-
-                </div>
-
-                <h3>Community</h3>
-
-                <a href="#"><i class="fa-brands fa-facebook"></i> Facebook</a>
-
-                <a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a>
-
-                <a href="#"><i class="fa-brands fa-x-twitter"></i> X</a>
-
-                <a href="#"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-
-                <a href="#"><i class="fa-brands fa-tiktok"></i> TikTok</a>
-
-            </div>
-
-        </div>
-
-        <!--=================================
-                NEWSLETTER
-        =================================-->
-
-        <div class="newsletter-box">
-
-            <h3>
-
-                Stay Updated
-
-            </h3>
-
-            <p>
-
-                Get the latest products, services, exclusive offers,
-                and marketplace updates delivered to your inbox.
-
-            </p>
-
-            <form class="newsletter-form">
-
-                <input
-                    type="email"
-                    placeholder="Enter your email address"
-                    required
-                >
-
-                <button type="submit">
-
-                    Subscribe
-
-                </button>
-
-            </form>
-
-        </div>
-
-        <!--=================================
-                TRUST STRIP
-        =================================-->
-
-        <div class="footer-trust">
-
-            <div>
-
-                <i class="fa-solid fa-shield-halved"></i>
-
-                SSL Secured
-
-            </div>
-
-            <div>
-
-                <i class="fa-solid fa-circle-check"></i>
-
-                Verified Sellers
-
-            </div>
-
-            <div>
-
-                <i class="fa-solid fa-credit-card"></i>
-
-                Safe Payments
-
-            </div>
-
-            <div>
-
-                <i class="fa-solid fa-star"></i>
-
-                Trusted Marketplace
-
-            </div>
-
-        </div>
-
-        <!--=================================
-                BOTTOM
-        =================================-->
-
-        <div class="footer-bottom">
-
-            <p>
-
-                © 2026 Ultimate Marketplace.
-                All Rights Reserved.
-
-            </p>
-
-            <p>
-
-                Made with
-                <i class="fa-solid fa-heart"></i>
-                in Nigeria.
-
-            </p>
-
-        </div>
-
-        <!--=================================
-            FINAL MESSAGE
-        =================================-->
-
-        <div class="footer-ending">
-
-            <p>
-
-                You've reached the end...
-
-                <br>
-
-                <span>
-
-                    ...or maybe it's just the beginning.
-
-                </span>
-
-            </p>
-
-            <a href="#top">
-
-                Explore Ultimate
-
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-            </a>
-
-        </div>
-
-    </div>
-
-</footer>
+<?php
+include "includes/footer.php";
+?>
 
 <script src="main.js"></script>
 
