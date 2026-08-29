@@ -1,23 +1,42 @@
+const menuToggle = document.querySelector(".menu-toggle");
+const mobileMenu = document.querySelector(".mobile-menu");
+
+if(menuToggle && mobileMenu){
+
+    menuToggle.addEventListener("click", () => {
+
+        const isOpen = mobileMenu.classList.toggle("active");
+
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+
+    });
+
+}
+
 const track = document.getElementById("eventsTrack");
 
-const cards = [...track.children];
+if(track){
 
-cards.forEach(card => {
-    const clone = card.cloneNode(true);
-    track.appendChild(clone);
-});
+    const cards = [...track.children];
 
-const eventsTrack = document.getElementById("eventsTrack");
+    cards.forEach(card => {
+        const clone = card.cloneNode(true);
+        track.appendChild(clone);
+    });
 
-eventsTrack.addEventListener("click", function(){
+    const eventsTrack = document.getElementById("eventsTrack");
 
-    const currentState =
-        getComputedStyle(eventsTrack).animationPlayState;
+    eventsTrack.addEventListener("click", function(){
 
-    if(currentState === "paused"){
-        eventsTrack.style.animationPlayState = "running";
-    }else{
-        eventsTrack.style.animationPlayState = "paused";
-    }
+        const currentState =
+            getComputedStyle(eventsTrack).animationPlayState;
 
-});
+        if(currentState === "paused"){
+            eventsTrack.style.animationPlayState = "running";
+        }else{
+            eventsTrack.style.animationPlayState = "paused";
+        }
+
+    });
+
+}

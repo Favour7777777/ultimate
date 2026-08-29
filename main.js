@@ -18,6 +18,12 @@ let current = 0;
 
 function changeBackground(){
 
+if(!hero){
+
+return;
+
+}
+
 hero.style.backgroundImage =
 `url(${images[current]})`;
 
@@ -33,7 +39,11 @@ current = 0;
 
 changeBackground();
 
+if(hero){
+
 setInterval(changeBackground,5000);
+
+}
 
 
 // STICKY NAV
@@ -58,11 +68,15 @@ document.querySelector(".menu-btn");
 const mobileMenu =
 document.querySelector(".mobile-menu");
 
+if(menuBtn && mobileMenu){
+
 menuBtn.addEventListener("click",()=>{
 
 mobileMenu.classList.toggle("active");
 
 });
+
+}
 
 
 // TYPING PLACEHOLDER

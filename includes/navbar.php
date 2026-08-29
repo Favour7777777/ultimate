@@ -38,7 +38,7 @@ Ultimate
 <div class="mobile-menu">
 
 <a href="#">Home</a>
-<a href="#">Categories</a>
+<a href="view-categories.php">Categories</a>
 <a href="#">Services</a>
 <a href="#">Sell</a>
 <a href="#">Support</a>

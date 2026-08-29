@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-   <link rel="stylesheet" href="css/index.css">
+   <link rel="stylesheet" href="css/index.css?v=2">
 </head>
 <body>
 <section class="container">
@@ -446,7 +446,7 @@
 
                     <div class="event-image">
 
-                        <img src="images/event-3.jpg" alt="Art Exhibition">
+                        <img src="images/fashion.jpg" alt="Fashion shows and Runways">
 
                         <span class="event-date">
                             SEP 12
@@ -531,7 +531,7 @@
             <div class="organizer-image">
 
                 <img
-                    src="images/organizer-1.jpg"
+                    src="images/ultimate-events.png"
                     alt="Event Organizer"
                 >
 
@@ -541,7 +541,7 @@
             <div class="organizer-content">
 
                 <span class="organizer-type">
-                    Event Organizer
+                    Event Host&Organizer
                 </span>
 
                 <h3>
@@ -561,7 +561,7 @@
 
                     <a href="#" class="organizer-button">
 
-                        View Organizer
+                        View Profile
 
                         <i class="fa-solid fa-arrow-right"></i>
 
@@ -581,7 +581,7 @@
             <div class="organizer-image">
 
                 <img
-                    src="images/organizer-2.jpg"
+                    src="images/john-events.jpg"
                     alt="Event Host"
                 >
 
@@ -631,7 +631,7 @@
             <div class="organizer-image">
 
                 <img
-                    src="images/organizer-3.jpg"
+                    src="images/lagos-creative-hub.jpg"
                     alt="Host and Organizer"
                 >
 
@@ -902,7 +902,7 @@
         <a href="#" class="trending-item trending-large">
 
             <img
-                src="images/trending-1.jpg"
+                src="images/live-music.jpg"
                 alt="Live Music Festival"
             >
 
@@ -932,7 +932,7 @@
         <a href="#" class="trending-item trending-small trending-top">
 
             <img
-                src="images/trending-2.jpg"
+                src="images/conference2.jpg"
                 alt="Business Conference"
             >
 
@@ -962,7 +962,7 @@
         <a href="#" class="trending-item trending-small trending-bottom">
 
             <img
-                src="images/trending-3.jpg"
+                src="images/arts-exhibition.jpg"
                 alt="Art Exhibition"
             >
 
@@ -992,7 +992,7 @@
         <a href="#" class="trending-item trending-medium">
 
             <img
-                src="images/trending-4.jpg"
+                src="images/fashion.jpg"
                 alt="Fashion Event"
             >
 
@@ -1400,7 +1400,7 @@
 </section>
 
 
-<script src="js/script.js"></script>
+<script src="js/script.js?v=2"></script>
     
 </body>
 </html>

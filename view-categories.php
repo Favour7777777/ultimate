@@ -561,6 +561,8 @@ if(!$result){
 
                 margin-bottom:30px;
 
+                margin-top:100px;
+
             }
 
 
@@ -790,7 +792,7 @@ if(!$result){
     include "includes/footer.php"
     ?>
 
-    <script src="main.js"></script>
+    <script src="main.js?v=2"></script>
 
 </body>
 

@@ -24,5 +24,19 @@
 
     </div>
 
+    <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
 </nav>
+
+<div class="mobile-menu">
+
+    <a href="#">Home</a>
+    <a href="#">Categories</a>
+    <a href="#">Vendors</a>
+    <a href="#">About</a>
+    <a href="#" class="mobile-login">Login</a>
+
+</div>
     
