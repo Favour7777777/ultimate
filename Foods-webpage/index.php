@@ -209,7 +209,7 @@
             </div>
 
             <div class="cuisine-item">
-                <img src="images/cuisine-dessert.jpg" alt="">
+                <img src="images/cuisine-desert.jpg" alt="">
                 <h4>Desserts</h4>
             </div>
 
@@ -286,7 +286,7 @@
 
             <div class="restaurant-card">
 
-                <img src="images/rest-1.jpg" alt="">
+                <img src="images/velvet-grill.jpg" alt="">
 
                 <div class="restaurant-overlay">
 
@@ -308,7 +308,7 @@
 
             <div class="restaurant-card">
 
-                <img src="images/rest-2.jpg" alt="">
+                <img src="images/maison-rouge.jpg" alt="">
 
                 <div class="restaurant-overlay">
 
@@ -330,7 +330,7 @@
 
             <div class="restaurant-card">
 
-                <img src="images/rest-3.jpg" alt="">
+                <img src="images/dragon-wok.jpg" alt="">
 
                 <div class="restaurant-overlay">
 
@@ -352,7 +352,7 @@
 
             <div class="restaurant-card">
 
-                <img src="images/rest-4.jpg" alt="">
+                <img src="images/amore-pizza.jpg" alt="">
 
                 <div class="restaurant-overlay">
 

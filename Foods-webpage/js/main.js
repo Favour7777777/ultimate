@@ -326,9 +326,9 @@ events:"240+",
 price:"₦85k",
 cuisine:"Fine Nigerian Dining",
 description:"Award-winning chef specializing in luxury Nigerian cuisine, private dinners and celebrity events.",
-main:"images/chef-1.jpg",
-left:"images/chef-2.jpg",
-right:"images/chef-3.jpg"
+main:"images/chef-amara.jpg",
+left:"images/chef-kemi.jpg",
+right:"images/chef-daniel.jpg"
 },
 
 {
@@ -339,9 +339,9 @@ events:"180+",
 price:"₦55k",
 cuisine:"Family & Comfort Meals",
 description:"Expert in premium home dining, weekly meal preparation and intimate family gatherings.",
-main:"images/chef-2.jpg",
-left:"images/chef-3.jpg",
-right:"images/chef-4.jpg"
+main:"images/chef-kemi.jpg",
+left:"images/chef-daniel.jpg",
+right:"images/chef-zara.jpg"
 },
 
 {
@@ -352,9 +352,9 @@ events:"320+",
 price:"₦120k",
 cuisine:"Buffet & Event Catering",
 description:"Luxury buffet specialist serving weddings, corporate events and large celebrations.",
-main:"images/chef-3.jpg",
-left:"images/chef-4.jpg",
-right:"images/chef-1.jpg"
+main:"images/chef-daniel.jpg",
+left:"images/chef-zara.jpg",
+right:"images/chef-amara.jpg"
 },
 
 {
@@ -365,9 +365,9 @@ events:"210+",
 price:"₦68k",
 cuisine:"Desserts & Pastries",
 description:"Creative pastry chef producing elegant cakes, desserts and unforgettable sweet experiences.",
-main:"images/chef-4.jpg",
-left:"images/chef-1.jpg",
-right:"images/chef-2.jpg"
+main:"images/chef-zara.jpg",
+left:"images/chef-amara.jpg",
+right:"images/chef-kemi.jpg"
 }
 
 ];
