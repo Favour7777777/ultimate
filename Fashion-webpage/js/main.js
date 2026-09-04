@@ -416,3 +416,455 @@ refreshOutfit();
 });
 
 refreshOutfit();
+
+
+/* =========================================
+   RUNWAY CYLINDER
+========================================= */
+
+const runwayModels = document.querySelectorAll(".runway-model");
+
+const runwayPrev = document.getElementById("runwayPrev");
+const runwayNext = document.getElementById("runwayNext");
+
+const collectionTag = document.getElementById("collectionTag");
+const collectionName = document.getElementById("collectionName");
+const collectionDesc = document.getElementById("collectionDesc");
+const pieces = document.getElementById("pieces");
+const designer = document.getElementById("designer");
+const season = document.getElementById("season");
+
+const runwayLooks = [
+    {
+        tag: "HAUTE COUTURE",
+        title: "Midnight Eclipse",
+        description: "Sculpted silhouettes inspired by modern luxury and timeless elegance.",
+        pieces: "42",
+        designer: "Amina Cole",
+        season: "FW26"
+    },
+    {
+        tag: "MENSWEAR",
+        title: "Noir Homme",
+        description: "Sharp tailoring and elevated menswear designed for powerful silhouettes.",
+        pieces: "36",
+        designer: "Daniel Hart",
+        season: "SS26"
+    },
+    {
+        tag: "WOMENSWEAR",
+        title: "Violet Muse",
+        description: "Fluid dresses and contemporary couture celebrating feminine elegance.",
+        pieces: "54",
+        designer: "Elena Royce",
+        season: "FW26"
+    },
+    {
+        tag: "AVANT GARDE",
+        title: "Chrome Dreams",
+        description: "Experimental luxury fashion pushing the boundaries of editorial design.",
+        pieces: "29",
+        designer: "Kai Moreau",
+        season: "LIMITED"
+    }
+];
+
+let currentRunway = 0;
+
+function renderRunway() {
+
+    runwayModels.forEach((model, index) => {
+
+        const position =
+            (index - currentRunway + runwayModels.length)
+            % runwayModels.length;
+
+        if (position === 0) {
+
+            model.style.transform =
+                "translate(-50%, -50%) translateZ(260px) scale(1)";
+
+            model.style.opacity = "1";
+            model.style.zIndex = "5";
+
+        } else if (position === 1) {
+
+            model.style.transform =
+                "translate(-50%, -50%) rotateY(-55deg) translateZ(180px) scale(.82)";
+
+            model.style.opacity = ".55";
+            model.style.zIndex = "3";
+
+        } else if (position === 2) {
+
+            model.style.transform =
+                "translate(-50%, -50%) rotateY(180deg) translateZ(120px) scale(.7)";
+
+            model.style.opacity = ".25";
+            model.style.zIndex = "1";
+
+        } else {
+
+            model.style.transform =
+                "translate(-50%, -50%) rotateY(55deg) translateZ(180px) scale(.82)";
+
+            model.style.opacity = ".55";
+            model.style.zIndex = "3";
+        }
+
+    });
+
+    const look = runwayLooks[currentRunway];
+
+    collectionTag.textContent = look.tag;
+    collectionName.textContent = look.title;
+    collectionDesc.textContent = look.description;
+    pieces.textContent = look.pieces;
+    designer.textContent = look.designer;
+    season.textContent = look.season;
+}
+
+
+runwayNext.addEventListener("click", () => {
+
+    currentRunway =
+        (currentRunway + 1) % runwayLooks.length;
+
+    renderRunway();
+
+});
+
+
+runwayPrev.addEventListener("click", () => {
+
+    currentRunway =
+        (currentRunway - 1 + runwayLooks.length)
+        % runwayLooks.length;
+
+    renderRunway();
+
+});
+
+
+setInterval(() => {
+
+    currentRunway =
+        (currentRunway + 1) % runwayLooks.length;
+
+    renderRunway();
+
+}, 5000);
+
+
+renderRunway();
+
+/* =========================================
+   BATCH 6 - STYLE CONCIERGE
+========================================= */
+
+const conciergeLooks = {
+
+"Gala-Royal-Black":{
+title:"Velvet Monarch",
+label:"ROYAL GALA",
+price:"₦425,000",
+image:"images/concierge1.jpg",
+description:"Command attention in handcrafted velvet tailoring with luxurious finishing."
+},
+
+"Office-Minimal-White":{
+title:"Ivory Executive",
+label:"POWER OFFICE",
+price:"₦268,000",
+image:"images/concierge2.jpg",
+description:"Clean minimal tailoring for confident professionals."
+},
+
+"Wedding-Royal-Gold":{
+title:"Golden Duchess",
+label:"LUXURY WEDDING",
+price:"₦395,000",
+image:"images/concierge3.jpg",
+description:"Elegant couture designed for unforgettable celebrations."
+},
+
+"Casual-Street-Violet":{
+title:"Urban Violet",
+label:"STREET LUXE",
+price:"₦185,000",
+image:"images/concierge4.jpg",
+description:"Relaxed luxury infused with contemporary street fashion."
+}
+
+};
+
+let occasion="Gala";
+let style="Royal";
+let color="Black";
+
+const styleButtons=document.querySelectorAll(".style-option");
+const colorButtons=document.querySelectorAll(".color-btn");
+
+const conciergeImage=document.getElementById("conciergeImage");
+const lookTitle=document.getElementById("lookTitle");
+const lookLabel=document.getElementById("lookLabel");
+const lookDescription=document.getElementById("lookDescription");
+const lookPrice=document.getElementById("lookPrice");
+
+styleButtons.forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+const type=btn.dataset.type;
+
+document.querySelectorAll(`[data-type="${type}"]`)
+.forEach(b=>b.classList.remove("active"));
+
+btn.classList.add("active");
+
+if(type==="occasion") occasion=btn.dataset.value;
+if(type==="style") style=btn.dataset.value;
+
+});
+
+});
+
+colorButtons.forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+colorButtons.forEach(b=>b.classList.remove("active"));
+
+btn.classList.add("active");
+
+color=btn.dataset.value;
+
+});
+
+});
+
+document.getElementById("generateLook")
+.addEventListener("click",()=>{
+
+const key=`${occasion}-${style}-${color}`;
+
+const look=
+conciergeLooks[key] || conciergeLooks["Gala-Royal-Black"];
+
+conciergeImage.style.opacity=0;
+
+setTimeout(()=>{
+
+conciergeImage.src=look.image;
+
+lookTitle.textContent=look.title;
+lookLabel.textContent=look.label;
+lookDescription.textContent=look.description;
+lookPrice.textContent=look.price;
+
+conciergeImage.style.opacity=1;
+
+},180);
+
+});
+
+/*=========================================
+BATCH 7 - ACCESSORIES VAULT
+=========================================*/
+
+const vaultProducts={
+
+bags:[
+
+{
+tag:"PREMIUM LEATHER",
+title:"Royal Noir Handbag",
+desc:"Italian handcrafted leather with polished gold detailing.",
+price:"₦185,000",
+image:"images/bag1.jpg"
+},
+
+{
+tag:"LIMITED EDITION",
+title:"Ivory Duchess Bag",
+desc:"Elegant luxury handbag with minimalist sophistication.",
+price:"₦215,000",
+image:"images/bag2.jpg"
+},
+
+{
+tag:"RUNWAY ICON",
+title:"Velvet Luxe Tote",
+desc:"Oversized premium tote crafted for modern fashion lovers.",
+price:"₦248,000",
+image:"images/bag3.jpg"
+}
+
+],
+
+watches:[
+
+{
+tag:"SWISS LUXURY",
+title:"Celestial Chronograph",
+desc:"Swiss precision watch with sapphire crystal.",
+price:"₦420,000",
+image:"images/watch1.jpg"
+},
+
+{
+tag:"ROSE GOLD",
+title:"Aurora Elite",
+desc:"Luxury rose gold timepiece for timeless elegance.",
+price:"₦385,000",
+image:"images/watch2.jpg"
+},
+
+{
+tag:"AUTOMATIC",
+title:"Imperial Motion",
+desc:"Mechanical masterpiece engineered for excellence.",
+price:"₦460,000",
+image:"images/watch3.jpg"
+}
+
+],
+
+jewelry:[
+
+{
+tag:"DIAMOND EDITION",
+title:"Elysian Necklace",
+desc:"Brilliant diamond necklace crafted for gala nights.",
+price:"₦295,000",
+image:"images/jewel1.jpg"
+},
+
+{
+tag:"EMERALD",
+title:"Verde Royale",
+desc:"Luxury emerald jewelry with handcrafted detailing.",
+price:"₦335,000",
+image:"images/jewel2.jpg"
+},
+
+{
+tag:"PLATINUM",
+title:"Stellar Halo Set",
+desc:"Premium platinum earrings and pendant collection.",
+price:"₦370,000",
+image:"images/jewel3.jpg"
+}
+
+],
+
+heels:[
+
+{
+tag:"SIGNATURE HEELS",
+title:"Velvet Stiletto",
+desc:"Elegant runway heels blending luxury and comfort.",
+price:"₦165,000",
+image:"images/heel1.jpg"
+},
+
+{
+tag:"CRYSTAL EDITION",
+title:"Luna Crystal Heel",
+desc:"Evening heels finished with sparkling crystal accents.",
+price:"₦192,000",
+image:"images/heel2.jpg"
+},
+
+{
+tag:"COUTURE",
+title:"Golden Muse Heel",
+desc:"Luxury designer heels inspired by Paris couture.",
+price:"₦210,000",
+image:"images/heel3.jpg"
+}
+
+]
+
+};
+
+const vaultCategories=document.querySelectorAll(".vault-category");
+const vaultThumbs=document.querySelectorAll(".vault-thumb");
+
+const vaultImage=document.getElementById("vaultImage");
+const vaultTag=document.getElementById("vaultTag");
+const vaultTitle=document.getElementById("vaultTitle");
+const vaultDescription=document.getElementById("vaultDescription");
+const vaultPrice=document.getElementById("vaultPrice");
+
+let currentCategory="bags";
+let currentIndex=0;
+
+function renderVault(){
+
+const item=vaultProducts[currentCategory][currentIndex];
+
+vaultImage.src=item.image;
+vaultTag.textContent=item.tag;
+vaultTitle.textContent=item.title;
+vaultDescription.textContent=item.desc;
+vaultPrice.textContent=item.price;
+
+vaultThumbs.forEach((thumb,i)=>{
+
+thumb.src=vaultProducts[currentCategory][i].image;
+
+thumb.classList.toggle("active",i===currentIndex);
+
+});
+
+}
+
+vaultCategories.forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+vaultCategories.forEach(b=>b.classList.remove("active"));
+
+btn.classList.add("active");
+
+currentCategory=btn.dataset.category;
+
+currentIndex=0;
+
+renderVault();
+
+});
+
+});
+
+vaultThumbs.forEach((thumb,i)=>{
+
+thumb.addEventListener("click",()=>{
+
+currentIndex=i;
+
+renderVault();
+
+});
+
+});
+
+document.getElementById("vaultNext").onclick=()=>{
+
+currentIndex=(currentIndex+1)%3;
+
+renderVault();
+
+};
+
+document.getElementById("vaultPrev").onclick=()=>{
+
+currentIndex=(currentIndex-1+3)%3;
+
+renderVault();
+
+};
+
+renderVault();
+

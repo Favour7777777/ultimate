@@ -652,6 +652,430 @@
 
 </section>
 
+<!-- =========================================
+     BATCH 6 - STYLE CONCIERGE
+========================================= -->
+
+<section class="concierge-section">
+
+    <div class="concierge-title">
+        <span>ULTIMATE STYLE CONCIERGE</span>
+        <h2>Your Personal Luxury Stylist</h2>
+        <p>Create a curated fashion look in seconds.</p>
+    </div>
+
+    <div class="concierge-wrapper">
+
+        <!-- LEFT PANEL -->
+
+        <div class="stylist-controls">
+
+            <div class="control-group">
+                <label>Occasion</label>
+
+                <div class="option-grid">
+
+                    <button class="style-option active"
+                        data-type="occasion"
+                        data-value="Gala">
+                        Gala
+                    </button>
+
+                    <button class="style-option"
+                        data-type="occasion"
+                        data-value="Office">
+                        Office
+                    </button>
+
+                    <button class="style-option"
+                        data-type="occasion"
+                        data-value="Wedding">
+                        Wedding
+                    </button>
+
+                    <button class="style-option"
+                        data-type="occasion"
+                        data-value="Casual">
+                        Casual
+                    </button>
+
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Style</label>
+
+                <div class="option-grid">
+
+                    <button class="style-option active"
+                        data-type="style"
+                        data-value="Royal">
+                        Royal
+                    </button>
+
+                    <button class="style-option"
+                        data-type="style"
+                        data-value="Minimal">
+                        Minimal
+                    </button>
+
+                    <button class="style-option"
+                        data-type="style"
+                        data-value="Bold">
+                        Bold
+                    </button>
+
+                    <button class="style-option"
+                        data-type="style"
+                        data-value="Street">
+                        Street Luxe
+                    </button>
+
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Palette</label>
+
+                <div class="color-options">
+
+                    <button class="color-btn active"
+                        data-type="color"
+                        data-value="Black"
+                        style="background:#111;">
+                    </button>
+
+                    <button class="color-btn"
+                        data-type="color"
+                        data-value="White"
+                        style="background:#ffffff;">
+                    </button>
+
+                    <button class="color-btn"
+                        data-type="color"
+                        data-value="Violet"
+                        style="background:#8b5cf6;">
+                    </button>
+
+                    <button class="color-btn"
+                        data-type="color"
+                        data-value="Gold"
+                        style="background:#c8a34d;">
+                    </button>
+
+                </div>
+            </div>
+
+            <button id="generateLook" class="generate-look">
+                Create My Look
+            </button>
+
+        </div>
+
+        <!-- RIGHT PANEL -->
+
+        <div class="editorial-look">
+
+            <img id="conciergeImage"
+                src="images/concierge1.jpg"
+                alt="Editorial Look">
+
+            <div class="look-overlay">
+
+                <span id="lookLabel">ROYAL GALA</span>
+
+                <h3 id="lookTitle">
+                    Velvet Monarch
+                </h3>
+
+                <p id="lookDescription">
+                    Command attention in handcrafted velvet tailoring with luxurious finishing.
+                </p>
+
+                <strong id="lookPrice">
+                    ₦425,000
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================
+     BATCH 7 - ACCESSORIES VAULT
+========================================= -->
+
+<section class="vault-section">
+
+    <div class="vault-heading">
+        <span>LUXURY ACCESSORIES VAULT</span>
+        <h2>The Finishing Touch of Elegance</h2>
+        <p>Discover premium accessories curated for every signature look.</p>
+    </div>
+
+    <!-- CATEGORY TABS -->
+
+    <div class="vault-categories">
+
+        <button class="vault-category active" data-category="bags">Bags</button>
+
+        <button class="vault-category" data-category="watches">Watches</button>
+
+        <button class="vault-category" data-category="jewelry">Jewelry</button>
+
+        <button class="vault-category" data-category="heels">Heels</button>
+
+    </div>
+
+    <div class="vault-wrapper">
+
+        <!-- IMAGE -->
+
+        <div class="vault-image-box">
+
+            <img id="vaultImage" src="images/bag1.jpg" alt="Luxury Product">
+
+            <button class="vault-arrow left" id="vaultPrev">&#10094;</button>
+
+            <button class="vault-arrow right" id="vaultNext">&#10095;</button>
+
+        </div>
+
+        <!-- DETAILS -->
+
+        <div class="vault-details">
+
+            <span id="vaultTag">PREMIUM LEATHER</span>
+
+            <h3 id="vaultTitle">Royal Noir Handbag</h3>
+
+            <p id="vaultDescription">
+                Italian handcrafted leather with polished gold detailing for timeless elegance.
+            </p>
+
+            <h4 id="vaultPrice">₦185,000</h4>
+
+            <a href="#" class="vault-btn">
+                View Product Details
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- THUMBNAILS -->
+
+    <div class="vault-thumbnails">
+
+        <img class="vault-thumb active" data-index="0" src="images/bag1.jpg">
+
+        <img class="vault-thumb" data-index="1" src="images/bag2.jpg">
+
+        <img class="vault-thumb" data-index="2" src="images/bag3.jpg">
+
+    </div>
+
+</section>
+
+<!-- =========================================
+     FINAL SECTION — THE ULTIMATE EDIT
+========================================= -->
+
+<section class="ultimate-edit">
+
+<div class="edit-image">
+
+    <img src="images/fashion-final.jpg" alt="Ultimate Fashion Editorial">
+
+    <div class="edit-image-label">
+        <span>ULTIMATE</span>
+        <strong>FASHION</strong>
+    </div>
+
+</div>
+
+
+<div class="edit-content">
+
+    <span class="edit-eyebrow">
+        THE ULTIMATE EDIT
+    </span>
+
+    <h2>
+        Fashion is not
+        <em>what you wear.</em>
+    </h2>
+
+    <p>
+        It is how you enter a room, how you express yourself,
+        and how the world remembers you.
+    </p>
+
+    <p class="edit-small">
+        Discover designers, statement pieces, luxury accessories
+        and unforgettable looks — all curated in one extraordinary
+        fashion destination.
+    </p>
+
+
+    <div class="edit-highlights">
+
+        <div>
+            <strong>01</strong>
+            <span>Curated Collections</span>
+        </div>
+
+        <div>
+            <strong>02</strong>
+            <span>Independent Designers</span>
+        </div>
+
+        <div>
+            <strong>03</strong>
+            <span>Luxury Essentials</span>
+        </div>
+
+    </div>
+
+
+    <a href="#" class="edit-button">
+        Explore Ultimate Fashion
+        <span>→</span>
+    </a>
+
+</div>
+
+
+</section>
+
+<!-- =========================================
+     FINAL CTA
+========================================= -->
+
+<section class="fashion-final-cta">
+
+
+<div class="cta-glow"></div>
+
+<span>YOUR NEXT LOOK AWAITS</span>
+
+<h2>
+    Make your
+    <em>entrance.</em>
+</h2>
+
+<p>
+    From everyday elegance to runway-worthy statements,
+    find the pieces that define your style.
+</p>
+
+<a href="#" class="cta-button">
+    Enter the Marketplace →
+</a>
+```
+
+</section>
+
+<!-- =========================================
+     FASHION FOOTER
+========================================= -->
+
+<footer class="fashion-footer">
+
+```
+<div class="footer-main">
+
+    <!-- BRAND -->
+
+    <div class="footer-brand">
+
+        <h2>ULTIMATE<span>.</span></h2>
+
+        <p>
+            A premium marketplace connecting you with
+            extraordinary fashion, products and experiences.
+        </p>
+
+        <div class="footer-socials">
+
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="Facebook">FB</a>
+            <a href="#" aria-label="TikTok">TK</a>
+            <a href="#" aria-label="Pinterest">PT</a>
+
+        </div>
+
+    </div>
+
+
+    <!-- EXPLORE -->
+
+    <div class="footer-column">
+
+        <h3>Explore</h3>
+
+        <a href="#">Fashion</a>
+        <a href="#">Beauty</a>
+        <a href="#">Food</a>
+        <a href="#">Education</a>
+        <a href="#">Events</a>
+
+    </div>
+
+
+    <!-- FASHION -->
+
+    <div class="footer-column">
+
+        <h3>Fashion</h3>
+
+        <a href="#">Designers</a>
+        <a href="#">Collections</a>
+        <a href="#">Accessories</a>
+        <a href="#">Virtual Wardrobe</a>
+        <a href="#">Style Concierge</a>
+
+    </div>
+
+
+    <!-- COMMUNITY -->
+
+    <div class="footer-column">
+
+        <h3>Community</h3>
+
+        <a href="#">Become a Seller</a>
+        <a href="#">Become a Designer</a>
+        <a href="#">Join Ultimate</a>
+        <a href="#">Help Center</a>
+        <a href="#">Contact Us</a>
+
+    </div>
+
+</div>
+
+
+<div class="footer-bottom">
+
+    <p>
+        © 2026 Ultimate. All rights reserved.
+    </p>
+
+    <div>
+
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+
+    </div>
+
+</div>
+
+</footer>
+
+
 
 <script src="js/main.js"></script>
 

@@ -1,0 +1,1500 @@
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(181, 108, 255, 0.08),
+            transparent 45%
+        ),
+        #08060d;
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   MAIN
+========================================= */
+
+.coming-soon {
+    min-height: 100vh;
+
+    padding: 70px 20px 100px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.construction-header {
+    text-align: center;
+
+    margin-bottom: 30px;
+
+    position: relative;
+    z-index: 50;
+}
+
+.construction-header p {
+    color: #b56cff;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    letter-spacing: 10px;
+
+    margin-bottom: 18px;
+}
+
+.construction-header h1 {
+    font-size: clamp(30px, 3vw, 80px);
+
+    line-height: 0.95;
+
+    letter-spacing: 4px;
+
+    font-weight: 900;
+
+    animation: titleGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+
+    from {
+        text-shadow:
+            0 0 10px rgba(181, 108, 255, 0.2);
+    }
+
+    to {
+        text-shadow:
+            0 0 20px rgba(181, 108, 255, 0.9),
+            0 0 60px rgba(181, 108, 255, 0.35);
+    }
+
+}
+
+
+/* =========================================
+   CONSTRUCTION SCENE
+========================================= */
+
+.construction-scene {
+    position: relative;
+
+    width: min(1200px, 100%);
+
+    height: 600px;
+}
+
+
+/* =========================================
+   BUILDING
+========================================= */
+
+.building {
+    position: absolute;
+
+    z-index: 5;
+
+    left: 50%;
+    bottom: 65px;
+
+    transform: translateX(-50%);
+
+    width: min(700px, 65vw);
+
+    height: 430px;
+
+    border: 2px solid rgba(181, 108, 255, 0.55);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(181, 108, 255, 0.08),
+            rgba(255, 255, 255, 0.02)
+        );
+
+    box-shadow:
+        0 0 70px rgba(181, 108, 255, 0.12),
+        inset 0 0 50px rgba(181, 108, 255, 0.04);
+}
+
+
+/* =========================================
+   BUILDING FLOORS
+========================================= */
+
+.building-floor {
+    position: relative;
+
+    width: 100%;
+
+    height: 105px;
+
+    border-top: 2px solid rgba(181, 108, 255, 0.35);
+}
+
+
+/* =========================================
+   WINDOWS
+========================================= */
+
+.building-floor::before,
+.building-floor::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 20px;
+
+    width: 22%;
+
+    height: 60px;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(181, 108, 255, 0.1),
+            rgba(255, 255, 255, 0.02)
+        );
+
+    animation: windowGlow 3s ease-in-out infinite;
+}
+
+.building-floor::before {
+    left: 7%;
+}
+
+.building-floor::after {
+    right: 7%;
+
+    animation-delay: 1.5s;
+}
+
+@keyframes windowGlow {
+
+    0%,
+    100% {
+        opacity: 0.25;
+        box-shadow: none;
+    }
+
+    50% {
+        opacity: 1;
+
+        box-shadow:
+            0 0 25px rgba(181, 108, 255, 0.35);
+    }
+
+}
+
+
+/* =========================================
+   BUILDING ROOF
+========================================= */
+
+.building-top {
+
+    position: absolute;
+
+    top: -45px;
+
+    left: 15%;
+
+    width: 70%;
+
+    height: 45px;
+
+    border: 2px solid rgba(181, 108, 255, 0.5);
+
+    background: rgba(181, 108, 255, 0.07);
+
+    animation: roofPulse 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes roofPulse {
+
+    from {
+        box-shadow: none;
+    }
+
+    to {
+        box-shadow:
+            0 0 30px rgba(181, 108, 255, 0.3);
+    }
+
+}
+
+
+/* =========================================
+   CRANE
+========================================= */
+
+.crane {
+
+    position: absolute;
+
+    z-index: 20;
+
+    width: 520px;
+
+    height: 470px;
+
+    right: -20px;
+
+    bottom: 65px;
+}
+
+
+/* =========================================
+   CRANE TOWER
+========================================= */
+
+.crane-tower {
+
+    position: absolute;
+
+    left: 100px;
+
+    bottom: 0;
+
+    width: 45px;
+
+    height: 410px;
+
+    border-left: 8px solid rgba(181, 108, 255, 0.7);
+
+    border-right: 8px solid rgba(181, 108, 255, 0.7);
+}
+
+
+/* Tower supports */
+
+.crane-tower::before,
+.crane-tower::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 19px;
+
+    top: 0;
+
+    width: 2px;
+
+    height: 410px;
+
+    background: rgba(181, 108, 255, 0.45);
+}
+
+.crane-tower::before {
+    transform: rotate(6deg);
+}
+
+.crane-tower::after {
+    transform: rotate(-6deg);
+}
+
+
+/* =========================================
+   CRANE ARM
+========================================= */
+
+.crane-arm {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 470px;
+
+    height: 15px;
+
+    background: #b56cff;
+
+    box-shadow:
+        0 0 20px rgba(181, 108, 255, 0.5);
+}
+
+
+/* Counterweight */
+
+.crane-arm::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: -45px;
+
+    top: -8px;
+
+    width: 45px;
+
+    height: 30px;
+
+    background: #ffffff;
+}
+
+
+/* =========================================
+   CABLE
+========================================= */
+
+.crane-cable {
+
+    position: absolute;
+
+    right: 0;
+
+    top: 15px;
+
+    width: 3px;
+
+    height: 150px;
+
+    background: #ffffff;
+
+    transform-origin: top;
+
+    animation: cableLength 6s ease-in-out infinite;
+}
+
+@keyframes cableLength {
+
+    0% {
+        height: 150px;
+    }
+
+    25% {
+        height: 270px;
+    }
+
+    50% {
+        height: 150px;
+    }
+
+    100% {
+        height: 150px;
+    }
+
+}
+
+
+/* =========================================
+   HOOK
+========================================= */
+
+.crane-hook {
+
+    position: absolute;
+
+    right: -6px;
+
+    top: 160px;
+
+    width: 15px;
+
+    height: 25px;
+
+    border: 3px solid #b56cff;
+
+    border-top: none;
+
+    border-radius: 0 0 12px 12px;
+
+    animation: hookMove 6s ease-in-out infinite;
+}
+
+@keyframes hookMove {
+
+    0% {
+        top: 160px;
+    }
+
+    25% {
+        top: 280px;
+    }
+
+    50% {
+        top: 160px;
+    }
+
+    100% {
+        top: 160px;
+    }
+
+}
+
+
+/* =========================================
+   CRANE LOAD
+========================================= */
+
+.crane-load {
+
+    position: absolute;
+
+    right: -25px;
+
+    top: 190px;
+
+    width: 65px;
+
+    height: 30px;
+
+    background: #b56cff;
+
+    border: 2px solid #ffffff;
+
+    box-shadow:
+        0 0 25px rgba(181, 108, 255, 0.7);
+
+    animation: craneLoad 6s ease-in-out infinite;
+}
+
+@keyframes craneLoad {
+
+    0%,
+    15% {
+        transform: translateY(0);
+
+        opacity: 0;
+    }
+
+    25% {
+        transform: translateY(90px);
+
+        opacity: 1;
+    }
+
+    45% {
+        transform: translateY(0);
+
+        opacity: 1;
+    }
+
+    60% {
+        transform: translate(-260px, 0);
+
+        opacity: 1;
+    }
+
+    75% {
+        transform: translate(-260px, 200px);
+
+        opacity: 1;
+    }
+
+    90%,
+    100% {
+        transform: translate(-260px, 200px);
+
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================================
+   BRICK PILE
+========================================= */
+
+.brick-pile {
+
+    position: absolute;
+
+    z-index: 25;
+
+    left: 20px;
+
+    bottom: 65px;
+
+    width: 150px;
+
+    height: 90px;
+}
+
+.brick-pile span {
+
+    position: absolute;
+
+    width: 65px;
+
+    height: 25px;
+
+    border: 1px solid rgba(181, 108, 255, 0.7);
+
+    background: rgba(181, 108, 255, 0.2);
+
+    box-shadow:
+        0 0 10px rgba(181, 108, 255, 0.15);
+}
+
+.brick-pile span:nth-child(1) {
+    left: 10px;
+    bottom: 0;
+}
+
+.brick-pile span:nth-child(2) {
+    left: 78px;
+    bottom: 0;
+}
+
+.brick-pile span:nth-child(3) {
+    left: 42px;
+    bottom: 27px;
+}
+
+.brick-pile span:nth-child(4) {
+    left: 110px;
+    bottom: 27px;
+}
+
+.brick-pile span:nth-child(5) {
+    left: 10px;
+    bottom: 54px;
+}
+
+.brick-pile span:nth-child(6) {
+    left: 78px;
+    bottom: 54px;
+}
+
+
+/* =========================================
+   WORKERS CONTAINER
+========================================= */
+
+.workers {
+
+    position: absolute;
+
+    z-index: 30;
+
+    left: 30px;
+
+    bottom: 65px;
+
+    width: 720px;
+
+    height: 130px;
+}
+
+
+/* =========================================
+   WORKER BASE
+========================================= */
+
+.worker {
+
+    position: absolute;
+
+    bottom: 0;
+
+    width: 34px;
+
+    height: 80px;
+
+    transform-origin: bottom center;
+}
+
+
+/* =========================================
+   WORKER POSITIONS
+========================================= */
+
+.worker-one {
+    left: 150px;
+}
+
+.worker-two {
+    left: 240px;
+}
+
+.worker-three {
+    left: 330px;
+}
+
+.worker-four {
+    left: 420px;
+}
+
+.worker-five {
+    left: 510px;
+}
+
+.worker-six {
+    left: 600px;
+}
+
+.worker-seven {
+    left: 50px;
+}
+
+
+/* =========================================
+   WORKER HEAD
+========================================= */
+
+.worker-head {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 8px;
+
+    width: 18px;
+
+    height: 18px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+}
+
+
+/* Hard hat */
+
+.worker-head::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -5px;
+
+    left: -3px;
+
+    width: 24px;
+
+    height: 8px;
+
+    border-radius: 10px 10px 2px 2px;
+
+    background: #b56cff;
+}
+
+
+/* =========================================
+   WORKER BODY
+========================================= */
+
+.worker-body {
+
+    position: absolute;
+
+    top: 20px;
+
+    left: 7px;
+
+    width: 20px;
+
+    height: 30px;
+
+    border-radius: 4px;
+
+    background: #b56cff;
+
+    box-shadow:
+        0 0 10px rgba(181, 108, 255, 0.3);
+}
+
+
+/* =========================================
+   WORKER ARMS
+========================================= */
+
+.worker-arm {
+
+    position: absolute;
+
+    top: 22px;
+
+    width: 5px;
+
+    height: 28px;
+
+    background: #ffffff;
+
+    transform-origin: top center;
+}
+
+
+/* Left arm */
+
+.left-arm {
+    left: 4px;
+}
+
+
+/* Right arm */
+
+.right-arm {
+    right: 4px;
+}
+
+
+/* =========================================
+   WORKER LEGS
+========================================= */
+
+.worker-leg {
+
+    position: absolute;
+
+    top: 49px;
+
+    width: 6px;
+
+    height: 30px;
+
+    background: #ffffff;
+
+    transform-origin: top center;
+}
+
+.left-leg {
+    left: 8px;
+}
+
+.right-leg {
+    right: 8px;
+}
+
+
+/* =========================================
+   BLOCK HELD BY WORKER
+========================================= */
+
+.worker-block {
+
+    position: absolute;
+
+    top: 35px;
+
+    left: 50%;
+
+    width: 28px;
+
+    height: 18px;
+
+    transform: translateX(-50%);
+
+    background: #b56cff;
+
+    border: 2px solid #ffffff;
+
+    box-shadow:
+        0 0 12px rgba(181, 108, 255, 0.5);
+
+    opacity: 0;
+}
+
+
+/* =========================================
+   WORKER 1
+   PICKS BLOCK + WALKS TO CRANE
+========================================= */
+
+.worker-one {
+
+    animation: workerOneMove 12s linear infinite;
+}
+
+.worker-one .worker-block {
+
+    animation: workerOneBlock 12s linear infinite;
+}
+
+@keyframes workerOneMove {
+
+    0% {
+        left: 50px;
+    }
+
+    15% {
+        left: 50px;
+    }
+
+    40% {
+        left: 570px;
+    }
+
+    55% {
+        left: 570px;
+    }
+
+    75% {
+        left: 50px;
+    }
+
+    100% {
+        left: 50px;
+    }
+}
+
+@keyframes workerOneBlock {
+
+    0%,
+    15% {
+        opacity: 0;
+    }
+
+    18%,
+    75% {
+        opacity: 1;
+    }
+
+    80%,
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   WORKER 2
+========================================= */
+
+.worker-two {
+
+    animation: workerTwoMove 12s linear infinite;
+    animation-delay: 2s;
+}
+
+.worker-two .worker-block {
+
+    animation: workerTwoBlock 12s linear infinite;
+    animation-delay: 2s;
+}
+
+@keyframes workerTwoMove {
+
+    0% {
+        left: 80px;
+    }
+
+    20% {
+        left: 80px;
+    }
+
+    45% {
+        left: 570px;
+    }
+
+    60% {
+        left: 570px;
+    }
+
+    80% {
+        left: 80px;
+    }
+
+    100% {
+        left: 80px;
+    }
+}
+
+@keyframes workerTwoBlock {
+
+    0%,
+    20% {
+        opacity: 0;
+    }
+
+    23%,
+    80% {
+        opacity: 1;
+    }
+
+    85%,
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   WORKER 3
+========================================= */
+
+.worker-three {
+
+    animation: workerThreeMove 12s linear infinite;
+    animation-delay: 4s;
+}
+
+.worker-three .worker-block {
+
+    animation: workerThreeBlock 12s linear infinite;
+    animation-delay: 4s;
+}
+
+@keyframes workerThreeMove {
+
+    0% {
+        left: 110px;
+    }
+
+    20% {
+        left: 110px;
+    }
+
+    45% {
+        left: 570px;
+    }
+
+    60% {
+        left: 570px;
+    }
+
+    80% {
+        left: 110px;
+    }
+
+    100% {
+        left: 110px;
+    }
+}
+
+@keyframes workerThreeBlock {
+
+    0%,
+    20% {
+        opacity: 0;
+    }
+
+    23%,
+    80% {
+        opacity: 1;
+    }
+
+    85%,
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   WORKER 4
+========================================= */
+
+.worker-four {
+
+    animation: workerFourMove 12s linear infinite;
+    animation-delay: 6s;
+}
+
+.worker-four .worker-block {
+
+    animation: workerFourBlock 12s linear infinite;
+    animation-delay: 6s;
+}
+
+@keyframes workerFourMove {
+
+    0% {
+        left: 140px;
+    }
+
+    20% {
+        left: 140px;
+    }
+
+    45% {
+        left: 570px;
+    }
+
+    60% {
+        left: 570px;
+    }
+
+    80% {
+        left: 140px;
+    }
+
+    100% {
+        left: 140px;
+    }
+}
+
+@keyframes workerFourBlock {
+
+    0%,
+    20% {
+        opacity: 0;
+    }
+
+    23%,
+    80% {
+        opacity: 1;
+    }
+
+    85%,
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   WORKER 5
+========================================= */
+
+.worker-five {
+
+    animation: workerFiveMove 12s linear infinite;
+    animation-delay: 8s;
+}
+
+.worker-five .worker-block {
+
+    animation: workerFiveBlock 12s linear infinite;
+    animation-delay: 8s;
+}
+
+@keyframes workerFiveMove {
+
+    0% {
+        left: 170px;
+    }
+
+    20% {
+        left: 170px;
+    }
+
+    45% {
+        left: 570px;
+    }
+
+    60% {
+        left: 570px;
+    }
+
+    80% {
+        left: 170px;
+    }
+
+    100% {
+        left: 170px;
+    }
+}
+
+@keyframes workerFiveBlock {
+
+    0%,
+    20% {
+        opacity: 0;
+    }
+
+    23%,
+    80% {
+        opacity: 1;
+    }
+
+    85%,
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   WORKER 6
+========================================= */
+
+.worker-six {
+
+    animation: workerSixMove 12s linear infinite;
+    animation-delay: 10s;
+}
+
+.worker-six .worker-block {
+
+    animation: workerSixBlock 12s linear infinite;
+    animation-delay: 10s;
+}
+
+@keyframes workerSixMove {
+
+    0% {
+        left: 200px;
+    }
+
+    20% {
+        left: 200px;
+    }
+
+    45% {
+        left: 570px;
+    }
+
+    60% {
+        left: 570px;
+    }
+
+    80% {
+        left: 200px;
+    }
+
+    100% {
+        left: 200px;
+    }
+}
+
+@keyframes workerSixBlock {
+
+    0%,
+    20% {
+        opacity: 0;
+    }
+
+    23%,
+    80% {
+        opacity: 1;
+    }
+
+    85%,
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   WORKER 7
+========================================= */
+
+.worker-seven {
+
+    animation: workerSevenMove 12s linear infinite;
+    animation-delay: 1s;
+}
+
+.worker-seven .worker-block {
+
+    animation: workerSevenBlock 12s linear infinite;
+    animation-delay: 1s;
+}
+
+@keyframes workerSevenMove {
+
+    0% {
+        left: 40px;
+    }
+
+    20% {
+        left: 40px;
+    }
+
+    45% {
+        left: 560px;
+    }
+
+    60% {
+        left: 560px;
+    }
+
+    80% {
+        left: 40px;
+    }
+
+    100% {
+        left: 40px;
+    }
+}
+
+@keyframes workerSevenBlock {
+
+    0%,
+    20% {
+        opacity: 0;
+    }
+
+    23%,
+    80% {
+        opacity: 1;
+    }
+
+    85%,
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   WALKING LEGS
+========================================= */
+
+.worker .left-leg {
+
+    animation:
+        leftWalk 0.6s ease-in-out infinite alternate;
+}
+
+.worker .right-leg {
+
+    animation:
+        rightWalk 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes leftWalk {
+
+    from {
+        transform: rotate(20deg);
+    }
+
+    to {
+        transform: rotate(-20deg);
+    }
+}
+
+@keyframes rightWalk {
+
+    from {
+        transform: rotate(-20deg);
+    }
+
+    to {
+        transform: rotate(20deg);
+    }
+}
+
+
+/* =========================================
+   ARM MOVEMENT
+========================================= */
+
+.worker .left-arm {
+
+    animation:
+        armLeft 0.7s ease-in-out infinite alternate;
+}
+
+.worker .right-arm {
+
+    animation:
+        armRight 0.7s ease-in-out infinite alternate;
+}
+
+@keyframes armLeft {
+
+    from {
+        transform: rotate(25deg);
+    }
+
+    to {
+        transform: rotate(-25deg);
+    }
+}
+
+@keyframes armRight {
+
+    from {
+        transform: rotate(-25deg);
+    }
+
+    to {
+        transform: rotate(25deg);
+    }
+}
+
+
+/* =========================================
+   WORKER BODY BOUNCE
+========================================= */
+
+.worker {
+
+    animation-timing-function: linear;
+}
+
+.worker-body {
+
+    animation:
+        workerBounce 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes workerBounce {
+
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-3px);
+    }
+}
+
+
+/* =========================================
+   GROUND
+========================================= */
+
+.construction-ground {
+
+    position: absolute;
+
+    z-index: 40;
+
+    left: 0;
+
+    bottom: 30px;
+
+    width: 100%;
+
+    height: 35px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    border-top: 2px solid rgba(181, 108, 255, 0.55);
+
+    box-shadow:
+        0 -10px 40px rgba(181, 108, 255, 0.1);
+}
+
+
+/* =========================================
+   FLOATING DUST
+========================================= */
+
+.construction-scene::before,
+.construction-scene::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 5px;
+
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #b56cff;
+
+    box-shadow:
+        100px 60px 0 rgba(181, 108, 255, 0.3),
+        250px 130px 0 rgba(181, 108, 255, 0.2),
+        500px 80px 0 rgba(181, 108, 255, 0.25),
+        700px 170px 0 rgba(181, 108, 255, 0.2);
+
+    animation: dust 6s linear infinite;
+}
+
+.construction-scene::before {
+    left: 10%;
+    top: 50%;
+}
+
+.construction-scene::after {
+    right: 15%;
+    top: 40%;
+
+    animation-delay: 3s;
+}
+
+@keyframes dust {
+
+    0% {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-120px);
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .construction-scene {
+        transform: scale(0.85);
+        transform-origin: top center;
+        width: 1200px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .coming-soon {
+        padding-top: 50px;
+    }
+
+    .construction-header {
+        margin-bottom: 60px;
+    }
+
+    .construction-header p {
+        font-size: 10px;
+        letter-spacing: 6px;
+    }
+
+    .construction-header h1 {
+        font-size: 30px;
+    }
+
+    .construction-scene {
+        transform: scale(0.55);
+        transform-origin: top center;
+        width: 1200px;
+        height: 500px;
+    }
+
+}
+
