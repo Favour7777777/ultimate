@@ -10,6 +10,8 @@
 
 html {
     scroll-behavior: smooth;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -17,6 +19,8 @@ body {
     color: #ffffff;
     font-family: "Inter", sans-serif;
     overflow-x: hidden;
+    width: 100%;
+    /* overflow: hidden; */
 }
 
 a {
@@ -1062,167 +1066,352 @@ select {
 }
 
 
+/* =========================================
+   RESPONSIVE — ULTIMATE ESTATE
+   Replace ALL previous media queries
+========================================= */
+
 /* =========================
-   RESPONSIVE
+   TABLET (1024px)
 ========================= */
 
-@media (max-width: 1000px) {
+@media (max-width:1024px){
 
-    .estate-nav {
-        display: none;
+    .estate-navbar{
+        padding:0 4%;
     }
 
-    .nav-contact {
-        display: none;
+    .estate-nav{
+        display:none;
     }
 
-    .menu-toggle {
-        display: block;
+    .nav-contact{
+        display:none;
     }
 
-    .hero-stats {
-        right: 5%;
+    .menu-toggle{
+        display:block;
     }
 
-    .search-fields {
-        grid-template-columns: 1fr 1fr;
+    .estate-hero{
+        min-height:760px;
+        padding:130px 6% 110px;
+        background-position:center;
     }
 
-    .search-btn {
-        height: 55px;
+    .hero-content{
+        max-width:620px;
     }
 
-    .property-showcase {
-        grid-template-columns: 1fr 1fr;
+    .hero-content h1{
+        font-size:68px;
     }
 
-    .property-large {
-        grid-column: 1 / -1;
+    .hero-stats{
+        right:6%;
+        bottom:50px;
+        gap:28px;
     }
 
-    .types-section {
-        grid-template-columns: 1fr;
-
-        gap: 60px;
+    .property-search-wrapper{
+        margin-top:-45px;
+        padding:0 30px;
     }
 
-    .estate-footer {
-        grid-template-columns: 1fr 1fr;
+    .search-fields{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .search-btn{
+        grid-column:1/-1;
+        height:56px;
+    }
+
+    .property-showcase{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .property-large{
+        grid-column:1/-1;
+    }
+
+    .types-section{
+        grid-template-columns:1fr;
+        gap:60px;
+    }
+
+    .estate-footer{
+        grid-template-columns:1fr 1fr;
+        gap:40px;
     }
 
 }
 
 
-@media (max-width: 650px) {
+/* =========================
+   MOBILE (768px)
+========================= */
 
-    .estate-navbar {
-        height: 72px;
+@media (max-width:768px){
 
-        padding: 0 5%;
+    .estate-navbar{
+        height:72px;
+        padding:0 20px;
     }
 
-    .mobile-menu {
-        top: 72px;
+    .estate-logo span{
+        font-size:17px;
     }
 
-    .estate-logo span {
-        font-size: 17px;
+    .estate-logo small{
+        letter-spacing:4px;
     }
 
-    .estate-hero {
-        min-height: 780px;
-
-        padding: 130px 7% 170px;
-
-        background-position: 60% center;
+    .mobile-menu{
+        top:72px;
     }
 
-    .hero-content h1 {
-        font-size: 52px;
+    .estate-hero{
+        min-height:700px;
+        padding:110px 20px 150px;
+        align-items:flex-start;
+        background-position:60% center;
     }
 
-    .hero-description {
-        font-size: 13px;
+    .hero-content{
+        max-width:100%;
     }
 
-    .hero-buttons {
-        flex-direction: column;
-
-        align-items: flex-start;
+    .hero-label{
+        font-size:10px;
+        letter-spacing:3px;
     }
 
-    .hero-stats {
-        left: 7%;
-        right: auto;
-        bottom: 45px;
-
-        gap: 25px;
+    .hero-content h1{
+        font-size:48px;
+        line-height:1;
     }
 
-    .hero-stats strong {
-        font-size: 22px;
+    .hero-description{
+        font-size:14px;
+        margin-top:22px;
     }
 
-    .property-search-wrapper {
-        margin-top: -40px;
+    .hero-buttons{
+        flex-direction:column;
+        width:100%;
+        gap:12px;
     }
 
-    .property-search {
-        padding: 22px;
+    .primary-btn,
+    .secondary-btn{
+        width:100%;
+        text-align:center;
     }
 
-    .search-fields {
-        grid-template-columns: 1fr;
+    .hero-stats{
+        position: absolute;
+
+        left:20px;
+        right:20px;
+        bottom:35px;
+        gap:20px;
+
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+
     }
 
-    .search-btn {
-        padding: 16px;
+    .hero-stats div{
+    min-width:0;
+}
+
+    .hero-stats strong{
+        font-size:22px;
+    }
+
+    .property-search-wrapper{
+        margin-top:-35px;
+        padding:0 20px;
+    }
+
+    .property-search{
+        padding:22px;
+        border-radius:22px;
+    }
+
+    .search-heading h2{
+        font-size:24px;
+    }
+
+    .search-fields{
+        grid-template-columns:1fr;
+    }
+
+    .search-btn{
+        grid-column:auto;
+        width:100%;
+        height:54px;
     }
 
     .featured-section,
-    .types-section {
-        padding: 90px 6%;
+    .types-section{
+        padding:80px 20px;
     }
 
-    .section-heading {
-        align-items: flex-start;
-
-        flex-direction: column;
-
-        gap: 20px;
+    .section-heading{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:18px;
     }
 
-    .property-showcase {
-        grid-template-columns: 1fr;
+    .section-heading h2{
+        font-size:42px;
     }
 
-    .property-large {
-        grid-column: auto;
+    .view-all{
+        margin-top:8px;
     }
 
-    .property-large .property-image,
-    .property-image {
-        height: 320px;
+    .property-showcase{
+        grid-template-columns:1fr;
     }
 
-    .type-item {
-        grid-template-columns: 45px 1fr 30px;
+    .property-large{
+        grid-column:auto;
     }
 
-    .type-item h3 {
-        font-size: 19px;
+    .property-image,
+    .property-large .property-image{
+        height:270px;
     }
 
-    .estate-footer {
-        grid-template-columns: 1fr;
-
-        gap: 35px;
+    .property-info h3{
+        font-size:22px;
     }
 
-    .footer-bottom {
-        flex-direction: column;
+    .property-details{
+        flex-wrap:wrap;
+        gap:10px;
+    }
 
-        gap: 10px;
+    .types-intro h2{
+        font-size:42px;
+    }
+
+    .type-item{
+        grid-template-columns:45px 1fr 25px;
+        padding:20px 0;
+    }
+
+    .type-item h3{
+        font-size:18px;
+    }
+
+    .estate-statement{
+        min-height:380px;
+        padding:80px 20px;
+    }
+
+    .estate-statement h2{
+        font-size:42px;
+    }
+
+    .estate-footer{
+        grid-template-columns:1fr;
+        padding:60px 20px 25px;
+        gap:35px;
+    }
+
+    .footer-bottom{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+}
+
+
+/* =========================
+   SMALL PHONES (480px)
+========================= */
+
+@media (max-width:480px){
+
+    .estate-hero{
+        min-height:640px;
+        padding:95px 18px 140px;
+    }
+
+    .hero-content h1{
+        font-size:38px;
+    }
+
+    .hero-description{
+        font-size:13px;
+        line-height:1.7;
+    }
+
+    .hero-stats{
+        gap:14px;
+    }
+
+    .hero-stats strong{
+        font-size:18px;
+    }
+
+    .property-search{
+        padding:18px;
+    }
+
+    .search-heading h2{
+        font-size:22px;
+    }
+
+    .search-field{
+        padding:12px 14px;
+    }
+
+    .section-heading h2{
+        font-size:34px;
+    }
+
+    .property-image,
+    .property-large .property-image{
+        height:230px;
+    }
+
+    .property-info{
+        padding:18px;
+    }
+
+    .property-info h3{
+        font-size:20px;
+    }
+
+    .types-intro h2{
+        font-size:34px;
+    }
+
+    .type-item{
+        gap:12px;
+    }
+
+    .type-number{
+        font-size:10px;
+    }
+
+    .type-item h3{
+        font-size:16px;
+    }
+
+    .estate-statement h2{
+        font-size:34px;
+    }
+
+    .footer-column{
+        gap:10px;
     }
 
 }

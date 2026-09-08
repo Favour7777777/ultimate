@@ -276,7 +276,7 @@ const prevBtn = document.querySelector(".prev-btn");
 
 const serviceCard = document.querySelector(".service-card");
 
-const scrollAmount = serviceCard.offsetWidth + 30;
+const scrollAmount = serviceCard ? serviceCard.offsetWidth + 30 : 0;
 
 
 /*=========================
@@ -732,6 +732,8 @@ vendorList.addEventListener("mouseleave",()=>{
 
 const trendingCards = document.querySelectorAll(".trend-card");
 
+if ("IntersectionObserver" in window) {
+
 const trendingObserver = new IntersectionObserver((entries)=>{
 
     entries.forEach(entry=>{
@@ -761,6 +763,16 @@ trendingCards.forEach(card=>{
     trendingObserver.observe(card);
 
 });
+
+} else {
+
+trendingCards.forEach(card=>{
+
+    card.classList.add("show-trend");
+
+});
+
+}
 
 
 /*=========================================

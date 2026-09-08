@@ -21,7 +21,7 @@ Ultimate
 
 <li><a href="#">Support</a></li>
 
-<li><a href="#">Sign In</a></li>
+<li><a href="signup.php">Sign Up</a></li>
 
 </ul>
 

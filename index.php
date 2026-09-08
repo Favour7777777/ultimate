@@ -10,7 +10,76 @@ $categoryQuery = "SELECT id, title, description, icon, image
 
 $categoryResult = mysqli_query($conn, $categoryQuery);
 
+
 ?>
+
+<?php
+
+$handpickedQuery = "
+    SELECT
+        products.id,
+        products.product_name,
+        products.description,
+        products.price,
+        products.discount_price,
+        products.image,
+        categories.title AS category_name
+    FROM products
+
+    INNER JOIN categories
+        ON products.category_id = categories.id
+
+    WHERE products.status = 'Active'
+
+    ORDER BY RAND()
+
+    LIMIT 6
+";
+
+$handpickedResult = mysqli_query($conn, $handpickedQuery);
+
+if(!$handpickedResult){
+    die("Failed to load handpicked products: " . mysqli_error($conn));
+}
+
+?>
+
+<?php
+
+$servicesQuery = "
+    SELECT
+        services.id,
+        services.service_name,
+        services.description,
+        services.price,
+        services.discount_price,
+        services.duration,
+        services.service_type,
+        services.image,
+        categories.title AS category_name
+    FROM services
+
+    INNER JOIN categories
+        ON services.category_id = categories.id
+
+    WHERE services.status = 'Active'
+
+    ORDER BY RAND()
+
+    LIMIT 6
+";
+
+$servicesResult = mysqli_query($conn, $servicesQuery);
+
+if(!$servicesResult){
+    die("Failed to load services: " . mysqli_error($conn));
+}
+
+?>
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -179,176 +248,7 @@ CHOOSE YOUR EXPERIENCE
 
     <div class="categories-grid">
 
-        <!-- Shop -->
-        <!-- <a href="#" class="category-card">
-
-            <img src="images/shop.jpg" alt="Shop">
-
-            <div class="category-overlay">
-
-                <div class="category-icon">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </div>
-
-                <h3>Shop</h3>
-
-            </div>
-
-        </a> -->
-
-        <!-- Services -->
-        <!-- <a href="#" class="category-card">
-
-            <img src="images/services.jpg" alt="Services">
-
-            <div class="category-overlay">
-
-                <div class="category-icon">
-                    <i class="fa-solid fa-briefcase"></i>
-                </div>
-
-                <h3>Services</h3>
-
-            </div>
-
-        </a> -->
-
-        <!-- Vehicles -->
-        <!-- <a href="#" class="category-card">
-
-            <img src="images/vehicles.jpg" alt="Vehicles">
-
-            <div class="category-overlay">
-
-                <div class="category-icon">
-                    <i class="fa-solid fa-car-side"></i>
-                </div>
-
-                <h3>Vehicles</h3>
-
-            </div>
-
-        </a> -->
-
-        <!-- Real Estate -->
-        <!-- <a href="#" class="category-card">
-
-            <img src="images/real-estate.png" alt="Real Estate">
-
-            <div class="category-overlay">
-
-                <div class="category-icon">
-                    <i class="fa-solid fa-building"></i>
-                </div>
-
-                <h3>Real Estate</h3>
-
-            </div>
-
-        </a> -->
-
-        <!-- Tech -->
-        <!-- <a href="#" class="category-card">
-
-            <img src="images/tech.png" alt="Tech">
-
-            <div class="category-overlay">
-
-                <div class="category-icon">
-                    <i class="fa-solid fa-laptop-code"></i>
-                </div>
-
-                <h3>Tech</h3>
-
-            </div>
-
-        </a> -->
-
-        <!-- Fashion -->
-        <!-- <a href="#" class="category-card">
-
-            <img src="images/fashion.jpg" alt="Fashion">
-
-            <div class="category-overlay">
-
-                <div class="category-icon">
-                    <i class="fa-solid fa-shirt"></i>
-                </div>
-
-                <h3>Fashion</h3>
-
-            </div>
-
-        </a> -->
-
-        <!-- Food -->
-        <!-- <a href="#" class="category-card">
-
-            <img src="images/food.png" alt="Food">
-
-            <div class="category-overlay">
-
-                <div class="category-icon">
-                    <i class="fa-solid fa-utensils"></i>
-                </div>
-
-                <h3>Food</h3>
-
-            </div>
-
-        </a> -->
-
-        <!-- Beauty -->
-        <!-- <a href="#" class="category-card">
-
-            <img src="images/beauty.jpg" alt="Beauty">
-
-            <div class="category-overlay">
-
-                <div class="category-icon">
-                    <i class="fa-solid fa-spa"></i>
-                </div>
-
-                <h3>Beauty</h3>
-
-            </div>
-
-        </a> -->
-
-        <!-- Education -->
-        <!-- <a href="#" class="category-card">
-
-            <img src="images/education.jpg" alt="Education">
-
-            <div class="category-overlay">
-
-                <div class="category-icon">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                </div>
-
-                <h3>Education</h3>
-
-            </div>
-
-        </a> -->
-
-        <!-- Events -->
-        <!-- <a href="#" class="category-card">
-
-            <img src="images/events.jpg" alt="Events">
-
-            <div class="category-overlay">
-
-                <div class="category-icon">
-                    <i class="fa-solid fa-calendar-days"></i>
-                </div>
-
-                <h3>Events</h3>
-
-            </div>
-
-        </a> -->
-
+        
         <?php while($category = mysqli_fetch_assoc($categoryResult)): ?>
 
     <a href="categories_details.php?id=<?= $category['id']; ?>" class="category-card">
@@ -384,6 +284,7 @@ CHOOSE YOUR EXPERIENCE
     </div>
 
 </section>
+
 <!--========================================
         HANDPICKED FOR YOU SECTION
 =========================================-->
@@ -400,235 +301,122 @@ CHOOSE YOUR EXPERIENCE
 
     </div>
 
+
     <div class="handpicked-grid">
 
-        <!-- Product 1 -->
+        <?php if(mysqli_num_rows($handpickedResult) > 0): ?>
 
-        <div class="product-card">
+            <?php while($product = mysqli_fetch_assoc($handpickedResult)): ?>
 
-            <div class="product-image">
+                <div class="product-card">
 
-                <img src="images/shopping.webp" alt="Luxury Wrist Watch">
+                    <div class="product-image">
 
-                <span class="category-badge">Fashion</span>
+                        <img
+                            src="admin/<?= htmlspecialchars($product['image']); ?>"
+                            alt="<?= htmlspecialchars($product['product_name']); ?>"
+                        >
 
-            </div>
+                        <span class="category-badge">
+                            <?= htmlspecialchars($product['category_name']); ?>
+                        </span>
 
-            <div class="product-content">
+                    </div>
 
-                <h3>Luxury Wrist Watch</h3>
 
-                <div class="rating">
+                    <div class="product-content">
 
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
+                        <h3>
+                            <?= htmlspecialchars($product['product_name']); ?>
+                        </h3>
 
-                    <span>4.8</span>
 
-                </div>
+                        <!-- Rating -->
 
-                <div class="price">$299</div>
+                        <div class="rating">
 
-                <a href="#" class="details-btn">View Details</a>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
 
-            </div>
+                            <span>New</span>
 
-        </div>
+                        </div>
 
-        <!-- Product 2 -->
 
-        <div class="product-card">
+                        <!-- Price -->
 
-            <div class="product-image">
+                        <div class="price">
 
-                <img src="images/shopping (1).webp" alt="Gaming Laptop">
+                            <?php if(!empty($product['discount_price'])): ?>
 
-                <span class="category-badge">Tech</span>
+                                <span>
+                                    $<?= number_format($product['discount_price'], 2); ?>
+                                </span>
 
-            </div>
+                                <del>
+                                    $<?= number_format($product['price'], 2); ?>
+                                </del>
 
-            <div class="product-content">
+                            <?php else: ?>
 
-                <h3>Gaming Laptop</h3>
+                                $<?= number_format($product['price'], 2); ?>
 
-                <div class="rating">
+                            <?php endif; ?>
 
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
+                        </div>
 
-                    <span>5.0</span>
 
-                </div>
+                        <!-- Details -->
 
-                <div class="price">$1,250</div>
+                        <a
+                            href="#"
+                            class="details-btn"
+                        >
+                            View Details
+                        </a>
 
-                <a href="#" class="details-btn">View Details</a>
-
-            </div>
-
-        </div>
-
-        <!-- Product 3 -->
-
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img src="images/images (2).jpg" alt="Luxury SUV">
-
-                <span class="category-badge">Vehicles</span>
-
-            </div>
-
-            <div class="product-content">
-
-                <h3>Luxury SUV</h3>
-
-                <div class="rating">
-
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-
-                    <span>5.0</span>
+                    </div>
 
                 </div>
 
-                <div class="price">$65,000</div>
+            <?php endwhile; ?>
 
-                <a href="#" class="details-btn">View Details</a>
+        <?php else: ?>
 
-            </div>
+            <div class="no-products">
 
-        </div>
-
-        <!-- Product 4 -->
-
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img src="images/NMVBJNHKJNB.jpg" alt="Luxury Apartment">
-
-                <span class="category-badge">Real Estate</span>
+                <p>
+                    No products are currently available.
+                </p>
 
             </div>
 
-            <div class="product-content">
+        <?php endif; ?>
 
-                <h3>Luxury Apartment</h3>
 
-                <div class="rating">
-
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-
-                    <span>4.9</span>
-
-                </div>
-
-                <div class="price">$250,000</div>
-
-                <a href="#" class="details-btn">View Details</a>
-
-            </div>
-
-        </div>
-
-        <!-- Product 5 -->
-
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img src="images/images (2).png" alt="Restaurant Special">
-
-                <span class="category-badge">Food</span>
-
-            </div>
-
-            <div class="product-content">
-
-                <h3>Chef's Special Platter</h3>
-
-                <div class="rating">
-
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-
-                    <span>5.0</span>
-
-                </div>
-
-                <div class="price">$45</div>
-
-                <a href="#" class="details-btn">View Details</a>
-
-            </div>
-
-        </div>
-
-        <!-- Product 6 -->
-
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img src="images/images (7).jpg" alt="Beauty Kit">
-
-                <span class="category-badge">Beauty</span>
-
-            </div>
-
-            <div class="product-content">
-
-                <h3>Premium Beauty Kit</h3>
-
-                <div class="rating">
-
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-
-                    <span>4.7</span>
-
-                </div>
-
-                <div class="price">$89</div>
-
-                <a href="#" class="details-btn">View Details</a>
-
-            </div>
-
-        </div>
+        <!-- View All -->
 
         <div class="view-all-container">
 
-        <a href="view-products-categories.php" class="view-all-btn">
-            View All Products Categories
-        </a>
+            <a
+                href="view-products-categories.php"
+                class="view-all-btn"
+            >
+                View All Products Categories
+            </a>
 
-    </div>
+        </div>
 
     </div>
 
 </section>
+
+<!--=========================================
+        SERVICES YOU CAN BOOK
+==========================================-->
 <!--=========================================
         SERVICES YOU CAN BOOK
 ==========================================-->
@@ -647,218 +435,71 @@ CHOOSE YOUR EXPERIENCE
 
     <div class="services-slider-wrapper">
 
-        <!-- Left Arrow -->
-
         <button class="slider-btn prev-btn">
-
             <i class="fa-solid fa-chevron-left"></i>
-
         </button>
-
-        <!-- Slider -->
 
         <div class="services-slider">
 
-            <!--=========================
-                    CARD 1
-            ==========================-->
+            <?php if(mysqli_num_rows($servicesResult) > 0): ?>
 
-            <div class="service-card">
+                <?php while($service = mysqli_fetch_assoc($servicesResult)): ?>
 
-                <img src="images/IMG-20251114-WA0095.jpg" alt="Cleaning">
+                    <div class="service-card">
 
-                <div class="service-overlay">
+                        <img
+                            src="admin/<?= htmlspecialchars($service['image']); ?>"
+                            alt="<?= htmlspecialchars($service['service_name']); ?>"
+                        >
 
-                    <div class="service-icon">
+                        <div class="service-overlay">
 
-                        <i class="fa-solid fa-broom"></i>
+                            <div class="service-icon">
+                                <i class="fa-solid fa-briefcase"></i>
+                            </div>
 
-                    </div>
+                            <h3>
+                                <?= htmlspecialchars($service['service_name']); ?>
+                            </h3>
 
-                    <h3>Home Cleaning</h3>
+                            <span class="service-price">
 
-                    <span class="service-price">
-                        Starting from $25
-                    </span>
+                                <?php if(!empty($service['discount_price'])): ?>
 
-                    <a href="#" class="book-btn">
+                                    Starting from
+                                    $<?= number_format($service['discount_price'], 2); ?>
 
-                        Book Now
+                                <?php else: ?>
 
-                    </a>
+                                    Starting from
+                                    $<?= number_format($service['price'], 2); ?>
 
-                </div>
+                                <?php endif; ?>
 
-            </div>
+                            </span>
 
-            <!--=========================
-                    CARD 2
-            ==========================-->
+                            <a href="#" class="book-btn">
+                                Book Now
+                            </a>
 
-            <div class="service-card">
-
-                <img src="images/plumbing.jpg" alt="Plumbing">
-
-                <div class="service-overlay">
-
-                    <div class="service-icon">
-
-                        <i class="fa-solid fa-wrench"></i>
+                        </div>
 
                     </div>
 
-                    <h3>Plumbing</h3>
+                <?php endwhile; ?>
 
-                    <span class="service-price">
-                        Starting from $40
-                    </span>
+            <?php else: ?>
 
-                    <a href="#" class="book-btn">
-
-                        Book Now
-
-                    </a>
-
+                <div class="no-services">
+                    <p>No services are currently available.</p>
                 </div>
 
-            </div>
-
-            <!--=========================
-                    CARD 3
-            ==========================-->
-
-            <div class="service-card">
-
-                <img src="images/electrician.jpg" alt="Electrician">
-
-                <div class="service-overlay">
-
-                    <div class="service-icon">
-
-                        <i class="fa-solid fa-bolt"></i>
-
-                    </div>
-
-                    <h3>Electrician</h3>
-
-                    <span class="service-price">
-                        Starting from $50
-                    </span>
-
-                    <a href="#" class="book-btn">
-
-                        Book Now
-
-                    </a>
-
-                </div>
-
-            </div>
-
-            <!--=========================
-                    CARD 4
-            ==========================-->
-
-            <div class="service-card">
-
-                <img src="images/photography.jpg" alt="Photography">
-
-                <div class="service-overlay">
-
-                    <div class="service-icon">
-
-                        <i class="fa-solid fa-camera"></i>
-
-                    </div>
-
-                    <h3>Photography</h3>
-
-                    <span class="service-price">
-                        Starting from $80
-                    </span>
-
-                    <a href="#" class="book-btn">
-
-                        Book Now
-
-                    </a>
-
-                </div>
-
-            </div>
-
-            <!--=========================
-                    CARD 5
-            ==========================-->
-
-            <div class="service-card">
-
-                <img src="images/IMG-20251205-WA0073.jpg" alt="Hair Styling">
-
-                <div class="service-overlay">
-
-                    <div class="service-icon">
-
-                        <i class="fa-solid fa-scissors"></i>
-
-                    </div>
-
-                    <h3>Hair Styling</h3>
-
-                    <span class="service-price">
-                        Starting from $30
-                    </span>
-
-                    <a href="#" class="book-btn">
-
-                        Book Now
-
-                    </a>
-
-                </div>
-
-            </div>
-
-            <!--=========================
-                    CARD 6
-            ==========================-->
-
-            <div class="service-card">
-
-                <img src="images/carwash.jpg" alt="Car Wash">
-
-                <div class="service-overlay">
-
-                    <div class="service-icon">
-
-                        <i class="fa-solid fa-car"></i>
-
-                    </div>
-
-                    <h3>Car Wash</h3>
-
-                    <span class="service-price">
-                        Starting from $20
-                    </span>
-
-                    <a href="#" class="book-btn">
-
-                        Book Now
-
-                    </a>
-
-                </div>
-
-            </div>
+            <?php endif; ?>
 
         </div>
 
-        <!-- Right Arrow -->
-
         <button class="slider-btn next-btn">
-
             <i class="fa-solid fa-chevron-right"></i>
-
         </button>
 
     </div>
@@ -2208,7 +1849,7 @@ CHOOSE YOUR EXPERIENCE
 
             <div class="phone phone-back">
 
-                <img src="images/dashboard-removebg-preview.png" alt="Seller Dashboard">
+                <img src="dashboard-removebg-preview.png" alt="Seller Dashboard">
 
             </div>
 
@@ -2216,7 +1857,7 @@ CHOOSE YOUR EXPERIENCE
 
             <div class="phone phone-front">
 
-                <img src="images/ChatGPT_Image_Jul_27__2026__03_24_48_PM-removebg-preview.png" alt="Ultimate Mobile App">
+                <img src="ChatGPT_Image_Jul_27__2026__03_24_48_PM-removebg-preview.png" alt="Ultimate Mobile App">
 
             </div>
 

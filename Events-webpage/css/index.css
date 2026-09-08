@@ -829,7 +829,11 @@ background:rgba(10,10,10,.92);
 }
 
 .mobile-menu{
-    display:flex;
+    display:none;
+}
+
+.mobile-menu-close{
+    display:none;
 }
 
 @media(max-width:768px){
@@ -874,30 +878,56 @@ background:rgba(10,10,10,.92);
 
     /* Dropdown */
     .mobile-menu{
-    position:fixed;
-    top:0;
-    right:0;
+        position:fixed;
+        inset:0 0 0 auto;
+        width:min(320px, 86vw);
+        min-height:100dvh;
 
-    width:270px;
-    height:50vh;
+        display:flex;
+        flex-direction:column;
+        align-items:stretch;
+        gap:8px;
 
-    display:flex;
-    flex-direction:column;
-    gap:20px;
+        padding:88px 24px 28px;
 
-    padding:90px 50px 50px;
+        border-left:1px solid rgba(181,108,255,.3);
+        border-radius:24px 0 0 24px;
 
-    border-left:1px solid rgba(181,108,255,.15);
-    border-radius: 30px;
+        background:rgba(20,16,24,.98);
+        box-shadow:-16px 0 40px rgba(0,0,0,.35);
+        backdrop-filter:blur(18px);
+        overflow-y:auto;
 
-    background:rgba(20,16,24,.98);
-    backdrop-filter:blur(18px);
+        transform:translateX(100%);
+        transition:transform .35s ease;
 
-    transform:translateX(100%);
-    transition:transform .35s ease;
+        z-index:2000;
+    }
 
-    z-index:2000;
-}
+    .mobile-menu-close{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        position:absolute;
+        top:20px;
+        right:20px;
+        width:42px;
+        height:42px;
+        border:1px solid rgba(255,255,255,.2);
+        border-radius:12px;
+        background:rgba(255,255,255,.08);
+        color:#fff;
+        font-size:19px;
+        cursor:pointer;
+        transition:background .2s ease, border-color .2s ease;
+    }
+
+    .mobile-menu-close:hover,
+    .mobile-menu-close:focus-visible{
+        background:#B56CFF;
+        border-color:#B56CFF;
+        outline:none;
+    }
 
 .mobile-menu.active{
     transform:translateX(0);
@@ -906,7 +936,17 @@ background:rgba(10,10,10,.92);
         text-decoration:none;
         color:#fff;
         font-size:14px;
-        padding: 10px;
+        font-weight:500;
+        padding:14px 16px;
+        border-radius:12px;
+        transition:background .2s ease, color .2s ease;
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu a:focus-visible{
+        color:#fff;
+        background:rgba(181,108,255,.18);
+        outline:none;
     }
 
     .mobile-login{

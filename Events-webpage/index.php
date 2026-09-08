@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-   <link rel="stylesheet" href="css/index.css?v=2">
+   <link rel="stylesheet" href="css/index.css?v=3">
 </head>
 <body>
 <section class="container">
@@ -1400,7 +1400,7 @@
 </section>
 
 
-<script src="js/script.js?v=2"></script>
+<script src="js/script.js?v=3"></script>
     
 </body>
 </html>

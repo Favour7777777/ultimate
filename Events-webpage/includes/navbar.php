@@ -32,6 +32,10 @@
 
 <div class="mobile-menu">
 
+    <button class="mobile-menu-close" type="button" aria-label="Close navigation menu">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+
     <a href="#">Home</a>
     <a href="#">Categories</a>
     <a href="#">Vendors</a>

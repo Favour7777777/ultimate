@@ -3587,9 +3587,9 @@ BUTTON SHINE
 
 .trend-card{
 
-    opacity:0;
+    opacity:1;
 
-    transform:translateY(60px);
+    transform:translateY(0);
 
 }
 

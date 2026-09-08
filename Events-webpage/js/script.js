@@ -1,13 +1,24 @@
 const menuToggle = document.querySelector(".menu-toggle");
 const mobileMenu = document.querySelector(".mobile-menu");
+const mobileMenuClose = document.querySelector(".mobile-menu-close");
 
 if(menuToggle && mobileMenu){
 
+    const setMenuState = (isOpen) => {
+        mobileMenu.classList.toggle("active", isOpen);
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+    };
+
     menuToggle.addEventListener("click", () => {
 
-        const isOpen = mobileMenu.classList.toggle("active");
+        const isOpen = !mobileMenu.classList.contains("active");
+        setMenuState(isOpen);
 
-        menuToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    mobileMenuClose?.addEventListener("click", () => {
+
+        setMenuState(false);
 
     });
 

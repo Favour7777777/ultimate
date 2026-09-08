@@ -181,8 +181,8 @@ $adminEmail = $_SESSION["admin_email"] ?? "";
 
 
             <a
-                href="product-categories.php"
-                class="navigation-item <?= ($currentPage === 'Products Categories') ? 'active' : ''; ?>"
+                href="products.php"
+                class="navigation-item <?= ($currentPage === 'Products') ? 'active' : ''; ?>"
             >
 
                 <span class="navigation-icon">
@@ -194,11 +194,14 @@ $adminEmail = $_SESSION["admin_email"] ?? "";
 
                 <span class="navigation-text">
 
-                    Products Categories
+                    Products
 
                 </span>
 
             </a>
+
+
+            
 
 
 

@@ -7,7 +7,7 @@
 
     <title>Ultimate Estate</title>
 
-    <link rel="stylesheet" href="css/estate.css">
+    <link rel="stylesheet" href="css/estate.css?v=3">
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
@@ -618,7 +618,7 @@
     </footer>
 
 
-    <script src="js/estate.js"></script>
+    <script src="js/estate.js?v=3"></script>
 
 </body>
 
