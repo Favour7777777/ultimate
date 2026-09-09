@@ -1,3 +1,202 @@
+<?php
+
+session_start();
+
+require_once "config.php";
+
+$error = "";
+$signupSuccess=false;
+
+/* =========================================
+        RETURN TO USER ACTIVITY
+========================================= */
+
+$returnTo = $_GET["return_to"] ?? "index.php";
+
+/*
+    Only allow local PHP pages.
+    This prevents someone from using this
+    parameter to redirect users to another website.
+*/
+
+if(
+    !preg_match('/^[a-zA-Z0-9_\-\/]+\.php(\?.*)?$/', $returnTo)
+){
+    $returnTo = "index.php";
+}
+
+$_SESSION["return_to"] = $returnTo;
+
+if(isset($_POST["signup"])){
+
+    $fullname = trim($_POST["fullname"] ?? "");
+    $phone_number = trim($_POST["phone_number"] ?? "");
+    $email = trim($_POST["email"] ?? "");
+    $password = $_POST["password"] ?? "";
+
+    /*
+    =========================================
+            BASIC VALIDATION
+    =========================================
+    */
+
+    if(
+        empty($fullname) ||
+        empty($phone_number) ||
+        empty($email) ||
+        empty($password)
+    ){
+
+        $error = "Please fill in all required fields.";
+
+    }elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+
+        $error = "Please enter a valid email address.";
+
+    }elseif(strlen($password) < 8){
+
+        $error = "Password must contain at least 8 characters.";
+
+    }elseif(!isset($_POST["terms"])){
+
+        $error = "Please agree to the Terms and Privacy Policy.";
+
+    }else{
+
+        /*
+        =========================================
+                CHECK IF EMAIL EXISTS
+        =========================================
+        */
+
+        $checkQuery = "
+            SELECT id
+            FROM users
+            WHERE email = ?
+        ";
+
+        $stmt = mysqli_prepare($conn, $checkQuery);
+
+        if(!$stmt){
+
+            die("Database error: " . mysqli_error($conn));
+
+        }
+
+        mysqli_stmt_bind_param(
+            $stmt,
+            "s",
+            $email
+        );
+
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
+
+        $existingUser = mysqli_fetch_assoc($result);
+
+        mysqli_stmt_close($stmt);
+
+
+        if($existingUser){
+
+            $error = "An account with this email already exists.";
+
+        }else{
+
+            /*
+            =========================================
+                    HASH PASSWORD
+            =========================================
+            */
+
+            $hashedPassword = password_hash(
+                $password,
+                PASSWORD_DEFAULT
+            );
+
+
+            /*
+            =========================================
+                    CREATE USER
+            =========================================
+            */
+
+            $insertQuery = "
+                INSERT INTO users
+                (
+                    fullname,
+                    email,
+                    phone_number,
+                    password
+                )
+                VALUES
+                (?, ?, ?, ?)
+            ";
+
+            $stmt = mysqli_prepare(
+                $conn,
+                $insertQuery
+            );
+
+            if(!$stmt){
+
+                die("Database error: " . mysqli_error($conn));
+
+            }
+
+            mysqli_stmt_bind_param(
+                $stmt,
+                "ssss",
+                $fullname,
+                $email,
+                $phone_number,
+                $hashedPassword
+            );
+
+
+            if(mysqli_stmt_execute($stmt)){
+
+                $userId = mysqli_insert_id($conn);
+
+                mysqli_stmt_close($stmt);
+
+
+                /*
+                =========================================
+                        CREATE USER SESSION
+                =========================================
+                */
+
+                $_SESSION["user_id"] = $userId;
+                $_SESSION["user_name"] = $fullname;
+                $_SESSION["user_email"] = $email;
+
+                /*
+                    Signup was successful.
+
+                    We will build the success modal next.
+                */
+
+                $signupSuccess = true;
+
+            }else{
+
+                mysqli_stmt_close($stmt);
+
+                $error = "Something went wrong while creating your account.";
+
+            }
+
+        }
+
+    }
+
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -143,10 +342,28 @@
 
 
                 <!-- =========================================
+
+
                             SIGNUP FORM
                 ========================================== -->
 
-                <form action="#" method="POST" class="signup-form">
+                <?php if(!empty($error)): ?>
+
+                    <div style="
+                        padding:14px 16px;
+                        margin-bottom:20px;
+                        border-radius:12px;
+                        background:rgba(255,70,70,.08);
+                        border:1px solid rgba(255,70,70,.25);
+                        color:#ff8a8a;
+                        font-size:12px;
+                    ">
+                        <?= htmlspecialchars($error); ?>
+                    </div>
+
+                <?php endif; ?>
+
+                <form action="" method="POST" class="signup-form">
 
                     <div class="form-row">
 
@@ -281,7 +498,7 @@
                             <input
                                 type="checkbox"
                                 name="terms"
-                                required
+                                
                             >
 
                             <span class="custom-checkbox">
@@ -300,7 +517,7 @@
                     </div>
 
 
-                    <button type="submit" class="signup-btn">
+                    <button type="submit" name="signup"class="signup-btn">
 
                         <span>Create My Account</span>
 
@@ -325,6 +542,67 @@
                     </p>
 
                 </form>
+
+                <!-- =========================================
+            SIGNUP SUCCESS MODAL
+========================================== -->
+
+<?php if($signupSuccess): ?>
+
+<div class="success-modal-overlay" id="successModal">
+
+    <div class="success-modal">
+
+        <button
+            type="button"
+            class="success-close"
+            onclick="closeSuccessModal()"
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="success-icon">
+            <i class="fa-solid fa-check"></i>
+        </div>
+
+        <span class="success-label">
+            ACCOUNT CREATED
+        </span>
+
+        <h2>
+            Welcome to
+            <span>Ultimate.</span>
+        </h2>
+
+        <p>
+            Your account has been created successfully.
+            You're now ready to explore everything Ultimate has to offer.
+        </p>
+
+        <div class="success-actions">
+
+            <a
+                href="user-dashboard.php"
+                class="success-primary-btn"
+            >
+                <span>Continue to User Dashboard</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+            <a
+                href="<?= htmlspecialchars($_SESSION["return_to"] ?? "index.php"); ?>"
+                class="success-secondary-btn"
+            >
+                <i class="fa-solid fa-compass"></i>
+                <span>Resume User Activity</span>
+            </a>
+        </div>
+
+                </div>
+
+            </div>
+
+            <?php endif; ?>
 
             </div>
 

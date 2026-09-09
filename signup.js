@@ -110,3 +110,29 @@ passwordInput.addEventListener("input", function () {
     }
 
 });
+
+
+
+
+function closeSuccessModal(){
+
+    const modal = document.getElementById("successModal");
+
+    if(modal){
+
+        modal.style.display = "none";
+
+    }
+
+}
+document.addEventListener("DOMContentLoaded", function(){
+
+    const modal = document.getElementById("successModal");
+
+    if(modal){
+
+        // document.body.style.overflow = "hidden";
+
+    }
+
+});
