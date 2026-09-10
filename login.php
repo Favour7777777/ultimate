@@ -1040,7 +1040,7 @@ if(isset($_POST["login"])){
 
 
             <a
-                href="user-dashboard.php"
+                href="user/dashboard.php"
                 class="success-primary-btn"
             >
 

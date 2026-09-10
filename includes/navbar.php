@@ -1,5 +1,11 @@
+<?php
+if(session_status() === PHP_SESSION_NONE){
+    session_start();
+}
+?>
 
-    <!-- NAVBAR -->
+
+<!-- NAVBAR -->
 
 <nav class="navbar">
 
@@ -21,7 +27,25 @@ Ultimate
 
 <li><a href="#">Support</a></li>
 
+<li>
+    <?php if(isset($_SESSION["user_id"])): ?>
+
+        <a href="user/dashboard.php">
+            Dashboard
+        </a>
+
+    <?php else: ?>
+
+        <a href="login.php?return_to=user/dashboard.php">
+            Dashboard
+        </a>
+
+    <?php endif; ?>
+</li>
+
 <li><a href="signup.php">Sign Up</a></li>
+
+
 
 </ul>
 
@@ -42,7 +66,13 @@ Ultimate
 <a href="#">Services</a>
 <a href="#">Sell</a>
 <a href="#">Support</a>
-<a href="#">Sign In</a>
+<a href="<?= isset($_SESSION["user_id"])
+    ? 'user/dashboard.php'
+    : 'login.php?return_to=user/dashboard.php'
+?>">
+    Dashboard
+</a>
+<a href="login.php">Sign In</a>
 
 </div>
 
