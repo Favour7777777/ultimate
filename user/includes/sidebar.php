@@ -6,7 +6,7 @@
 
     <nav>
 
-        <a href="user-dashboard.php" class="active">
+        <a href="dashboard.php" class="active">
             <i class="fa-solid fa-house"></i>
             Dashboard
         </a>
@@ -21,7 +21,7 @@
             Saved Items
         </a>
 
-        <a href="#">
+        <a href="reviews.php">
             <i class="fa-solid fa-star"></i>
             My Reviews
         </a>

@@ -268,6 +268,8 @@ require_once "../config.php";
 
                     </div>
 
+                    <p><i>Forgotten password? <a href="forgot-password.php">Reset</a></i></p>
+
 
 
                     <!-- LOGIN BUTTON -->

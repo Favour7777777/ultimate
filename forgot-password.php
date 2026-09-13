@@ -63,6 +63,7 @@ if(isset($_POST["submit"])){
         $result = mysqli_stmt_get_result($stmt);
 
         $user = mysqli_fetch_assoc($result);
+        
 
         mysqli_stmt_close($stmt);
 
@@ -249,8 +250,10 @@ if(isset($_POST["submit"])){
                 Recipient
                 */
 
+                $mail->clearAddresses();
+
                 $mail->addAddress(
-                    $user["email"],
+                    $email,
                     $user["fullname"]
                 );
 
@@ -420,8 +423,7 @@ if(isset($_POST["submit"])){
 
 
                 $message =
-                    "We couldn't send the reset email " .
-                    "right now. Please try again later.";
+                "Email error: " . $e->getMessage();
 
                 $messageType = "error";
             }

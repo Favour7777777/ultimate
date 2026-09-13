@@ -10,202 +10,10 @@ require_once "../auth.php";
 <title>User Dashboard | Ultimate</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="css/dashboard.css">
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, Helvetica, sans-serif;
-}
-
-body{
-background:#05030b;
-color:#fff;
-}
-
-.dashboard{
-display:flex;
-min-height:100vh;
-}
-
-/* SIDEBAR SPACE */
-
-.main{
-flex:1;
-margin-left:260px;
-display:flex;
-flex-direction:column;
-min-height:100vh;
-}
-
-/* CONTENT */
-
-.content{
-padding:30px;
-flex:1;
-}
-
-.welcome{
-background:linear-gradient(135deg,#7b2ff7,#290044);
-border-radius:25px;
-padding:35px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-flex-wrap:wrap;
-gap:20px;
-margin-bottom:30px;
-}
-
-.welcome h1{
-font-size:32px;
-margin-bottom:10px;
-}
-
-.welcome p{
-opacity:.9;
-line-height:1.6;
-max-width:500px;
-}
-
-.avatar{
-width:90px;
-height:90px;
-border-radius:50%;
-background:rgba(255,255,255,.15);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:34px;
-border:2px solid rgba(255,255,255,.2);
-}
-
-/* STATS */
-
-.stats{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:20px;
-margin-bottom:30px;
-}
-
-.card{
-background:#12101d;
-border:1px solid rgba(255,255,255,.06);
-border-radius:20px;
-padding:22px;
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-border-color:#8b5cf6;
-}
-
-.card i{
-font-size:26px;
-color:#a855f7;
-margin-bottom:15px;
-}
-
-.card h2{
-font-size:30px;
-margin-bottom:6px;
-}
-
-.card span{
-color:#aaa;
-font-size:14px;
-}
-
-/* QUICK ACTIONS */
-
-.section-title{
-font-size:22px;
-margin-bottom:18px;
-}
-
-.actions{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:20px;
-}
-
-.action-box{
-background:#12101d;
-border-radius:18px;
-padding:22px;
-text-align:center;
-border:1px solid rgba(255,255,255,.06);
-transition:.3s;
-cursor:pointer;
-}
-
-.action-box:hover{
-background:#1b1728;
-transform:translateY(-5px);
-}
-
-.action-box i{
-font-size:28px;
-color:#a855f7;
-margin-bottom:15px;
-}
-
-.action-box h3{
-font-size:16px;
-margin-bottom:8px;
-}
-
-.action-box p{
-font-size:13px;
-color:#999;
-line-height:1.5;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:1100px){
-
-.stats,
-.actions{
-grid-template-columns:repeat(2,1fr);
-}
-
-}
-
-@media(max-width:900px){
-
-.main{
-margin-left:0;
-}
-
-}
-
-@media(max-width:600px){
-
-.content{
-padding:18px;
-}
-
-.welcome h1{
-font-size:24px;
-}
-
-.stats,
-.actions{
-grid-template-columns:1fr;
-}
-
-.avatar{
-width:70px;
-height:70px;
-font-size:26px;
-}
-
-}
 
 </style>
 
@@ -283,12 +91,15 @@ font-size:26px;
             <h2 class="section-title">Quick Actions</h2>
 
             <div class="actions">
-
-                <div class="action-box">
+                <a href="reviews.php">
+                    <div class="action-box">
                     <i class="fa-solid fa-star-half-stroke"></i>
                     <h3>Leave Review</h3>
                     <p>Share your experience with Ultimate.</p>
                 </div>
+
+                </a>
+                
 
                 <div class="action-box">
                     <i class="fa-solid fa-user-pen"></i>
