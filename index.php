@@ -77,6 +77,34 @@ if(!$servicesResult){
 
 ?>
 
+<?php
+
+require_once "config.php";
+
+/* =========================================
+   FETCH APPROVED REVIEWS
+========================================= */
+
+$testimonialQuery = "
+    SELECT
+        reviews.*,
+        users.fullname
+    FROM reviews
+
+    INNER JOIN users
+        ON reviews.user_id = users.id
+
+    WHERE reviews.status = 'Approved'
+
+    ORDER BY reviews.created_at DESC
+
+    LIMIT 3
+";
+
+$testimonialResult = mysqli_query($conn, $testimonialQuery);
+
+?>
+
 
 
 
@@ -630,157 +658,102 @@ CHOOSE YOUR EXPERIENCE
 
         <div class="testimonial-slider">
 
-            <!--=====================
-                Testimonial 1
-            ======================-->
+            <?php if(mysqli_num_rows($testimonialResult) > 0): ?>
 
-            <div class="testimonial-card">
+    <?php while($testimonial = mysqli_fetch_assoc($testimonialResult)): ?>
 
-                <div class="customer-image">
+        <div class="testimonial-card">
 
-                    <img src="images/customer1.jpg" alt="Customer">
+            <!-- CUSTOMER IMAGE -->
+            <div class="customer-image">
 
-                </div>
-
-                <h3>Sarah Johnson</h3>
-
-                <div class="stars">
-
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-
-                </div>
-
-                <p>
-
-                    Ultimate made shopping so easy. Everything arrived on time and the customer service was outstanding.
-
-                </p>
-
-                <span class="customer-city">
-
-                    Lagos, Nigeria
-
-                </span>
+                <img
+                    src="images/customer1.jpg"
+                    alt="<?= htmlspecialchars($testimonial["fullname"]); ?>"
+                >
 
             </div>
 
-            <!--=====================
-                Testimonial 2
-            ======================-->
 
-            <div class="testimonial-card">
+            <!-- CUSTOMER NAME -->
+            <h3>
+                <?= htmlspecialchars($testimonial["fullname"]); ?>
+            </h3>
 
-                <div class="customer-image">
 
-                    <img src="images/customer2.jpg" alt="Customer">
+            <!-- RATING -->
+            <div class="stars">
 
-                </div>
+                <?php for($i = 1; $i <= 5; $i++): ?>
 
-                <h3>Michael Brown</h3>
+                    <?php if($i <= $testimonial["rating"]): ?>
 
-                <div class="stars">
+                        <i class="fa-solid fa-star"></i>
 
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <?php else: ?>
 
-                </div>
+                        <i class="fa-regular fa-star"></i>
 
-                <p>
+                    <?php endif; ?>
 
-                    Booking services has never been easier. Highly recommended for anyone looking for quality.
-
-                </p>
-
-                <span class="customer-city">
-
-                    Abuja, Nigeria
-
-                </span>
+                <?php endfor; ?>
 
             </div>
 
-            <!--=====================
-                Testimonial 3
-            ======================-->
 
-            <div class="testimonial-card">
+            <!-- CUSTOMER REVIEW -->
+            <p>
+                <?= nl2br(
+                    htmlspecialchars($testimonial["review"])
+                ); ?>
+            </p>
 
-                <div class="customer-image">
 
-                    <img src="images/customer3.jpg" alt="Customer">
+            <!-- ADMIN REPLY -->
+            <?php if(!empty($testimonial["admin_reply"])): ?>
 
-                </div>
+                <div class="testimonial-admin-reply">
 
-                <h3>Grace Williams</h3>
+                    <strong>
+                        <i class="fa-solid fa-reply"></i>
+                        Ultimate's Reply
+                    </strong>
 
-                <div class="stars">
-
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-
-                </div>
-
-                <p>
-
-                    Beautiful marketplace, verified sellers and secure payments. I love using Ultimate every week.
-
-                </p>
-
-                <span class="customer-city">
-
-                    Port Harcourt, Nigeria
-
-                </span>
-
-            </div>
-
-            <!--=====================
-                Testimonial 4
-            ======================-->
-
-            <div class="testimonial-card">
-
-                <div class="customer-image">
-
-                    <img src="images/customer4.jpg" alt="Customer">
+                    <p>
+                        <?= nl2br(
+                            htmlspecialchars($testimonial["admin_reply"])
+                        ); ?>
+                    </p>
 
                 </div>
 
-                <h3>David Wilson</h3>
+            <?php endif; ?>
 
-                <div class="stars">
 
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
+            <!-- VERIFIED CUSTOMER -->
+            <span class="customer-city">
+                Verified Ultimate Customer
+            </span>
 
-                </div>
+        </div>
 
-                <p>
+    <?php endwhile; ?>
 
-                    Excellent experience from start to finish. The platform is fast, modern and trustworthy.
+<?php else: ?>
 
-                </p>
+    <div class="testimonial-empty">
 
-                <span class="customer-city">
+        <i class="fa-regular fa-comment-dots"></i>
 
-                    Ibadan, Nigeria
+        <h3>No Reviews Yet</h3>
 
-                </span>
+        <p>
+            Be the first customer to share your experience with Ultimate.
+        </p>
 
-            </div>
+    </div>
+
+<?php endif; ?>
 
         </div>
 

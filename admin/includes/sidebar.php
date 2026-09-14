@@ -247,6 +247,26 @@ $adminEmail = $_SESSION["admin_email"] ?? "";
 
             </a>
 
+            <a
+                href="reviews.php"
+                class="navigation-item <?= ($currentPage === 'reviews&ratings') ? 'active' : ''; ?>"
+            >
+
+                <span class="navigation-icon">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                </span>
+
+
+                <span class="navigation-text">
+
+                    Reviews&Ratings
+
+                </span>
+
+            </a>
+
 
 
             <a

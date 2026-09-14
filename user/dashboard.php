@@ -1,5 +1,64 @@
 <?php
 require_once "../auth.php";
+
+/*
+=========================================
+    REVIEWS GIVEN COUNTER
+=========================================
+*/
+
+$userId = $_SESSION["user_id"];
+
+
+/*
+    General website reviews
+*/
+
+$generalReviewCount = 0;
+
+$query = "
+    SELECT COUNT(*) AS total
+    FROM reviews
+    WHERE user_id = ?
+";
+
+$stmt = mysqli_prepare($conn, $query);
+
+mysqli_stmt_bind_param(
+    $stmt,
+    "i",
+    $userId
+);
+
+mysqli_stmt_execute($stmt);
+
+$result = mysqli_stmt_get_result($stmt);
+
+$data = mysqli_fetch_assoc($result);
+
+$generalReviewCount = (int) $data["total"];
+
+mysqli_stmt_close($stmt);
+
+
+/*
+    Product & Service reviews
+    (Tables not created yet)
+*/
+
+$productReviewCount = 0;
+
+$serviceReviewCount = 0;
+
+
+/*
+    Total reviews
+*/
+
+$totalReviews =
+    $generalReviewCount +
+    $productReviewCount +
+    $serviceReviewCount;
 ?>
 
 <!DOCTYPE html>
@@ -61,9 +120,13 @@ require_once "../auth.php";
             <div class="stats">
 
                 <div class="card">
+
                     <i class="fa-solid fa-star"></i>
-                    <h2>0</h2>
+
+                    <h2><?= $totalReviews; ?></h2>
+
                     <span>Reviews Given</span>
+
                 </div>
 
                 <div class="card">
