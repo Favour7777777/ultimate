@@ -89,6 +89,17 @@
 
         </a>
 
+        <a
+            href="renewal.php"
+            class="nav-link <?= ($currentPage === 'renewal') ? 'active' : ''; ?>"
+        >
+
+            <i class="fa-solid fa-briefcase"></i>
+
+            <span>Renewal</span>
+
+        </a>
+
 
         <a
             href="orders.php"

@@ -1,0 +1,791 @@
+
+/* =========================================
+   ULTIMATE VENDOR
+   LISTING RENEWALS
+========================================= */
+
+:root {
+    --renew-bg: #08070c;
+    --renew-card: #111019;
+    --renew-card-light: #16131f;
+    --renew-border: #25212f;
+
+    --renew-primary: #8b5cf6;
+    --renew-primary-dark: #6d28d9;
+    --renew-primary-soft: rgba(139, 92, 246, 0.12);
+    --renew-primary-glow: rgba(139, 92, 246, 0.22);
+
+    --renew-text: #ffffff;
+    --renew-muted: #9d98a8;
+    --renew-soft: #777180;
+
+    --renew-success: #22c55e;
+    --renew-success-soft: rgba(34, 197, 94, 0.12);
+
+    --renew-warning: #f59e0b;
+    --renew-warning-soft: rgba(245, 158, 11, 0.12);
+
+    --renew-danger: #ef4444;
+    --renew-danger-soft: rgba(239, 68, 68, 0.12);
+
+    --renew-blue: #3b82f6;
+    --renew-blue-soft: rgba(59, 130, 246, 0.12);
+
+    --renew-radius: 20px;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.renewal-content {
+    padding: 35px 30px 45px;
+    background:
+        radial-gradient(
+            circle at 85% 0%,
+            rgba(139, 92, 246, 0.08),
+            transparent 28%
+        ),
+        var(--renew-bg);
+    min-height: calc(100vh - 82px);
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.renewal-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 25px;
+    margin-bottom: 32px;
+}
+
+.renewal-eyebrow {
+    display: inline-block;
+    margin-bottom: 9px;
+
+    color: var(--renew-primary);
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.renewal-header h2 {
+    margin: 0 0 9px;
+
+    color: var(--renew-text);
+
+    font-size: 30px;
+    font-weight: 650;
+    letter-spacing: -0.7px;
+}
+
+.renewal-header p {
+    max-width: 650px;
+    margin: 0;
+
+    color: var(--renew-muted);
+
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   RENEWAL SECTION
+========================================= */
+
+.renewal-section {
+    margin-bottom: 30px;
+
+    padding: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(22, 19, 31, 0.94),
+            rgba(13, 11, 18, 0.96)
+        );
+
+    border: 1px solid var(--renew-border);
+    border-radius: var(--renew-radius);
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.22);
+
+    position: relative;
+    overflow: hidden;
+}
+
+.renewal-section::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    top: -110px;
+    right: -80px;
+
+    background: rgba(139, 92, 246, 0.08);
+
+    border-radius: 50%;
+
+    filter: blur(10px);
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    margin-bottom: 23px;
+}
+
+.section-heading-icon {
+    width: 45px;
+    height: 45px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--renew-primary);
+
+    background: var(--renew-primary-soft);
+
+    border: 1px solid rgba(139, 92, 246, 0.18);
+
+    border-radius: 13px;
+
+    font-size: 16px;
+}
+
+.section-heading h3 {
+    margin: 0 0 4px;
+
+    color: var(--renew-text);
+
+    font-size: 17px;
+    font-weight: 650;
+}
+
+.section-heading p {
+    margin: 0;
+
+    color: var(--renew-soft);
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   RENEWAL LIST
+========================================= */
+
+.renewal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+/* =========================================
+   RENEWAL CARD
+========================================= */
+
+.renewal-card {
+    display: grid;
+
+    grid-template-columns: 76px minmax(0, 1fr) auto;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 14px;
+
+    background: rgba(8, 7, 12, 0.58);
+
+    border: 1px solid #211e2a;
+
+    border-radius: 16px;
+
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.renewal-card:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(139, 92, 246, 0.3);
+
+    background: rgba(139, 92, 246, 0.045);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================================
+   LISTING IMAGE
+========================================= */
+
+.renewal-card-image {
+    width: 76px;
+    height: 76px;
+
+    overflow: hidden;
+
+    border-radius: 13px;
+
+    background: #0d0b12;
+
+    border: 1px solid #292532;
+}
+
+.renewal-card-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition: transform 0.35s ease;
+}
+
+.renewal-card:hover .renewal-card-image img {
+    transform: scale(1.06);
+}
+
+
+/* =========================================
+   LISTING INFORMATION
+========================================= */
+
+.renewal-card-info {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+}
+
+.renewal-card-info h4 {
+    width: 100%;
+
+    margin: 0;
+
+    overflow: hidden;
+
+    color: var(--renew-text);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.renewal-price {
+    color: #bda7ff;
+
+    font-size: 12px;
+    font-weight: 650;
+}
+
+
+/* =========================================
+   STATUS BADGES
+========================================= */
+
+.renewal-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    width: fit-content;
+
+    padding: 5px 9px;
+
+    border-radius: 8px;
+
+    font-size: 10px;
+    font-weight: 650;
+}
+
+.renewal-status i {
+    font-size: 9px;
+}
+
+
+/* AVAILABLE */
+
+.renewal-status.available {
+    color: var(--renew-success);
+
+    background: var(--renew-success-soft);
+
+    border: 1px solid rgba(34, 197, 94, 0.15);
+}
+
+
+/* PENDING */
+
+.renewal-status.pending {
+    color: var(--renew-warning);
+
+    background: var(--renew-warning-soft);
+
+    border: 1px solid rgba(245, 158, 11, 0.15);
+}
+
+
+/* RENEWAL REQUIRED */
+
+.renewal-status.awaiting {
+    color: var(--renew-primary);
+
+    background: var(--renew-primary-soft);
+
+    border: 1px solid rgba(139, 92, 246, 0.17);
+}
+
+
+/* REJECTED */
+
+.renewal-status.rejected {
+    color: var(--renew-danger);
+
+    background: var(--renew-danger-soft);
+
+    border: 1px solid rgba(239, 68, 68, 0.15);
+}
+
+
+/* UNAVAILABLE */
+
+.renewal-status.unavailable {
+    color: var(--renew-soft);
+
+    background: rgba(119, 113, 128, 0.1);
+
+    border: 1px solid rgba(119, 113, 128, 0.15);
+}
+
+
+/* =========================================
+   ACTION AREA
+========================================= */
+
+.renewal-card-action {
+    min-width: 110px;
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+.renewal-card-action form {
+    margin: 0;
+}
+
+
+/* =========================================
+   RENEW BUTTON
+========================================= */
+
+.renew-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-width: 108px;
+
+    padding: 11px 16px;
+
+    border: 1px solid rgba(139, 92, 246, 0.35);
+
+    border-radius: 11px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--renew-primary),
+            var(--renew-primary-dark)
+        );
+
+    box-shadow:
+        0 7px 20px rgba(109, 40, 217, 0.18);
+
+    font-family: inherit;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+.renew-btn i {
+    font-size: 10px;
+
+    transition: transform 0.3s ease;
+}
+
+.renew-btn:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(1.08);
+
+    box-shadow:
+        0 10px 28px rgba(109, 40, 217, 0.3);
+}
+
+.renew-btn:hover i {
+    transform: rotate(180deg);
+}
+
+.renew-btn:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   ACTION NOTE
+========================================= */
+
+.action-note {
+    max-width: 125px;
+
+    color: var(--renew-soft);
+
+    font-size: 10px;
+    line-height: 1.5;
+
+    text-align: right;
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.renewal-empty {
+    min-height: 220px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 35px 20px;
+
+    text-align: center;
+
+    border: 1px dashed #2a2634;
+
+    border-radius: 15px;
+
+    background: rgba(8, 7, 12, 0.35);
+}
+
+.empty-icon {
+    width: 54px;
+    height: 54px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 14px;
+
+    color: var(--renew-primary);
+
+    background: var(--renew-primary-soft);
+
+    border: 1px solid rgba(139, 92, 246, 0.16);
+
+    border-radius: 16px;
+
+    font-size: 18px;
+}
+
+.renewal-empty h4 {
+    margin: 0 0 7px;
+
+    color: var(--renew-text);
+
+    font-size: 14px;
+    font-weight: 650;
+}
+
+.renewal-empty p {
+    max-width: 340px;
+
+    margin: 0 0 18px;
+
+    color: var(--renew-muted);
+
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   EMPTY STATE ACTION
+========================================= */
+
+.renewal-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 10px 15px;
+
+    color: #ffffff;
+
+    background: var(--renew-primary-soft);
+
+    border: 1px solid rgba(139, 92, 246, 0.25);
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-size: 10px;
+    font-weight: 650;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.renewal-action:hover {
+    background: rgba(139, 92, 246, 0.2);
+
+    border-color: rgba(139, 92, 246, 0.4);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+    .renewal-content {
+        padding: 28px 22px 40px;
+    }
+
+    .renewal-section {
+        padding: 20px;
+    }
+
+    .renewal-card {
+        grid-template-columns: 68px minmax(0, 1fr) auto;
+        gap: 14px;
+    }
+
+    .renewal-card-image {
+        width: 68px;
+        height: 68px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .renewal-content {
+        min-height: calc(100vh - 72px);
+
+        padding: 24px 20px 35px;
+    }
+
+    .renewal-header {
+        margin-bottom: 25px;
+    }
+
+    .renewal-header h2 {
+        font-size: 25px;
+    }
+
+    .renewal-header p {
+        font-size: 12px;
+    }
+
+    .renewal-section {
+        padding: 17px;
+
+        border-radius: 17px;
+    }
+
+    .section-heading {
+        margin-bottom: 17px;
+    }
+
+    .section-heading-icon {
+        width: 40px;
+        height: 40px;
+
+        border-radius: 11px;
+    }
+
+    .section-heading h3 {
+        font-size: 15px;
+    }
+
+    .section-heading p {
+        font-size: 10px;
+    }
+
+    .renewal-card {
+        grid-template-columns: 60px minmax(0, 1fr);
+
+        padding: 12px;
+
+        gap: 12px;
+    }
+
+    .renewal-card-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .renewal-card-action {
+        grid-column: 1 / -1;
+
+        width: 100%;
+
+        justify-content: stretch;
+
+        padding-top: 2px;
+    }
+
+    .renewal-card-action form {
+        width: 100%;
+    }
+
+    .renew-btn {
+        width: 100%;
+    }
+
+    .action-note {
+        max-width: none;
+
+        width: 100%;
+
+        padding: 9px;
+
+        text-align: center;
+
+        background: rgba(119, 113, 128, 0.06);
+
+        border-radius: 9px;
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 420px) {
+
+    .renewal-content {
+        padding: 20px 14px 30px;
+    }
+
+    .renewal-header h2 {
+        font-size: 22px;
+    }
+
+    .renewal-section {
+        padding: 14px;
+    }
+
+    .renewal-card {
+        padding: 10px;
+    }
+
+    .renewal-card-info h4 {
+        font-size: 13px;
+    }
+
+    .renewal-price {
+        font-size: 11px;
+    }
+
+}
+
+/* =========================================
+   RENEWAL COUNTDOWN
+========================================= */
+
+.renewal-countdown {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 10px;
+    padding: 7px 11px;
+    width: fit-content;
+
+    background: rgba(139, 92, 246, 0.08);
+    border: 1px solid rgba(139, 92, 246, 0.18);
+    border-radius: 9px;
+
+    color: #a99fba;
+    font-size: 11px;
+    font-weight: 500;
+
+    box-shadow:
+        inset 0 0 18px rgba(139, 92, 246, 0.03),
+        0 0 15px rgba(139, 92, 246, 0.04);
+}
+
+.renewal-countdown i {
+    color: #8b5cf6;
+    font-size: 12px;
+}
+
+.renewal-countdown strong {
+    color: #d8c9ff;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
