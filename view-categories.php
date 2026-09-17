@@ -616,10 +616,9 @@ if(!$result){
 
 <body id="top">
 
-    <?php
+     <?php
     include "includes/navbar.php"
-    ?>
-
+     ?> 
     <main class="categories-page">
 
 

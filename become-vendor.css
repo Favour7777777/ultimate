@@ -1,0 +1,595 @@
+/* =========================================
+   BECOME VENDOR
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(124, 58, 237, 0.12),
+            transparent 35%
+        ),
+        #08080c;
+
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+main {
+    width: min(720px, 92%);
+    margin: 70px auto;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+main > h1 {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #a855f7
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+main > p {
+    margin-top: 10px;
+
+    color: #888894;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+form {
+    margin-top: 35px;
+    padding: 30px;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 20px;
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+
+/* =========================================
+   FORM GROUP
+========================================= */
+
+form > div {
+    margin-bottom: 22px;
+}
+
+label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #d8d8df;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   INPUTS
+========================================= */
+
+input,
+select,
+textarea {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 11px;
+
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.045);
+
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+
+/* =========================================
+   SELECT
+========================================= */
+
+select {
+    cursor: pointer;
+}
+
+select option {
+    background: #121218;
+    color: #ffffff;
+}
+
+
+/* =========================================
+   FOCUS
+========================================= */
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: rgba(168, 85, 247, 0.7);
+
+    background: rgba(168, 85, 247, 0.045);
+
+    box-shadow:
+        0 0 0 3px rgba(168, 85, 247, 0.08);
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+button {
+    width: 100%;
+
+    padding: 14px 20px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #7c3aed,
+        #a855f7
+    );
+
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 30px rgba(124, 58, 237, 0.25);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 16px 35px rgba(124, 58, 237, 0.35);
+}
+
+
+/* =========================================
+   LOGGED-OUT MESSAGE
+========================================= */
+
+main > div {
+    margin-top: 35px;
+
+    padding: 30px;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 20px;
+
+    text-align: center;
+}
+
+main > div h2 {
+    font-size: 20px;
+}
+
+main > div p {
+    margin: 10px 0 22px;
+
+    color: #888894;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   AUTH LINKS
+========================================= */
+
+main > div a {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 120px;
+
+    padding: 11px 18px;
+
+    margin: 4px;
+
+    border-radius: 10px;
+
+    background: rgba(168, 85, 247, 0.1);
+
+    border: 1px solid rgba(168, 85, 247, 0.2);
+
+    color: #c8a8ff;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease;
+}
+
+main > div a:hover {
+    background: rgba(168, 85, 247, 0.18);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 700px) {
+
+    main {
+        margin: 45px auto;
+    }
+
+    main > h1 {
+        font-size: 28px;
+    }
+
+    form {
+        padding: 24px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    main {
+        width: 90%;
+        margin: 30px auto;
+    }
+
+    main > h1 {
+        font-size: 24px;
+    }
+
+    main > p {
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    form {
+        padding: 20px 16px;
+        border-radius: 16px;
+    }
+
+    input,
+    select,
+    textarea {
+        padding: 12px;
+        font-size: 12px;
+    }
+
+    main > div {
+        padding: 24px 18px;
+    }
+
+}
+
+/* =========================================
+   APPLICATION STATUS
+========================================= */
+
+.status-card {
+    margin-top: 35px;
+    padding: 35px;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 22px;
+
+    text-align: center;
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================
+   STATUS ICON
+========================================= */
+
+.status-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 25px;
+    font-weight: 700;
+}
+
+
+.status-icon.pending {
+    background: rgba(234, 179, 8, 0.1);
+    color: #facc15;
+}
+
+
+.status-icon.approved {
+    background: rgba(34, 197, 94, 0.1);
+    color: #4ade80;
+}
+
+
+.status-icon.rejected,
+.status-icon.suspended {
+    background: rgba(239, 68, 68, 0.1);
+    color: #f87171;
+}
+
+
+.status-icon.dormant {
+    background: rgba(255, 255, 255, 0.08);
+    color: #aaa;
+}
+
+
+/* =========================================
+   STATUS LABEL
+========================================= */
+
+.status-label {
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    padding: 5px 11px;
+
+    border-radius: 20px;
+
+    background: rgba(168, 85, 247, 0.1);
+
+    color: #c8a8ff;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+.status-card h2 {
+    font-size: 23px;
+}
+
+
+.status-message {
+    max-width: 520px;
+
+    margin: 12px auto 28px;
+
+    color: #888894;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   APPLICATION DETAILS
+========================================= */
+
+.application-details {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+
+.detail {
+    padding: 15px;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+
+    border-radius: 12px;
+
+    text-align: left;
+}
+
+
+.detail span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #666672;
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+.detail strong {
+    display: block;
+
+    color: #dddde5;
+
+    font-size: 12px;
+
+    word-break: break-word;
+}
+
+
+/* =========================================
+   ACTION BUTTON
+========================================= */
+
+.status-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 25px;
+
+    padding: 13px 22px;
+
+    border-radius: 11px;
+
+    background: linear-gradient(
+        135deg,
+        #7c3aed,
+        #a855f7
+    );
+
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    box-shadow:
+        0 12px 30px rgba(124, 58, 237, 0.25);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.status-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 16px 35px rgba(124, 58, 237, 0.35);
+}
+
+
+/* =========================================
+   WAITING NOTE
+========================================= */
+
+.waiting-note {
+    margin-top: 25px;
+    padding: 12px 16px;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    color: #666672;
+
+    font-size: 10px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .status-card {
+        padding: 25px 18px;
+    }
+
+    .application-details {
+        grid-template-columns: 1fr;
+    }
+
+    .detail {
+        text-align: center;
+    }
+
+    .status-card h2 {
+        font-size: 20px;
+    }
+
+}

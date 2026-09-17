@@ -23,7 +23,7 @@ Ultimate
 
 <li><a href="#">Services</a></li>
 
-<li><a href="#">Sell</a></li>
+<li><a href="become-vendor.php">Become a vendor</a></li>
 
 <li><a href="#">Support</a></li>
 

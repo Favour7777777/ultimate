@@ -1,5 +1,6 @@
 
 <?php
+require_once "../config.php";
 
 /*
 ========================================
@@ -14,6 +15,32 @@ $pageDescription = $pageDescription ?? "Manage your Ultimate marketplace";
 $adminName = $_SESSION["admin_name"] ?? "Administrator";
 
 $adminEmail = $_SESSION["admin_email"] ?? "";
+
+/* =========================================
+   UNREAD ADMIN NOTIFICATIONS
+========================================= */
+
+$notificationQuery = "
+    SELECT COUNT(*) AS unread_count
+    FROM admin_notifications
+    WHERE is_read = 0
+";
+
+$unreadNotificationResult = mysqli_query(
+    $conn,
+    $notificationQuery
+);
+
+$unreadNotifications = 0;
+
+if ($unreadNotificationResult) {
+
+    $notificationData = mysqli_fetch_assoc(
+        $unreadNotificationResult
+    );
+
+    $unreadNotifications = (int) $notificationData["unread_count"];
+}
 
 ?>
 
@@ -130,7 +157,7 @@ $adminEmail = $_SESSION["admin_email"] ?? "";
 
         <!-- NOTIFICATIONS -->
 
-        <button
+        <a href="admin-notifications.php"
             type="button"
             class="topbar-action"
             id="notificationButton"
@@ -140,11 +167,16 @@ $adminEmail = $_SESSION["admin_email"] ?? "";
             <i class="fa-regular fa-bell"></i>
 
 
-            <span class="notification-indicator"></span>
+            <?php if ($unreadNotifications > 0): ?>
 
-        </button>
+                <span class="notification-indicator">
+                    <?= $unreadNotifications > 99 ? "99+" : $unreadNotifications; ?>
+                </span>
 
+            <?php endif; ?>
+            </a>
 
+<a href=""></a>
 
         <!-- DIVIDER -->
 

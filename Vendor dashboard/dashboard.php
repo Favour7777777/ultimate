@@ -2,19 +2,19 @@
 
 session_start();
 
-/*
-|--------------------------------------------------------------------------
-| TEMPORARILY COMMENTED OUT
-|--------------------------------------------------------------------------
-| We are commenting this out while building the dashboard UI.
-|
-| Final version will only allow approved vendors into this dashboard.
-|
+
+// |--------------------------------------------------------------------------
+// | TEMPORARILY COMMENTED OUT
+// |--------------------------------------------------------------------------
+// | We are commenting this out while building the dashboard UI.
+// |
+// | Final version will only allow approved vendors into this dashboard.
+
 if(!isset($_SESSION["vendor_id"])){
     header("Location: login.php");
     exit();
 }
-*/
+
 
 $currentPage = "dashboard";
 
