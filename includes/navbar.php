@@ -4,6 +4,46 @@ if(session_status() === PHP_SESSION_NONE){
 }
 ?>
 
+<?php
+if(session_status() === PHP_SESSION_NONE){
+    session_start();
+}
+
+$vendorApproved = false;
+
+if(isset($_SESSION["user_id"])){
+
+    require_once "config.php";
+
+    $user_id = $_SESSION["user_id"];
+
+    $vendorQuery = "
+        SELECT status
+        FROM vendors
+        WHERE user_id = ?
+        LIMIT 1
+    ";
+
+    $stmt = mysqli_prepare($conn, $vendorQuery);
+
+    mysqli_stmt_bind_param($stmt, "i", $user_id);
+
+    mysqli_stmt_execute($stmt);
+
+    $vendorResult = mysqli_stmt_get_result($stmt);
+
+    if($vendorResult && $vendor = mysqli_fetch_assoc($vendorResult)){
+
+        if($vendor["status"] === "Approved"){
+            $vendorApproved = true;
+        }
+
+    }
+
+    mysqli_stmt_close($stmt);
+}
+?>
+
 
 <!-- NAVBAR -->
 
@@ -23,7 +63,23 @@ Ultimate
 
 <li><a href="#">Services</a></li>
 
-<li><a href="become-vendor.php">Become a vendor</a></li>
+<li>
+
+    <?php if($vendorApproved): ?>
+
+        <a href="vendor-dashboard-entry.php">
+            Vendor Dashboard
+        </a>
+
+    <?php else: ?>
+
+        <a href="become-vendor.php">
+            Become a vendor
+        </a>
+
+    <?php endif; ?>
+
+</li>
 
 <li><a href="#">Support</a></li>
 
@@ -64,7 +120,23 @@ Ultimate
 <a href="#">Home</a>
 <a href="view-categories.php">Categories</a>
 <a href="#">Services</a>
-<a href="#">Sell</a>
+<li>
+
+    <?php if($vendorApproved): ?>
+
+        <a href="vendor-dashboard-entry.php">
+            Vendor Dashboard
+        </a>
+
+    <?php else: ?>
+
+        <a href="become-vendor.php">
+            Become a vendor
+        </a>
+
+    <?php endif; ?>
+
+</li>
 <a href="#">Support</a>
 <a href="<?= isset($_SESSION["user_id"])
     ? 'user/dashboard.php'

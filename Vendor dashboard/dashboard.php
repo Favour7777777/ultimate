@@ -2,18 +2,44 @@
 
 session_start();
 
+require_once "../config.php";
 
-// |--------------------------------------------------------------------------
-// | TEMPORARILY COMMENTED OUT
-// |--------------------------------------------------------------------------
-// | We are commenting this out while building the dashboard UI.
-// |
-// | Final version will only allow approved vendors into this dashboard.
 
-if(!isset($_SESSION["vendor_id"])){
-    header("Location: login.php");
+if(!isset($_SESSION["user_id"])){
+    header("Location: ../login.php?return_to=Vendor%20dashboard/dashboard.php");
     exit();
 }
+
+$vendorQuery = "
+    SELECT id
+    FROM vendors
+    WHERE user_id = ?
+    AND status = 'Approved'
+    LIMIT 1
+";
+
+$vendorStmt = mysqli_prepare($conn, $vendorQuery);
+
+mysqli_stmt_bind_param(
+    $vendorStmt,
+    "i",
+    $_SESSION["user_id"]
+);
+
+mysqli_stmt_execute($vendorStmt);
+
+$vendorResult = mysqli_stmt_get_result($vendorStmt);
+
+$vendor = mysqli_fetch_assoc($vendorResult);
+
+mysqli_stmt_close($vendorStmt);
+
+if(!$vendor){
+    header("Location: ../vendor-dashboard-entry.php");
+    exit();
+}
+
+$_SESSION["vendor_id"] = $vendor["id"];
 
 
 $currentPage = "dashboard";
