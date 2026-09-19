@@ -1221,3 +1221,152 @@ body {
     }
 
 }
+
+
+/* =========================================
+   VENDOR VERIFICATION STATUS
+========================================= */
+
+.status-indicator,
+.verified-vendor-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 36px;
+
+    padding: 0 14px;
+
+    border-radius: 10px;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* =========================================
+   APPROVED STATUS
+========================================= */
+
+.status-indicator {
+
+    background: rgba(34, 197, 94, 0.08);
+
+    border: 1px solid rgba(34, 197, 94, 0.16);
+
+    color: #86efac;
+}
+
+.status-indicator .status-dot {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #4ade80;
+
+    box-shadow:
+        0 0 10px rgba(74, 222, 128, 0.7);
+}
+
+
+/* =========================================
+   VERIFIED VENDOR
+========================================= */
+
+.verified-vendor-tag {
+
+    margin-top: 8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124, 58, 237, 0.16),
+            rgba(168, 85, 247, 0.08)
+        );
+
+    border: 1px solid rgba(168, 85, 247, 0.28);
+
+    color: #d8b4fe;
+
+    box-shadow:
+        0 0 20px rgba(168, 85, 247, 0.10);
+}
+
+
+.verified-vendor-tag i {
+
+    color: #c084fc;
+
+    font-size: 12px;
+
+    filter:
+        drop-shadow(
+            0 0 5px rgba(192, 132, 252, 0.6)
+        );
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.verified-vendor-tag:hover {
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 0 25px rgba(168, 85, 247, 0.20);
+}
+
+
+/* =========================================
+   STATUS LAYOUT
+========================================= */
+
+.store-status-card {
+
+    align-items: center;
+}
+
+
+.store-status-card .status-indicator {
+
+    flex-shrink: 0;
+}
+
+
+.store-status-card .verified-vendor-tag {
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .store-status-card {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .status-indicator,
+    .verified-vendor-tag {
+
+        width: fit-content;
+    }
+
+}

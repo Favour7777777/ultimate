@@ -769,6 +769,63 @@ CHOOSE YOUR EXPERIENCE
 
 </section>
 
+<?php
+
+$vendors = [];
+
+$vendorQuery = "
+    SELECT
+        vendors.id,
+        vendors.store_name,
+        vendors.store_description,
+        vendors.business_address,
+        vendors.status,
+        vendors.is_verified,
+        vendors.created_at,
+
+        categories.title AS category_name,
+
+        users.profile_image
+
+    FROM vendors
+
+    INNER JOIN users
+        ON vendors.user_id = users.id
+
+    INNER JOIN categories
+        ON vendors.category_id = categories.id
+
+    WHERE vendors.status = 'Approved'
+
+    
+    
+
+    ORDER BY vendors.created_at DESC
+
+    LIMIT 5
+";
+
+$result = mysqli_query($conn, $vendorQuery);
+
+if($result){
+
+    while($row = mysqli_fetch_assoc($result)){
+
+        $vendors[] = $row;
+
+    }
+
+}
+
+$spotlight = $vendors[0] ?? null;
+
+?>
+
+ <!-- FUTURE VERIFIED VENDORS:
+     AND vendors.is_verified = 1
+     -->
+
+
 <!-- ==========================================
         FEATURED VENDORS
 =========================================== -->
@@ -785,17 +842,21 @@ CHOOSE YOUR EXPERIENCE
 
     </div>
 
+    <?php if(!empty($vendors)): ?>
+
     <div class="vendors-showcase">
+
 
         <!-- LEFT SPOTLIGHT -->
 
         <div class="vendor-spotlight">
 
             <img
-                src="images/vendor-1.jpg"
+                src="<?= !empty($spotlight["profile_image"]) ? htmlspecialchars($spotlight["profile_image"]) : 'images/vendor-placeholder.jpg'; ?>"
                 class="spotlight-bg"
                 id="spotlightImage"
-                alt="Vendor Background">
+                alt="Vendor Background"
+            >
 
             <div class="spotlight-overlay">
 
@@ -803,34 +864,39 @@ CHOOSE YOUR EXPERIENCE
 
                     <i class="fa-solid fa-circle-check"></i>
 
-                    Verified Partner
+                    Approved Vendor
 
                 </div>
 
                 <div class="spotlight-content">
 
+
                     <div class="vendor-logo">
 
                         <img
-                        src="images/logo1.png"
-                        id="spotlightLogo"
-                        alt="Vendor Logo">
+                            src="<?= !empty($spotlight["profile_image"]) ? htmlspecialchars($spotlight["profile_image"]) : 'images/vendor-placeholder.jpg'; ?>"
+                            id="spotlightLogo"
+                            alt="Vendor Logo"
+                        >
 
                     </div>
 
+
                     <h3 id="spotlightTitle">
 
-                        Nike Official Store
+                        <?= htmlspecialchars($spotlight["store_name"]); ?>
 
                     </h3>
+
 
                     <div class="spotlight-rating">
 
                         <i class="fa-solid fa-star"></i>
 
-                        <span>4.9 Rating</span>
+                        <span>Approved Vendor</span>
 
                     </div>
+
 
                     <div class="vendor-stats">
 
@@ -838,11 +904,11 @@ CHOOSE YOUR EXPERIENCE
 
                             <h4 id="productsCount">
 
-                                12,500+
+                                <?= htmlspecialchars($spotlight["category_name"]); ?>
 
                             </h4>
 
-                            <span>Products</span>
+                            <span>Category</span>
 
                         </div>
 
@@ -850,11 +916,11 @@ CHOOSE YOUR EXPERIENCE
 
                             <h4 id="followersCount">
 
-                                25K+
+                                Approved
 
                             </h4>
 
-                            <span>Followers</span>
+                            <span>Status</span>
 
                         </div>
 
@@ -862,7 +928,7 @@ CHOOSE YOUR EXPERIENCE
 
                             <h4 id="cityName">
 
-                                Lagos
+                                <?= htmlspecialchars($spotlight["business_address"]); ?>
 
                             </h4>
 
@@ -872,7 +938,8 @@ CHOOSE YOUR EXPERIENCE
 
                     </div>
 
-                    <a href="#" class="visit-store-btn">
+
+                    <a href="vendor-store.php?id=<?= $spotlight["id"]; ?>" class="visit-store-btn">
 
                         Visit Store
 
@@ -886,153 +953,85 @@ CHOOSE YOUR EXPERIENCE
 
         </div>
 
-        <!-- RIGHT SIDE -->
+
+
+        <!-- RIGHT LIST -->
 
         <div class="vendor-list">
 
-            <div class="vendor-item active"
+            <?php foreach($vendors as $index => $vendor): ?>
 
-                data-image="images/mike.jpg"
+            <div
+                class="vendor-item <?= $index === 0 ? 'active' : ''; ?>"
 
-                data-logo="images/mike logo.jpg"
+                data-image="<?= !empty($vendor["profile_image"]) ? htmlspecialchars($vendor["profile_image"]) : 'images/vendor-placeholder.jpg'; ?>"
 
-                data-title="Mike Official Store"
+                data-logo="<?= !empty($vendor["profile_image"]) ? htmlspecialchars($vendor["profile_image"]) : 'images/vendor-placeholder.jpg'; ?>"
 
-                data-products="12,500+"
+                data-title="<?= htmlspecialchars($vendor["store_name"]); ?>"
 
-                data-followers="25K+"
+                data-products="<?= htmlspecialchars($vendor["category_name"]); ?>"
 
-                data-city="Lagos">
+                data-followers="Approved"
 
-                <img src="images/mike.jpg">
+                data-city="<?= htmlspecialchars($vendor["business_address"]); ?>"
+            >
+
+                <img
+                    src="<?= !empty($vendor["profile_image"]) ? htmlspecialchars($vendor["profile_image"]) : 'images/vendor-placeholder.jpg'; ?>"
+                    alt="<?= htmlspecialchars($vendor["store_name"]); ?>"
+                >
 
                 <div>
 
-                    <h4>Mike Official Store</h4>
+                    <h4>
 
-                    <span>Fashion</span>
+                        <?= htmlspecialchars($vendor["store_name"]); ?>
+
+                    </h4>
+
+                    <span>
+
+                        <?= htmlspecialchars($vendor["category_name"]); ?>
+
+                    </span>
 
                 </div>
 
             </div>
 
-            <div class="vendor-item"
+            <?php endforeach; ?>
 
-                data-image="images/gadgets.jpg"
 
-                data-logo="images/gadgets logo.jpg"
-
-                data-title="Billionz Gadgets"
-
-                data-products="8,700+"
-
-                data-followers="18K+"
-
-                data-city="Abuja">
-
-                <img src="images/gadgets.jpg">
-
-                <div>
-
-                    <h4>Billionz Gadgets</h4>
-
-                    <span>Technology</span>
-
-                </div>
-
-            </div>
-
-            <div class="vendor-item"
-
-                data-image="images/boutique.jpg"
-
-                data-logo="images/boutique logo.jpg"
-
-                data-title="Bright Boutique"
-
-                data-products="5,200+"
-
-                data-followers="14K+"
-
-                data-city="Port Harcourt">
-
-                <img src="images/boutique.jpg">
-
-                <div>
-
-                    <h4>Bright Boutique</h4>
-
-                    <span>Luxury Fashion</span>
-
-                </div>
-
-            </div>
-
-            <div class="vendor-item"
-
-                data-image="images/hairsaloon.jpg"
-
-                data-logo="images/denzyl logo.jpg"
-
-                data-title="Denzyl Unisex"
-
-                data-products="9,900+"
-
-                data-followers="20K+"
-
-                data-city="Ibadan">
-
-                <img src="images/hairsaloon.jpg">
-
-                <div>
-
-                    <h4>Denzyl Unisex</h4>
-
-                    <span>Hair Saloon</span>
-
-                </div>
-
-            </div>
-
-            <div class="vendor-item"
-
-                data-image="images/jewellery.jpg"
-
-                data-logo="images/jewellery logo.jpg"
-
-                data-title="Setryl Jewellry Palace"
-
-                data-products="2,800+"
-
-                data-followers="10K+"
-
-                data-city="Lekki">
-
-                <img src="images/jewellery.jpg">
-
-                <div>
-
-                    <h4>Jewellry Palace</h4>
-
-                    <span>Luxury</span>
-
-                </div>
-
-            </div>
             <a href="vendors.php" class="view-vendors-btn">
 
-    View More Vendors
+                View More Vendors
 
-    <i class="fa-solid fa-arrow-right"></i>
+                <i class="fa-solid fa-arrow-right"></i>
 
-</a>
+            </a>
 
         </div>
 
     </div>
 
-</section>
+    <?php else: ?>
 
+    <div class="vendors-empty">
+
+        <i class="fa-solid fa-store-slash"></i>
+
+        <h3>No Featured Vendors Yet</h3>
+
+        <p>
+            Approved vendors will automatically appear here once their applications are approved.
+        </p>
+
+    </div>
+
+    <?php endif; ?>
+
+</section>
 <!--=========================================
         TRENDING RIGHT NOW
 ==========================================-->

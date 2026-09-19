@@ -1,0 +1,588 @@
+/* =========================================
+   SELLERS PAGE
+========================================= */
+
+.sellers-header{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:25px;
+    margin-bottom:30px;
+}
+
+.sellers-eyebrow{
+    display:block;
+    margin-bottom:8px;
+    color:#a855f7;
+    font-size:9px;
+    font-weight:600;
+    letter-spacing:2px;
+}
+
+.sellers-header h1{
+    margin-bottom:8px;
+    color:#fff;
+    font-size:28px;
+    font-weight:600;
+    letter-spacing:-.5px;
+}
+
+.sellers-header p{
+    max-width:600px;
+    color:#777783;
+    font-size:11px;
+    line-height:1.7;
+}
+
+
+/* =========================================
+   TOTAL SELLERS
+========================================= */
+
+.seller-total{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    min-width:155px;
+    padding:14px 17px;
+
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:14px;
+
+    background:rgba(255,255,255,.025);
+}
+
+.seller-total > i{
+    width:38px;
+    height:38px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:11px;
+
+    background:rgba(168,85,247,.1);
+    color:#a855f7;
+
+    font-size:14px;
+}
+
+.seller-total div{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+}
+
+.seller-total strong{
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+}
+
+.seller-total span{
+    color:#666672;
+    font-size:8px;
+}
+
+
+/* =========================================
+   SELLERS CARD
+========================================= */
+
+.sellers-card{
+    overflow:hidden;
+
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:18px;
+
+    background:#0d0d13;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.25);
+}
+
+
+/* =========================================
+   CARD HEADER
+========================================= */
+
+.sellers-card-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+
+    padding:22px 24px;
+
+    border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.sellers-card-header h2{
+    margin-bottom:5px;
+    color:#fff;
+    font-size:14px;
+    font-weight:600;
+}
+
+.sellers-card-header p{
+    color:#5f5f6b;
+    font-size:9px;
+}
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.seller-search{
+    width:240px;
+    height:38px;
+
+    display:flex;
+    align-items:center;
+    gap:9px;
+
+    padding:0 12px;
+
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:10px;
+
+    background:rgba(255,255,255,.025);
+
+    transition:
+        border-color .25s ease,
+        background .25s ease;
+}
+
+.seller-search:focus-within{
+    border-color:rgba(168,85,247,.4);
+    background:rgba(168,85,247,.025);
+}
+
+.seller-search i{
+    color:#5f5f6b;
+    font-size:11px;
+}
+
+.seller-search input{
+    width:100%;
+
+    border:0;
+    outline:0;
+
+    background:transparent;
+
+    color:#fff;
+
+    font-family:"Poppins",sans-serif;
+    font-size:9px;
+}
+
+.seller-search input::placeholder{
+    color:#555561;
+}
+
+
+/* =========================================
+   TABLE WRAPPER
+========================================= */
+
+.sellers-table-wrapper{
+    width:100%;
+    overflow-x:auto;
+}
+
+.sellers-table{
+    width:100%;
+    min-width:850px;
+
+    border-collapse:collapse;
+}
+
+
+/* =========================================
+   TABLE HEADER
+========================================= */
+
+.sellers-table thead{
+    background:rgba(255,255,255,.018);
+}
+
+.sellers-table th{
+    padding:13px 20px;
+
+    border-bottom:1px solid rgba(255,255,255,.06);
+
+    color:#555561;
+
+    font-size:8px;
+    font-weight:600;
+
+    letter-spacing:1px;
+    text-align:left;
+    text-transform:uppercase;
+}
+
+
+/* =========================================
+   TABLE BODY
+========================================= */
+
+.sellers-table td{
+    padding:16px 20px;
+
+    border-bottom:1px solid rgba(255,255,255,.045);
+
+    vertical-align:middle;
+}
+
+.sellers-table tbody tr{
+    transition:
+        background .2s ease;
+}
+
+.sellers-table tbody tr:hover{
+    background:rgba(168,85,247,.025);
+}
+
+.sellers-table tbody tr:last-child td{
+    border-bottom:0;
+}
+
+
+/* =========================================
+   SELLER INFO
+========================================= */
+
+.seller-info{
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
+.seller-avatar{
+    width:39px;
+    height:39px;
+
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    border-radius:11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #a855f7
+        );
+
+    color:#fff;
+
+    font-size:12px;
+}
+
+.seller-avatar img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+}
+
+.seller-info > div:last-child{
+    min-width:120px;
+
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+}
+
+.seller-info strong{
+    max-width:180px;
+
+    overflow:hidden;
+
+    color:#fff;
+
+    font-size:10px;
+    font-weight:600;
+
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
+.seller-info span{
+    color:#666672;
+    font-size:8px;
+}
+
+
+/* =========================================
+   CATEGORY
+========================================= */
+
+.seller-category{
+    display:inline-flex;
+
+    padding:6px 9px;
+
+    border-radius:7px;
+
+    background:rgba(255,255,255,.035);
+
+    color:#92929d;
+
+    font-size:8px;
+}
+
+
+/* =========================================
+   SELLER STATUS
+========================================= */
+
+.seller-status,
+.verification-status{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+
+    white-space:nowrap;
+
+    font-size:8px;
+    font-weight:500;
+}
+
+.seller-status i,
+.verification-status i{
+    font-size:8px;
+}
+
+
+/* Approved */
+
+.seller-status.approved{
+    color:#a855f7;
+}
+
+
+/* Pending */
+
+.seller-status.pending{
+    color:#f59e0b;
+}
+
+
+/* Rejected */
+
+.seller-status.rejected{
+    color:#f87171;
+}
+
+
+/* Suspended */
+
+.seller-status.suspended{
+    color:#ef4444;
+}
+
+
+/* Dormant */
+
+.seller-status.dormant{
+    color:#777783;
+}
+
+
+/* =========================================
+   VERIFICATION
+========================================= */
+
+.verification-status.verified{
+    color:#c084fc;
+}
+
+.verification-status.unverified{
+    color:#666672;
+}
+
+
+/* =========================================
+   DATE
+========================================= */
+
+.seller-date{
+    color:#777783;
+    font-size:8px;
+    white-space:nowrap;
+}
+
+
+/* =========================================
+   ACTION
+========================================= */
+
+.seller-action{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+
+    color:#a855f7;
+
+    font-size:8px;
+    font-weight:600;
+
+    transition:
+        color .2s ease,
+        transform .2s ease;
+}
+
+.seller-action i{
+    font-size:8px;
+
+    transition:
+        transform .2s ease;
+}
+
+.seller-action:hover{
+    color:#c084fc;
+    transform:translateX(2px);
+}
+
+.seller-action:hover i{
+    transform:translateX(3px);
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.sellers-empty{
+    padding:75px 25px;
+
+    text-align:center;
+}
+
+.empty-icon{
+    width:55px;
+    height:55px;
+
+    margin:0 auto 15px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:15px;
+
+    background:rgba(168,85,247,.08);
+
+    color:#a855f7;
+
+    font-size:18px;
+}
+
+.sellers-empty h3{
+    margin-bottom:7px;
+
+    color:#fff;
+
+    font-size:14px;
+    font-weight:600;
+}
+
+.sellers-empty p{
+    max-width:330px;
+
+    margin:auto;
+
+    color:#666672;
+
+    font-size:9px;
+    line-height:1.7;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media(max-width:1000px){
+
+    .sellers-header{
+        align-items:flex-start;
+    }
+
+    .seller-total{
+        min-width:140px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:700px){
+
+    .sellers-header{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .sellers-header h1{
+        font-size:24px;
+    }
+
+    .seller-total{
+        width:100%;
+    }
+
+    .sellers-card-header{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .seller-search{
+        width:100%;
+    }
+
+    .sellers-card{
+        border-radius:14px;
+    }
+
+    .sellers-table th,
+    .sellers-table td{
+        padding-left:14px;
+        padding-right:14px;
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media(max-width:420px){
+
+    .sellers-header h1{
+        font-size:22px;
+    }
+
+    .sellers-header p{
+        font-size:10px;
+    }
+
+    .sellers-card-header{
+        padding:18px;
+    }
+
+}

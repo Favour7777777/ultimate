@@ -74,7 +74,7 @@ Ultimate
     <?php else: ?>
 
         <a href="become-vendor.php">
-            Become a vendor
+            Vendor login/signup
         </a>
 
     <?php endif; ?>
@@ -131,7 +131,7 @@ Ultimate
     <?php else: ?>
 
         <a href="become-vendor.php">
-            Become a vendor
+            Vendor login/signup
         </a>
 
     <?php endif; ?>

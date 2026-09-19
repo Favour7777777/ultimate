@@ -11,7 +11,10 @@ if(!isset($_SESSION["user_id"])){
 }
 
 $vendorQuery = "
-    SELECT id
+    SELECT
+    id,
+    is_verified,
+    verification_notice_seen
     FROM vendors
     WHERE user_id = ?
     AND status = 'Approved'
@@ -26,6 +29,8 @@ mysqli_stmt_bind_param(
     $_SESSION["user_id"]
 );
 
+
+
 mysqli_stmt_execute($vendorStmt);
 
 $vendorResult = mysqli_stmt_get_result($vendorStmt);
@@ -33,6 +38,16 @@ $vendorResult = mysqli_stmt_get_result($vendorStmt);
 $vendor = mysqli_fetch_assoc($vendorResult);
 
 mysqli_stmt_close($vendorStmt);
+
+if(
+    $vendor &&
+    (int)$vendor["is_verified"] === 1 &&
+    (int)$vendor["verification_notice_seen"] === 0
+){
+    header("Location: verification-welcome.php?id=" . $vendor["id"]);
+
+exit();
+}
 
 if(!$vendor){
     header("Location: ../vendor-dashboard-entry.php");
@@ -160,32 +175,45 @@ $currentPage = "dashboard";
                 </div>
 
 
-                <div class="status-content">
+                    <div class="status-content">
 
-                    <span>
-                        VENDOR ACCOUNT
-                    </span>
+                        <span>
+                            VENDOR ACCOUNT
+                        </span>
 
-                    <strong>
-                        Your vendor account is approved
-                    </strong>
+                        <strong>
+                            Your vendor account is approved
+                        </strong>
 
-                    <p>
-                        Your account has been approved and you can now start managing your store on Ultimate.
-                    </p>
+                        <p>
+                            Your account has been approved and you can now start managing your store on Ultimate.
+                        </p>
 
-                </div>
+                    </div>
 
 
-                <div class="status-indicator">
+                    <div class="status-indicator">
 
-                    <span class="status-dot"></span>
+                <span class="status-dot"></span>
 
-                    Approved
-
-                </div>
+                Approved
 
             </div>
+
+
+            <?php if((int)$vendor["is_verified"] === 1): ?>
+
+                <div class="verified-vendor-tag">
+
+                    <i class="fa-solid fa-shield-check"></i>
+
+                    Verified Vendor
+
+                </div>
+
+            <?php endif; ?>
+
+                    </div>
 
 
 
