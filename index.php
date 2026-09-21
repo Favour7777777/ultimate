@@ -797,7 +797,7 @@ $vendorQuery = "
 
     WHERE vendors.status = 'Approved'
 
-    
+    AND vendors.is_verified = 1
     
 
     ORDER BY vendors.created_at DESC
@@ -864,7 +864,7 @@ $spotlight = $vendors[0] ?? null;
 
                     <i class="fa-solid fa-circle-check"></i>
 
-                    Approved Vendor
+                    Verified vendor
 
                 </div>
 

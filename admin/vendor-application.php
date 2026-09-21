@@ -8,6 +8,7 @@ if(!isset($_SESSION["admin_id"])){
 }
 
 require_once "../config.php";
+require_once "../mail/mailer.php";
 
 $currentPage = "applications";
 
@@ -36,6 +37,25 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 
         $status = "Approved";
 
+        $emailQuery = "
+            SELECT
+                vendors.business_email,
+                users.fullname,
+                users.email AS user_email
+            FROM vendors
+            INNER JOIN users
+                ON users.id = vendors.user_id
+            WHERE vendors.id = ?
+            LIMIT 1
+        ";
+
+        $emailStmt = mysqli_prepare($conn, $emailQuery);
+        mysqli_stmt_bind_param($emailStmt, "i", $vendor_id);
+        mysqli_stmt_execute($emailStmt);
+        $emailResult = mysqli_stmt_get_result($emailStmt);
+        $vendorMail = mysqli_fetch_assoc($emailResult);
+        mysqli_stmt_close($emailStmt);
+
         $updateQuery = "
             UPDATE vendors
             SET
@@ -58,6 +78,49 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 
         mysqli_stmt_close($stmt);
 
+        if($vendorMail && !empty(trim((string)$vendorMail["business_email"]))){
+            $approvedSubject = "Your Ultimate Vendor Application Has Been Approved";
+            $approvedBody = "
+                <h2>Congratulations, " . htmlspecialchars($vendorMail["fullname"] ?? "Vendor") . "! 🎉</h2>
+
+                <p>
+                    Your vendor application has been approved by the Ultimate admin team.
+                </p>
+
+                <p>
+                    You can now log in to your vendor dashboard and start managing your store,
+                    products, services, and listings.
+                </p>
+
+                <p>
+                    <strong>Application Status:</strong> Approved
+                </p>
+
+                <p>
+                    Thank you for choosing Ultimate.
+                </p>
+            ";
+
+            sendUltimateMail(
+                $vendorMail["business_email"],
+                $vendorMail["fullname"] ?? "Vendor",
+                $approvedSubject,
+                $approvedBody
+            );
+
+            if(
+                filter_var($vendorMail["user_email"] ?? "", FILTER_VALIDATE_EMAIL) &&
+                strcasecmp($vendorMail["user_email"], $vendorMail["business_email"]) !== 0
+            ){
+                sendUltimateMail(
+                    $vendorMail["user_email"],
+                    $vendorMail["fullname"] ?? "Vendor",
+                    $approvedSubject,
+                    $approvedBody
+                );
+            }
+        }
+
         $updated = true;
         $updatedStatus = "approved";
 
@@ -66,6 +129,25 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     elseif($decision === "reject"){
 
         $status = "Rejected";
+
+        $emailQuery = "
+            SELECT
+                vendors.business_email,
+                users.fullname,
+                users.email AS user_email
+            FROM vendors
+            INNER JOIN users
+                ON users.id = vendors.user_id
+            WHERE vendors.id = ?
+            LIMIT 1
+        ";
+
+        $emailStmt = mysqli_prepare($conn, $emailQuery);
+        mysqli_stmt_bind_param($emailStmt, "i", $vendor_id);
+        mysqli_stmt_execute($emailStmt);
+        $emailResult = mysqli_stmt_get_result($emailStmt);
+        $vendorMail = mysqli_fetch_assoc($emailResult);
+        mysqli_stmt_close($emailStmt);
 
         $updateQuery = "
             UPDATE vendors
@@ -89,6 +171,50 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         mysqli_stmt_execute($stmt);
 
         mysqli_stmt_close($stmt);
+
+        if($vendorMail && !empty(trim((string)$vendorMail["business_email"]))){
+            $rejectedSubject = "Update on Your Ultimate Vendor Application";
+            $rejectedReason = !empty($rejection_reason)
+                ? nl2br(htmlspecialchars($rejection_reason))
+                : "No specific reason was provided. Please contact Ultimate support for more information.";
+            $rejectedBody = "
+                <h2>Hello, " . htmlspecialchars($vendorMail["fullname"] ?? "Vendor") . "</h2>
+
+                <p>
+                    Thank you for applying to become an Ultimate vendor.
+                    Unfortunately, your vendor application was not approved at this time.
+                </p>
+
+                <p><strong>Reason from the admin team:</strong></p>
+                <p>" . $rejectedReason . "</p>
+
+                <p>
+                    You may review your application status and contact Ultimate support
+                    if you need more information.
+                </p>
+
+                <p>Thank you for your interest in Ultimate.</p>
+            ";
+
+            sendUltimateMail(
+                $vendorMail["business_email"],
+                $vendorMail["fullname"] ?? "Vendor",
+                $rejectedSubject,
+                $rejectedBody
+            );
+
+            if(
+                filter_var($vendorMail["user_email"] ?? "", FILTER_VALIDATE_EMAIL) &&
+                strcasecmp($vendorMail["user_email"], $vendorMail["business_email"]) !== 0
+            ){
+                sendUltimateMail(
+                    $vendorMail["user_email"],
+                    $vendorMail["fullname"] ?? "Vendor",
+                    $rejectedSubject,
+                    $rejectedBody
+                );
+            }
+        }
 
         $updated = true;
         $updatedStatus = "rejected";

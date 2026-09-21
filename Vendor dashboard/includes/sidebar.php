@@ -1,4 +1,11 @@
 
+<?php
+    $vendor = $vendor ?? [];
+    $currentPage = $currentPage ?? 'dashboard';
+    $vendorName = htmlspecialchars((string)($vendor['store_name'] ?? 'Vendor Store'));
+    $vendorVerified = (int)($vendor['is_verified'] ?? 0);
+?>
+
 <aside class="vendor-sidebar">
 
     <!-- LOGO -->
@@ -21,27 +28,45 @@
 
         <div class="vendor-profile-info">
 
-            <strong>
-                Vendor Store
-            </strong>
+    <strong class="store-name">
 
-            <?php if(isset($vendorTrust) && $vendorTrust === "verified"): ?>
+        <?= $vendorName; ?>
 
-                <span class="verified-badge">
-                    <i class="fa-solid fa-circle-check"></i>
-                    Verified Seller
-                </span>
+        <?php if($vendorVerified === 1): ?>
 
-            <?php else: ?>
+            <span class="store-verified-tag">
 
-                <span class="pending-badge">
-                    <i class="fa-solid fa-clock"></i>
-                    New Vendor
-                </span>
+                <i class="fa-solid fa-shield-check"></i>
 
-            <?php endif; ?>
+            </span>
 
-        </div>
+        <?php endif; ?>
+
+    </strong>
+
+    <?php if($vendorVerified === 1): ?>
+
+        <span class="verified-badge">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            Verified Vendor
+
+        </span>
+
+    <?php else: ?>
+
+        <span class="pending-badge">
+
+            <i class="fa-solid fa-clock"></i>
+
+            New Vendor
+
+        </span>
+
+    <?php endif; ?>
+
+</div>
 
     </div>
 

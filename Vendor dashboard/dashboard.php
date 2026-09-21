@@ -13,6 +13,7 @@ if(!isset($_SESSION["user_id"])){
 $vendorQuery = "
     SELECT
     id,
+    store_name,
     is_verified,
     verification_notice_seen
     FROM vendors
@@ -139,7 +140,7 @@ $currentPage = "dashboard";
                     </span>
 
                     <h1>
-                        Welcome back 👋
+                        Welcome back, <?= htmlspecialchars($vendor["store_name"]); ?> 👋
                     </h1>
 
                     <p>

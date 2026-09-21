@@ -3,6 +3,7 @@
 session_start();
 
 require_once "config.php";
+require_once "mail/mailer.php";
 
 $error = "";
 $signupSuccess=false;
@@ -160,6 +161,42 @@ if(isset($_POST["signup"])){
                 $userId = mysqli_insert_id($conn);
 
                 mysqli_stmt_close($stmt);
+
+// =========================================
+// SEND WELCOME EMAIL
+// =========================================
+
+$welcomeSubject = "Welcome to Ultimate!";
+
+$welcomeBody = "
+    <h2>Welcome to Ultimate😀, " . htmlspecialchars($fullname) . "!</h2>
+
+    <p>
+        Your Ultimate account has been created successfully 👍.
+    </p>
+
+    <p>
+        You can now explore products, services, vendors,
+        opportunities and experiences available on Ultimate.
+    </p>
+
+    <p>
+        We're glad to have you with us 😊.
+    </p>
+
+    <p>
+        <strong>Welcome to everything.</strong>
+    </p>
+";
+
+sendUltimateMail(
+    $email,
+    $fullname,
+    $welcomeSubject,
+    $welcomeBody
+);
+
+
 
 
                 /*

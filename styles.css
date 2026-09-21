@@ -6064,3 +6064,155 @@ BUTTON SHINE
     transform:translateX(6px);
 
 }
+
+/* VENDOR APPLICATION STATUS MODAL */
+
+.vendor-status-modal{
+position:fixed;
+inset:0;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:24px;
+background:rgba(5,8,18,.76);
+backdrop-filter:blur(12px);
+opacity:0;
+visibility:hidden;
+z-index:2000;
+transition:opacity .25s ease, visibility .25s ease;
+}
+
+.vendor-status-modal.is-visible{
+opacity:1;
+visibility:visible;
+}
+
+.vendor-status-dialog{
+position:relative;
+width:min(100%, 500px);
+padding:42px 38px 36px;
+color:#18202f;
+background:linear-gradient(145deg,#ffffff 0%,#f2f6fb 100%);
+border:1px solid rgba(255,255,255,.7);
+border-radius:24px;
+box-shadow:0 24px 80px rgba(0,0,0,.35);
+transform:translateY(16px) scale(.97);
+transition:transform .25s ease;
+}
+
+.vendor-status-modal.is-visible .vendor-status-dialog{
+transform:translateY(0) scale(1);
+}
+
+.vendor-status-close{
+position:absolute;
+top:14px;
+right:16px;
+width:36px;
+height:36px;
+border:0;
+border-radius:50%;
+color:#637083;
+background:#e7edf4;
+font-size:25px;
+line-height:1;
+cursor:pointer;
+}
+
+.vendor-status-icon{
+display:grid;
+place-items:center;
+width:58px;
+height:58px;
+margin-bottom:20px;
+border-radius:18px;
+font-size:31px;
+font-weight:700;
+}
+
+.vendor-status-icon.pending{
+color:#a96806;
+background:#fff0c9;
+}
+
+.vendor-status-icon.rejected{
+color:#b4384b;
+background:#ffe1e6;
+}
+
+.vendor-status-eyebrow{
+margin-bottom:8px;
+color:#6e7b8f;
+font-size:12px;
+font-weight:700;
+letter-spacing:1.5px;
+text-transform:uppercase;
+}
+
+.vendor-status-dialog h2{
+margin-bottom:13px;
+font-size:clamp(23px,4vw,30px);
+line-height:1.15;
+}
+
+.vendor-status-dialog > p{
+color:#586579;
+font-size:15px;
+line-height:1.7;
+}
+
+.vendor-rejection-reason{
+margin:22px 0;
+padding:16px 18px;
+border-left:4px solid #c44659;
+border-radius:10px;
+background:#fff0f2;
+}
+
+.vendor-rejection-reason span{
+display:block;
+margin-bottom:6px;
+color:#a73447;
+font-size:12px;
+font-weight:700;
+letter-spacing:.8px;
+text-transform:uppercase;
+}
+
+.vendor-rejection-reason p{
+color:#5f3540;
+font-size:14px;
+line-height:1.6;
+}
+
+.vendor-status-action{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+min-height:46px;
+margin-top:25px;
+padding:0 22px;
+border-radius:12px;
+color:#fff;
+background:#18202f;
+font-size:14px;
+font-weight:600;
+text-decoration:none;
+transition:background .2s ease, transform .2s ease;
+}
+
+.vendor-status-action:hover{
+background:#2d405e;
+transform:translateY(-2px);
+}
+
+@media(max-width:600px){
+.vendor-status-dialog{
+padding:36px 24px 28px;
+border-radius:20px;
+}
+
+.vendor-status-action{
+width:100%;
+}
+}

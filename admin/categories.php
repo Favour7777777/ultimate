@@ -1009,6 +1009,55 @@ if(!$result){
 
 }
 
+.category-dashboard-button{
+
+    min-height:31px;
+
+    padding:0 10px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:6px;
+
+    border:1px solid
+        rgba(194,138,233,0.12);
+
+    border-radius:8px;
+
+    background:
+        rgba(155,101,211,0.06);
+
+    color:#a982c1;
+
+    font-size:8px;
+
+    font-weight:500;
+
+    text-decoration:none;
+
+    transition:0.2s ease;
+
+}
+
+
+.category-dashboard-button:hover{
+
+    color:#ffffff;
+
+    border-color:
+        rgba(194,138,233,0.28);
+
+    background:
+        rgba(155,101,211,0.12);
+
+    transform:translateY(-1px);
+
+}
+
 
 /* =========================================
    MOBILE
@@ -1186,6 +1235,20 @@ if(!$result){
 
 
                                     <div class="category-actions">
+
+                                        <!-- OPEN CATEGORY DASHBOARD -->
+
+                                        <a
+                                            href="category-dashboard.php?id=<?= (int)$category["id"]; ?>"
+                                            class="category-dashboard-button"
+                                            title="Open Category Dashboard"
+                                        >
+
+                                            <i class="fa-solid fa-chart-line"></i>
+
+                                            Dashboard
+
+                                        </a>
 
 
                                         <!-- EDIT -->

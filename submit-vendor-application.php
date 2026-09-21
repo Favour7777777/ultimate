@@ -3,6 +3,7 @@
 session_start();
 
 include "config.php";
+require_once "mail/mailer.php";
 
 
 /* =========================================
@@ -130,6 +131,32 @@ if(mysqli_num_rows($vendorResult) > 0){
 
 mysqli_stmt_close($vendorStmt);
 
+$userQuery = "
+    SELECT fullname, email
+    FROM users
+    WHERE id = ?
+    LIMIT 1
+";
+
+$userStmt = mysqli_prepare($conn, $userQuery);
+
+mysqli_stmt_bind_param(
+    $userStmt,
+    "i",
+    $user_id
+);
+
+mysqli_stmt_execute($userStmt);
+
+$userResult = mysqli_stmt_get_result($userStmt);
+
+$user = mysqli_fetch_assoc($userResult);
+
+mysqli_stmt_close($userStmt);
+
+$fullname = $user["fullname"] ?? "Vendor";
+$userEmail = $user["email"] ?? "";
+
 
 /* =========================================
    CREATE VENDOR APPLICATION
@@ -166,6 +193,56 @@ mysqli_stmt_bind_param(
 mysqli_stmt_execute($insertStmt);
 
 $vendor_id = mysqli_insert_id($conn);
+
+
+// =========================================
+// SEND VENDOR APPLICATION EMAIL
+// =========================================
+
+$vendorSubject = "Welcome to Ultimate - Vendor Application Received";
+
+$vendorBody = "
+    <h2>Welcome to Ultimate, " . htmlspecialchars($fullname) . "!</h2>
+
+    <p>
+        Your vendor application for <strong>" . htmlspecialchars($store_name) . "</strong>
+        has been successfully submitted to the Ultimate admin team for review.
+    </p>
+
+    <p>
+        Our team will review your application and update you once
+        a decision has been made.
+    </p>
+
+    <p>
+        <strong>Application Status:</strong> Pending Approval
+    </p>
+
+    <p>
+        Thank you for choosing Ultimate.
+    </p>
+";
+
+sendUltimateMail(
+    $business_email,
+    $fullname,
+    $vendorSubject,
+    $vendorBody
+);
+
+if(
+    filter_var($userEmail, FILTER_VALIDATE_EMAIL) &&
+    strcasecmp($userEmail, $business_email) !== 0
+){
+    sendUltimateMail(
+        $userEmail,
+        $fullname,
+        $vendorSubject,
+        $vendorBody
+    );
+}
+
+
 
 mysqli_stmt_close($insertStmt);
 

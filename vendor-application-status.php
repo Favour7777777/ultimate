@@ -157,7 +157,7 @@ $action_text = "";
 
 if($status === "Approved"){
 
-    $action_link = "vendor/dashboard.php";
+    $action_link = "Vendor dashboard/dashboard.php";
     $action_text = "Go to Vendor Center";
 
 }
