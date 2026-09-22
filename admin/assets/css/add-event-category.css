@@ -1,0 +1,395 @@
+/* =========================================
+   ADD EVENT CATEGORY
+========================================= */
+
+.add-event-category-content {
+    padding: 30px;
+
+    max-width: 1050px;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.add-event-category-header {
+    margin-bottom: 25px;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 18px;
+
+    color: #777783;
+
+    font-size: 10px;
+    font-weight: 500;
+
+    transition: 0.2s ease;
+}
+
+.back-link:hover {
+    color: #ffffff;
+
+    transform: translateX(-2px);
+}
+
+.page-eyebrow {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #a855f7;
+
+    font-size: 8px;
+    font-weight: 600;
+
+    letter-spacing: 1.8px;
+}
+
+.add-event-category-header h1 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.add-event-category-header p {
+    margin-top: 8px;
+
+    color: #777783;
+
+    font-size: 10px;
+}
+
+
+/* =========================================
+   FORM CARD
+========================================= */
+
+.event-category-form-card {
+    padding: 28px;
+
+    border: 1px solid rgba(255,255,255,0.06);
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,0.025);
+}
+
+
+/* =========================================
+   ERROR
+========================================= */
+
+.form-error {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 20px;
+
+    padding: 12px 14px;
+
+    border: 1px solid rgba(239,68,68,0.15);
+
+    border-radius: 10px;
+
+    background: rgba(239,68,68,0.06);
+
+    color: #f87171;
+
+    font-size: 9px;
+}
+
+
+/* =========================================
+   FORM GRID
+========================================= */
+
+.event-category-form-card form {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+
+/* =========================================
+   LABEL
+========================================= */
+
+.form-group label {
+    color: #c4c4cc;
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   INPUTS
+========================================= */
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+
+    width: 100%;
+
+    border: 1px solid rgba(255,255,255,0.07);
+
+    border-radius: 10px;
+
+    background: rgba(0,0,0,0.20);
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 10px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+.form-group input,
+.form-group select {
+    min-height: 42px;
+
+    padding: 0 13px;
+}
+
+.form-group textarea {
+    padding: 12px 13px;
+
+    resize: vertical;
+
+    line-height: 1.7;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: rgba(168,85,247,0.45);
+
+    background: rgba(168,85,247,0.025);
+
+    box-shadow:
+        0 0 0 3px rgba(168,85,247,0.06);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #50505b;
+}
+
+
+/* =========================================
+   FILE INPUT
+========================================= */
+
+.form-group input[type="file"] {
+    padding: 9px 10px;
+
+    cursor: pointer;
+}
+
+.form-group input[type="file"]::file-selector-button {
+    margin-right: 10px;
+
+    padding: 7px 10px;
+
+    border: 0;
+
+    border-radius: 7px;
+
+    background: rgba(168,85,247,0.12);
+
+    color: #b77eea;
+
+    font-family: inherit;
+
+    font-size: 8px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   SMALL TEXT
+========================================= */
+
+.form-group small {
+    color: #555561;
+
+    font-size: 8px;
+
+    line-height: 1.5;
+}
+
+.form-group small strong {
+    color: #8c689c;
+
+    font-weight: 500;
+}
+
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.form-actions {
+    grid-column: 1 / -1;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 8px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.cancel-button,
+.save-button {
+    min-height: 40px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 0 16px;
+
+    border-radius: 9px;
+
+    font-family: inherit;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.cancel-button {
+    border: 1px solid rgba(255,255,255,0.07);
+
+    background: rgba(255,255,255,0.025);
+
+    color: #777783;
+}
+
+.cancel-button:hover {
+    color: #ffffff;
+
+    background: rgba(255,255,255,0.05);
+}
+
+.save-button {
+    border: 0;
+
+    background: linear-gradient(
+        135deg,
+        #7c3aed,
+        #a855f7
+    );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 9px 25px rgba(124,58,237,0.20);
+}
+
+.save-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 13px 30px rgba(124,58,237,0.32);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 800px) {
+
+    .add-event-category-content {
+        padding: 22px;
+    }
+
+    .event-category-form-card form {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full-width,
+    .form-actions {
+        grid-column: auto;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .add-event-category-content {
+        padding: 16px;
+    }
+
+    .event-category-form-card {
+        padding: 20px;
+    }
+
+    .add-event-category-header h1 {
+        font-size: 23px;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .cancel-button,
+    .save-button {
+        width: 100%;
+    }
+
+}

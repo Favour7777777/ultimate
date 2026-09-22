@@ -61,6 +61,7 @@ $query = "
         description,
         icon,
         image,
+        dashboard_link,
         created_at
     FROM categories
     ORDER BY created_at DESC
@@ -1239,15 +1240,12 @@ if(!$result){
                                         <!-- OPEN CATEGORY DASHBOARD -->
 
                                         <a
-                                            href="category-dashboard.php?id=<?= (int)$category["id"]; ?>"
+                                            href="<?= htmlspecialchars($category["dashboard_link"]); ?>?id=<?= (int)$category["id"]; ?>"
                                             class="category-dashboard-button"
                                             title="Open Category Dashboard"
                                         >
-
                                             <i class="fa-solid fa-chart-line"></i>
-
                                             Dashboard
-
                                         </a>
 
 

@@ -1,4 +1,4 @@
-```php
+
 <?php
 
 session_start();
@@ -66,6 +66,8 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 
     $pageLink = trim($_POST["page_link"] ?? "");
 
+    $dashboardLink = trim($_POST["dashboard_link"] ?? "");
+
 
     /*
     =====================================================
@@ -77,7 +79,8 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         $title === "" ||
         $description === "" ||
         $icon === "" ||
-        $pageLink === ""
+        $pageLink === "" ||
+        $dashboardLink === ""
     ){
 
         $error = "Please fill in all category fields.";
@@ -227,10 +230,12 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
                         description,
                         icon,
                         image,
-                        page_link
+                        page_link,
+                        dashboard_link
                     )
                     VALUES
                     (
+                        ?,
                         ?,
                         ?,
                         ?,
@@ -272,12 +277,13 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 
                     mysqli_stmt_bind_param(
                         $stmt,
-                        "sssss",
+                        "ssssss",
                         $title,
                         $description,
                         $icon,
                         $imagePath,
-                        $pageLink
+                        $pageLink,
+                        $dashboardLink
                     );
 
 
@@ -987,10 +993,32 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
                                 id="page_link"
                                 name="page_link"
                                 placeholder="Insert page link.."
+                                <?= htmlspecialchars($_POST["page_link"] ?? ""); ?>
                                 required
-                            ><?= htmlspecialchars($_POST["page_link"] ?? ""); ?></input>
+                            >
 
                         </div>
+
+                        <!-- DASHBOARD LINK -->
+
+                            <div class="form-group full-width">
+
+                                <label for="dashboard_link">
+
+                                    Dashboard Link
+
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="dashboard_link"
+                                    name="dashboard_link"
+                                    placeholder="e.g. events-category-dashboard.php"
+                                    value="<?= htmlspecialchars($_POST["dashboard_link"] ?? ""); ?>"
+                                    required
+                                >
+
+                            </div>
 
 
 
