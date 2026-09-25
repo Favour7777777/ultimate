@@ -422,15 +422,14 @@ $totalCategories = count($eventCategories);
                             </a>
 
 
-                            <a
-                                href="delete-event-category.php?id=<?= (int)$eventCategory["id"]; ?>"
+                            <button
+                                type="button"
                                 class="delete-category"
-                                title="Delete Category"
+                                data-id="<?= (int)$eventCategory["id"]; ?>"
+                                data-name="<?= htmlspecialchars($eventCategory["name"],ENT_QUOTES); ?>"
                             >
-
                                 <i class="fa-solid fa-trash"></i>
-
-                            </a>
+                            </button>
 
 
                         </div>
@@ -453,8 +452,138 @@ $totalCategories = count($eventCategories);
 
     <?php include "includes/footer.php"; ?>
 
+    <!-- DELETE EVENT CATEGORY MODAL -->
+
+<div
+    class="delete-modal-overlay"
+    id="deleteModal"
+>
+
+    <div class="delete-modal">
+
+        <button
+            type="button"
+            class="delete-modal-close"
+            onclick="closeDeleteModal()"
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="delete-modal-icon">
+
+            <i class="fa-solid fa-trash-can"></i>
+
+        </div>
+
+        <div class="delete-modal-content">
+
+            <h3>Delete Event Category?</h3>
+
+            <p>
+
+                Are you sure you want to permanently delete
+
+                <strong id="deleteCategoryName"></strong>?
+
+                All listings inside this category may become inaccessible.
+
+            </p>
+
+        </div>
+
+        <div class="delete-modal-actions">
+
+            <button
+                type="button"
+                class="delete-modal-cancel"
+                onclick="closeDeleteModal()"
+            >
+                Cancel
+            </button>
+
+            <a
+                href="#"
+                id="deleteConfirmButton"
+                class="delete-modal-confirm"
+            >
+                <i class="fa-solid fa-trash"></i>
+                Delete
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
 
 </main>
+
+
+<script>
+
+const deleteModal =
+document.getElementById("deleteModal");
+
+const deleteName =
+document.getElementById("deleteCategoryName");
+
+const deleteButton =
+document.getElementById("deleteConfirmButton");
+
+
+document.querySelectorAll(".delete-category")
+.forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        deleteName.textContent =
+        button.dataset.name;
+
+        deleteButton.href =
+        "delete-event-category.php?id="
+        + button.dataset.id;
+
+        deleteModal.classList.add("active");
+
+        document.body.style.overflow="hidden";
+
+    });
+
+});
+
+
+function closeDeleteModal(){
+
+    deleteModal.classList.remove("active");
+
+    document.body.style.overflow="";
+
+}
+
+
+deleteModal.addEventListener("click",e=>{
+
+    if(e.target===deleteModal){
+
+        closeDeleteModal();
+
+    }
+
+});
+
+
+document.addEventListener("keydown",e=>{
+
+    if(e.key==="Escape"){
+
+        closeDeleteModal();
+
+    }
+
+});
+
+</script>
 
 
 </body>

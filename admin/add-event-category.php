@@ -169,7 +169,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
             ============================= */
 
             $uploadDirectory =
-                "uploads/event-categories/";
+    "../Events-webpage/images/event-categories/";
 
 
             if(!is_dir($uploadDirectory)){

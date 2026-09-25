@@ -259,7 +259,7 @@
 
             </p>
 
-            <a href="#top">
+            <a href="view-categories.php">
 
                 Explore Ultimate
 

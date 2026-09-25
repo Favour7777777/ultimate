@@ -58,11 +58,11 @@ Ultimate
 
 <ul class="nav-links">
 
-<li><a href="#">Home</a></li>
+<li><a href="index.php">Home</a></li>
 
 <li><a href="view-categories.php">Categories</a></li>
 
-<li><a href="#">Services</a></li>
+<li><a href="services.php">Services</a></li>
 
 <li>
 
@@ -126,7 +126,7 @@ Ultimate
 
 <a href="#">Home</a>
 <a href="view-categories.php">Categories</a>
-<a href="#">Services</a>
+<a href="services.php">Services</a>
 <li>
 
     <?php if($vendorApproved): ?>

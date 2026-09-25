@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 
 require "config.php";
 
@@ -102,6 +103,36 @@ $testimonialQuery = "
 ";
 
 $testimonialResult = mysqli_query($conn, $testimonialQuery);
+
+$vendorActionLink = "become-vendor.php";
+
+if(isset($_SESSION["user_id"])){
+
+    $user_id = (int) $_SESSION["user_id"];
+
+    $vendorActionQuery = "
+        SELECT id
+        FROM vendors
+        WHERE user_id = ?
+        LIMIT 1
+    ";
+
+    $vendorActionStmt = mysqli_prepare($conn, $vendorActionQuery);
+
+    if($vendorActionStmt){
+
+        mysqli_stmt_bind_param($vendorActionStmt, "i", $user_id);
+        mysqli_stmt_execute($vendorActionStmt);
+
+        $vendorActionResult = mysqli_stmt_get_result($vendorActionStmt);
+
+        if($vendorActionResult && mysqli_fetch_assoc($vendorActionResult)){
+            $vendorActionLink = "vendor-dashboard-entry.php";
+        }
+
+        mysqli_stmt_close($vendorActionStmt);
+    }
+}
 
 ?>
 
@@ -1543,7 +1574,7 @@ $spotlight = $vendors[0] ?? null;
 
             <div class="seller-buttons">
 
-                <a href="seller-signup.php" class="seller-btn">
+                <a href="<?= htmlspecialchars($vendorActionLink); ?>" class="seller-btn">
 
                     Start Selling Today
 
@@ -1551,9 +1582,9 @@ $spotlight = $vendors[0] ?? null;
 
                 </a>
 
-                <a href="seller-login.php" class="login-link">
+                <a href="<?= htmlspecialchars($vendorActionLink); ?>" class="login-link">
 
-                    Already a Seller? Log In
+                    Already a Vendor? Signup / Login
 
                 </a>
 
@@ -1927,7 +1958,7 @@ $spotlight = $vendors[0] ?? null;
 
         <div class="cta-buttons">
 
-            <a href="explore.php" class="cta-primary">
+            <a href="view-categories.php" class="cta-primary">
 
                 <i class="fa-solid fa-compass"></i>
 
@@ -1935,7 +1966,7 @@ $spotlight = $vendors[0] ?? null;
 
             </a>
 
-            <a href="seller-signup.php" class="cta-secondary">
+            <a href="<?= htmlspecialchars($vendorActionLink); ?>" class="cta-secondary">
 
                 <i class="fa-solid fa-store"></i>
 

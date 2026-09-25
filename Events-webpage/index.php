@@ -1,3 +1,68 @@
+<?php
+
+require_once "../config.php";
+
+
+/* =========================================
+   GET MAIN EVENTS CATEGORY
+========================================= */
+
+$mainQuery = "
+    SELECT id
+    FROM categories
+    WHERE title = 'Events'
+    LIMIT 1
+";
+
+$mainResult = mysqli_query($conn, $mainQuery);
+
+$mainCategory = mysqli_fetch_assoc($mainResult);
+
+$eventsCategoryId = $mainCategory["id"] ?? 0;
+
+
+/* =========================================
+   FETCH ACTIVE EVENT CATEGORIES
+========================================= */
+
+$eventCategories = [];
+
+$query = "
+    SELECT
+        id,
+        name,
+        slug,
+        short_description,
+        icon,
+        image
+    FROM event_categories
+    WHERE category_id = ?
+    AND status = 'Active'
+    ORDER BY created_at DESC
+";
+
+$stmt = mysqli_prepare($conn, $query);
+
+mysqli_stmt_bind_param(
+    $stmt,
+    "i",
+    $eventsCategoryId
+);
+
+mysqli_stmt_execute($stmt);
+
+$result = mysqli_stmt_get_result($stmt);
+
+while($row = mysqli_fetch_assoc($result)){
+    $eventCategories[] = $row;
+}
+
+mysqli_stmt_close($stmt);
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,10 +131,50 @@
     </div>
 
 
-    <div class="category-grid">
+    <section class="event-category-grid">
+
+    <?php foreach($eventCategories as $category): ?>
+
+        <a
+            href="event-category-listings.php?id=<?= $category["id"]; ?>"
+            class="event-category-card"
+        >
+
+            <div class="event-category-image">
+
+                <img
+                    src="<?= htmlspecialchars($category["image"]); ?>"
+                    alt="<?= htmlspecialchars($category["name"]); ?>"
+                >
+
+            </div>
+
+            <div class="event-category-content">
+
+                <div class="event-category-icon">
+
+                    <i class="<?= htmlspecialchars($category["icon"]); ?>"></i>
+
+                </div>
+
+                <h3>
+                    <?= htmlspecialchars($category["name"]); ?>
+                </h3>
+
+                <p>
+                    <?= htmlspecialchars($category["short_description"]); ?>
+                </p>
+
+            </div>
+
+        </a>
+
+    <?php endforeach; ?>
+
+</section>
 
 
-        <a href="#" class="category-card">
+        <!-- <a href="#" class="category-card">
 
             <img
                 src="images/live-music.jpg"
@@ -213,9 +318,10 @@
         </a>
 
 
-    </div>
+    </div> -->
 
-</section>
+
+
 
         <section class="featured-events">
 

@@ -587,3 +587,203 @@
     }
 
 }
+
+/* =========================================
+   DELETE MODAL
+========================================= */
+
+.delete-modal-overlay{
+
+    position:fixed;
+    inset:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:rgba(5,5,8,.72);
+
+    backdrop-filter:blur(12px);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.25s;
+
+    z-index:9999;
+
+}
+
+.delete-modal-overlay.active{
+
+    opacity:1;
+    visibility:visible;
+
+}
+
+.delete-modal{
+
+    width:100%;
+    max-width:430px;
+
+    padding:30px;
+
+    border-radius:22px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(34,28,41,.98),
+        rgba(12,10,18,.99)
+    );
+
+    box-shadow:
+    0 30px 80px rgba(0,0,0,.45);
+
+    transform:translateY(18px) scale(.96);
+
+    transition:.25s;
+
+    position:relative;
+
+}
+
+.delete-modal-overlay.active .delete-modal{
+
+    transform:translateY(0) scale(1);
+
+}
+
+.delete-modal-close{
+
+    position:absolute;
+
+    top:14px;
+    right:14px;
+
+    width:34px;
+    height:34px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.05);
+
+    color:#9c8ea4;
+
+    cursor:pointer;
+
+}
+
+.delete-modal-icon{
+
+    width:64px;
+    height:64px;
+
+    margin:0 auto 18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:18px;
+
+    background:rgba(239,68,68,.08);
+
+    border:1px solid rgba(239,68,68,.15);
+
+    color:#ef4444;
+
+    font-size:24px;
+
+}
+
+.delete-modal-content{
+
+    text-align:center;
+
+}
+
+.delete-modal-content h3{
+
+    color:#fff;
+    margin-bottom:10px;
+
+}
+
+.delete-modal-content p{
+
+    font-size:12px;
+
+    line-height:1.8;
+
+    color:#9b8ea4;
+
+}
+
+.delete-modal-content strong{
+
+    color:#fff;
+
+}
+
+.delete-modal-actions{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:12px;
+
+    margin-top:24px;
+
+}
+
+.delete-modal-cancel,
+.delete-modal-confirm{
+
+    height:46px;
+
+    border-radius:12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    text-decoration:none;
+
+}
+
+.delete-modal-cancel{
+
+    border:1px solid rgba(255,255,255,.08);
+
+    background:rgba(255,255,255,.04);
+
+    color:#ddd;
+
+}
+
+.delete-modal-confirm{
+
+    background:
+    linear-gradient(
+        135deg,
+        #dc2626,
+        #991b1b
+    );
+
+    color:#fff;
+
+}

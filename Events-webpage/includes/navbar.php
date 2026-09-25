@@ -7,7 +7,7 @@
     <div class="nav-links">
         <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">Categories</a></li>
+            <li><a href="events-categories.php">Categories</a></li>
             <li><a href="#">Vendors</a></li>
             <li><a href="#">About</a></li>
         </ul>

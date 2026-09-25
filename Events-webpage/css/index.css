@@ -402,6 +402,7 @@ background:rgba(10,10,10,.92);
 
 /* CATEGORY GRID */
 
+.event-category-grid,
 .category-grid{
 
     display:grid;
@@ -416,9 +417,11 @@ background:rgba(10,10,10,.92);
 
 /* CATEGORY CARD */
 
+.event-category-card,
 .category-card{
 
     position:relative;
+    display:block;
 
     height:280px;
 
@@ -438,6 +441,7 @@ background:rgba(10,10,10,.92);
 
 /* IMAGE */
 
+.event-category-image,
 .category-card img{
 
     width:100%;
@@ -450,9 +454,18 @@ background:rgba(10,10,10,.92);
 
 }
 
+.event-category-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:.5s ease;
+}
+
 
 /* DARK OVERLAY */
 
+.event-category-card::after,
 .category-card::after{
 
     content:"";
@@ -472,6 +485,7 @@ background:rgba(10,10,10,.92);
 
 /* CARD CONTENT */
 
+.event-category-content,
 .category-overlay{
 
     position:absolute;
@@ -486,6 +500,7 @@ background:rgba(10,10,10,.92);
 
 }
 
+.event-category-content h3,
 .category-overlay h3{
 
     margin:0 0 5px;
@@ -496,6 +511,7 @@ background:rgba(10,10,10,.92);
 
 }
 
+.event-category-content p,
 .category-overlay p{
 
     margin:0;
@@ -508,9 +524,24 @@ background:rgba(10,10,10,.92);
 
 }
 
+.event-category-icon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:48px;
+    height:48px;
+    border-radius:14px;
+    background:rgba(181,108,255,.14);
+    border:1px solid rgba(181,108,255,.35);
+    color:#D8B4FF;
+    margin-bottom:12px;
+    font-size:20px;
+}
+
 
 /* HOVER */
 
+.event-category-card:hover,
 .category-card:hover{
 
     transform:translateY(-7px);
@@ -520,6 +551,7 @@ background:rgba(10,10,10,.92);
 
 }
 
+.event-category-card:hover .event-category-image img,
 .category-card:hover img{
 
     transform:scale(1.08);
@@ -632,6 +664,7 @@ background:rgba(10,10,10,.92);
 
 @media(max-width:1000px){
 
+    .event-category-grid,
     .category-grid{
 
         grid-template-columns:
@@ -650,6 +683,7 @@ background:rgba(10,10,10,.92);
 
     }
 
+    .event-category-grid,
     .category-grid{
 
         grid-template-columns:1fr;
