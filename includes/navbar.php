@@ -62,7 +62,7 @@ Ultimate
 
 <li><a href="view-categories.php">Categories</a></li>
 
-<li><a href="services.php">Services</a></li>
+
 
 <li>
 
@@ -88,7 +88,7 @@ Ultimate
 
 </li>
 
-<li><a href="#">Support</a></li>
+<li><a href="support.php">Support</a></li>
 
 <li>
     <?php if(isset($_SESSION["user_id"])): ?>
