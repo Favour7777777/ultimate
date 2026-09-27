@@ -173,7 +173,8 @@ require "config.php";
     <?php include "includes/footer.php"; ?>
 
 
-    <script>
+    ```html
+<script>
 
 const chatBody = document.querySelector(".chat-body");
 const quickOptions = document.querySelectorAll(".quick-options button");
@@ -181,9 +182,513 @@ const chatInput = document.querySelector(".chat-input-area input");
 const chatForm = document.querySelector(".chat-input-area");
 
 
-/* =========================================
+/* =========================================================
+   ULTIMATE SUPPORT — MANUAL KNOWLEDGE BASE
+
+   THIS IS WHERE WE TEACH THE CHATBOT.
+
+   Each topic contains:
+
+   1. TOPIC NAME
+   2. POSSIBLE WORDS / PHRASES
+   3. MANUALLY WRITTEN ANSWER
+
+   The chatbot does NOT need the user to ask the question
+   in one exact way.
+
+   If the important words match a topic, that topic's
+   answer will be returned.
+========================================================= */
+
+
+/* =========================================================
+   VENDOR APPLICATION / APPROVAL
+========================================================= */
+
+/*
+   POSSIBLE WORDS / PHRASES:
+
+   vendor
+   application
+   approval
+   approved
+   verification
+   verified
+   seller
+   become a vendor
+
+   MANUALLY WRITTEN ANSWER:
+
+   This is the answer Ultimate has approved for this topic.
+*/
+
+const vendorApplicationKeywords = [
+    "vendor application",
+    "vendor approval",
+    "vendor approved",
+    "vendor verification",
+    "vendor verified",
+    "verification",
+    "verified",
+    "seller application",
+    "seller approval"
+];
+
+const vendorApplicationAnswer =
+"If you have recently submitted your vendor application, you have to wait for the admin's approval. You will be notified via email when your application has been approved. To be verified by the admin, you must meet certain verification criteria, which includes, engagemts, algorithms, etc.";
+    
+
+
+/* =========================================================
+   GENERAL SELLING / VENDOR
+========================================================= */
+
+const sellingKeywords = [
+    "selling",
+    "sell",
+    "sell on ultimate",
+    "vendor",
+    "seller",
+    "store",
+    "become a vendor"
+];
+
+const sellingAnswer =
+"To become a vendor on ultimate, follow these steps. 1) Click on the Vendor signup/login on the navbar 2) Signup/login then return to the homepage 3) Click on vendor dashboard on the navbar 4)Submit your application 5)Wait for the admin's apporoval(this might take 2 to 3 days). You will be notified once your application has been approved. You can then access your vendor dashboard.";
+   
+
+/* =========================================================
+   BUYING
+========================================================= */
+
+const buyingKeywords = [
+    "buying",
+    "buy",
+    "shopping",
+    "shop",
+    "find a product",
+    "find a service",
+    "purchase"
+];
+
+const buyingAnswer =
+    "In ultimate you can find various categories such as tech, education, products, events, services and thousands more.Just go to the categories section on your navbar and explore ultimate's categories."
+
+
+/* =========================================================
+   ACCOUNT / PROFILE
+========================================================= */
+
+const accountKeywords = [
+    "account",
+    "profile",
+    "login",
+    "log in",
+    "sign in",
+    "password",
+    "username"
+];
+
+const accountAnswer =
+    "If you have any problem signing in to your account, consider a password reset. You can also click on your user profile in the user dashboard to make name or profile changes.";
+
+
+/* =========================================================
+   PAYMENTS
+========================================================= */
+
+const paymentKeywords = [
+    "payment",
+    "pay",
+    "paid",
+    "customercare",
+    // "customer care",
+    "transaction",
+    "charge",
+    "refund"
+];
+
+const paymentAnswer =
+    "If you have a specific payment issue or other issues, consider contacting Ultimate's customer careline(+234 9068687656 or send an email to 'oluwatobilobakadri@gmail.com'";
+
+
+/* =========================================================
+   ORDERS / DELIVERY
+========================================================= */
+
+const orderKeywords = [
+    "order",
+    "delivery",
+    "shipping",
+    "deliver",
+    "shipment",
+    "tracking"
+];
+
+const orderAnswer =
+    "You can track your order from the tracking panel in your user dashboard. If you are experiencing other issues, consider contacting the ultimate customer care line (+234 9068687656 or send an email to 'oluwatobilobakadri@gmail.com";
+
+
+/* =========================================================
+   SAFETY / REPORTING
+========================================================= */
+
+const safetyKeywords = [
+    "safety",
+    "report",
+    "scammed by a vendor",
+    "scam",
+    "fraud",
+    "fraudulent",
+    "suspicious",
+    "fake"
+];
+
+const safetyAnswer =
+    "If you've encountered something suspicious on Ultimate, consider contacting the ultimate customer care line (+234 9068687656 or send an email to 'oluwatobilobakadri@gmail.com)', you will be attended to shortly.";
+
+
+/* =========================================================
+   UNKNOWN QUESTION
+========================================================= */
+
+const unknownAnswer =
+    "I'm sorry, but I have not been programmed to answer this question yet. Please send an email to Ultimate Support and you will receive a response within a short period of time. Thank you.";
+
+
+/* =========================================================
+   CHECK KEYWORDS
+========================================================= */
+
+function containsKeyword(text, keywords){
+
+    return keywords.some(keyword => {
+
+        return text.includes(keyword);
+
+    });
+
+}
+
+
+/* =========================================================
+   GET BOT RESPONSE
+========================================================= */
+
+function getBotResponse(message){
+
+    const text = message.toLowerCase().trim();
+
+
+    /* =====================================================
+       VENDOR APPLICATION / APPROVAL
+
+       IMPORTANT:
+
+       This comes BEFORE general vendor/selling because
+       "vendor" is also inside this topic.
+
+       We want:
+
+       "How long does vendor approval take?"
+
+       to receive the vendor approval answer instead of
+       the general selling answer.
+    ===================================================== */
+
+    if(
+        containsKeyword(
+            text,
+            vendorApplicationKeywords
+        )
+    ){
+
+        return vendorApplicationAnswer;
+
+    }
+
+
+    /* =====================================================
+       GENERAL SELLING
+    ===================================================== */
+
+    if(
+        containsKeyword(
+            text,
+            sellingKeywords
+        )
+    ){
+
+        return sellingAnswer;
+
+    }
+
+
+    /* =====================================================
+       BUYING
+    ===================================================== */
+
+    if(
+        containsKeyword(
+            text,
+            buyingKeywords
+        )
+    ){
+
+        return buyingAnswer;
+
+    }
+
+
+    /* =====================================================
+       ACCOUNT
+    ===================================================== */
+
+    if(
+        containsKeyword(
+            text,
+            accountKeywords
+        )
+    ){
+
+        return accountAnswer;
+
+    }
+
+
+    /* =====================================================
+       PAYMENTS
+    ===================================================== */
+
+    if(
+        containsKeyword(
+            text,
+            paymentKeywords
+        )
+    ){
+
+        return paymentAnswer;
+
+    }
+
+
+    /* =====================================================
+       ORDERS
+    ===================================================== */
+
+    if(
+        containsKeyword(
+            text,
+            orderKeywords
+        )
+    ){
+
+        return orderAnswer;
+
+    }
+
+
+    /* =====================================================
+       SAFETY
+    ===================================================== */
+
+    if(
+        containsKeyword(
+            text,
+            safetyKeywords
+        )
+    ){
+
+        return safetyAnswer;
+
+    }
+
+
+    /* =====================================================
+       NOTHING MATCHED
+
+       The chatbot does NOT invent an answer.
+    ===================================================== */
+
+    return unknownAnswer;
+
+}
+
+
+/* =========================================================
+   FOLLOW-UP OPTIONS
+========================================================= */
+
+function getFollowUpOptions(message){
+
+    const text = message.toLowerCase().trim();
+
+
+    /* =====================================================
+       VENDOR APPLICATION
+    ===================================================== */
+
+    if(
+        containsKeyword(
+            text,
+            vendorApplicationKeywords
+        )
+    ){
+
+        return [
+
+            "Become a Vendor",
+            "Vendor Approval",
+            "Vendor Verification"
+
+        ];
+
+    }
+
+
+    /* =====================================================
+       GENERAL SELLING
+    ===================================================== */
+
+    if(
+        containsKeyword(
+            text,
+            sellingKeywords
+        )
+    ){
+
+        return [
+
+            "Become a Vendor",
+            "Add a Product",
+            "Add a Service",
+            "Renew a Listing",
+            "Vendor Verification"
+
+        ];
+
+    }
+
+
+    /* =====================================================
+       BUYING
+    ===================================================== */
+
+    if(
+        containsKeyword(
+            text,
+            buyingKeywords
+        )
+    ){
+
+        return [
+
+            "Find a Product",
+            "Find a Service",
+            "Contact a Vendor",
+            "Buying Help"
+
+        ];
+
+    }
+
+
+    /* =====================================================
+       ACCOUNT
+    ===================================================== */
+
+    if(
+        containsKeyword(
+            text,
+            accountKeywords
+        )
+    ){
+
+        return [
+
+            "Login Help",
+            "Reset My Password",
+            "Edit My Profile"
+
+        ];
+
+    }
+
+
+    /* =====================================================
+       PAYMENTS
+    ===================================================== */
+
+    if(
+        containsKeyword(
+            text,
+            paymentKeywords
+        )
+    ){
+
+        return [
+
+            "Payment Issue",
+            "Transaction Help",
+            "Refund Help"
+
+        ];
+
+    }
+
+
+    /* =====================================================
+       ORDERS
+    ===================================================== */
+
+    if(
+        containsKeyword(
+            text,
+            orderKeywords
+        )
+    ){
+
+        return [
+
+            "Check My Order",
+            "Delivery Help",
+            "Order Problem"
+
+        ];
+
+    }
+
+
+    /* =====================================================
+       SAFETY
+    ===================================================== */
+
+    if(
+        containsKeyword(
+            text,
+            safetyKeywords
+        )
+    ){
+
+        return [
+
+            "Report a Vendor",
+            "Report a Listing",
+            "Report Suspicious Activity"
+
+        ];
+
+    }
+
+
+    return [];
+
+}
+
+
+/* =========================================================
    ADD USER MESSAGE
-========================================= */
+========================================================= */
 
 function addUserMessage(message){
 
@@ -192,33 +697,43 @@ function addUserMessage(message){
     userMessage.className = "user-message";
 
     userMessage.innerHTML = `
+
         <div class="user-avatar">
+
             <i class="fa-solid fa-user"></i>
+
         </div>
 
         <div class="user-message-bubble">
+
             ${message}
+
         </div>
+
     `;
 
     chatBody.appendChild(userMessage);
 
-    chatBody.scrollTop = chatBody.scrollHeight;
+    chatBody.scrollTop =
+        chatBody.scrollHeight;
 
 }
 
 
-/* =========================================
+/* =========================================================
    TYPING INDICATOR
-========================================= */
+========================================================= */
 
 function showTyping(){
 
-    const typing = document.createElement("div");
+    const typing =
+        document.createElement("div");
 
-    typing.className = "bot-typing";
+    typing.className =
+        "bot-typing";
 
     typing.innerHTML = `
+
         <div class="bot-avatar">
 
             <i class="fa-solid fa-sparkles"></i>
@@ -232,26 +747,33 @@ function showTyping(){
             <span></span>
 
         </div>
+
     `;
 
     chatBody.appendChild(typing);
 
-    chatBody.scrollTop = chatBody.scrollHeight;
+    chatBody.scrollTop =
+        chatBody.scrollHeight;
 
     return typing;
 
 }
 
 
-/* =========================================
+/* =========================================================
    ADD BOT MESSAGE
-========================================= */
+========================================================= */
 
-function addBotMessage(message, options = []){
+function addBotMessage(
+    message,
+    options = []
+){
 
-    const botMessage = document.createElement("div");
+    const botMessage =
+        document.createElement("div");
 
-    botMessage.className = "bot-response";
+    botMessage.className =
+        "bot-response";
 
 
     let optionsHTML = "";
@@ -260,6 +782,7 @@ function addBotMessage(message, options = []){
     if(options.length > 0){
 
         optionsHTML = `
+
             <div class="bot-options">
 
                 ${options.map(option => `
@@ -274,6 +797,7 @@ function addBotMessage(message, options = []){
                 `).join("")}
 
             </div>
+
         `;
 
     }
@@ -293,11 +817,15 @@ function addBotMessage(message, options = []){
             <div class="bot-message">
 
                 <span class="message-name">
+
                     Ultimate Support
+
                 </span>
 
                 <p>
+
                     ${message}
+
                 </p>
 
             </div>
@@ -312,280 +840,52 @@ function addBotMessage(message, options = []){
 
     chatBody.appendChild(botMessage);
 
-    chatBody.scrollTop = chatBody.scrollHeight;
+    chatBody.scrollTop =
+        chatBody.scrollHeight;
 
 
-    /* =========================================
+    /* =====================================================
        FOLLOW-UP BUTTONS
-    ========================================= */
+    ===================================================== */
 
     const optionButtons =
-        botMessage.querySelectorAll(".bot-option");
+        botMessage.querySelectorAll(
+            ".bot-option"
+        );
 
 
     optionButtons.forEach(button => {
 
-        button.addEventListener("click", () => {
+        button.addEventListener(
+            "click",
+            () => {
 
-            const selectedOption =
-                button.textContent.trim();
+                const selectedOption =
+                    button.textContent.trim();
 
-            sendMessage(selectedOption);
+                sendMessage(
+                    selectedOption
+                );
 
-        });
+            }
+        );
 
     });
 
 }
 
 
-/* =========================================
-   BOT RESPONSE LOGIC
-========================================= */
-
-function getBotResponse(message){
-
-    const text = message.toLowerCase();
-
-
-    /* =========================================
-       SELLING
-    ========================================= */
-
-    if(
-        text.includes("selling") ||
-        text.includes("vendor")
-    ){
-
-        return "Sure! I can help you with selling on Ultimate. You can become a vendor, create listings, manage your products and services, and keep your listings available to customers.";
-
-    }
-
-
-    /* =========================================
-       BUYING
-    ========================================= */
-
-    if(
-        text.includes("buying") ||
-        text.includes("shopping") ||
-        text.includes("product")
-    ){
-
-        return "I can help you find products and services on Ultimate, understand listings, and guide you through the buying process.";
-
-    }
-
-
-    /* =========================================
-       ACCOUNT
-    ========================================= */
-
-    if(
-        text.includes("account") ||
-        text.includes("profile") ||
-        text.includes("login") ||
-        text.includes("password")
-    ){
-
-        return "I can help you with your Ultimate account, including signing in, your profile, and password-related issues.";
-
-    }
-
-
-    /* =========================================
-       PAYMENTS
-    ========================================= */
-
-    if(
-        text.includes("payment") ||
-        text.includes("pay") ||
-        text.includes("transaction")
-    ){
-
-        return "I can help with payment and transaction questions on Ultimate. Tell me what happened and I'll guide you through it.";
-
-    }
-
-
-    /* =========================================
-       ORDERS
-    ========================================= */
-
-    if(
-        text.includes("order") ||
-        text.includes("delivery") ||
-        text.includes("shipping")
-    ){
-
-        return "I can help you with orders, shipping, and delivery questions. Tell me what you'd like to know.";
-
-    }
-
-
-    /* =========================================
-       SAFETY
-    ========================================= */
-
-    if(
-        text.includes("safety") ||
-        text.includes("report") ||
-        text.includes("scam") ||
-        text.includes("fraud")
-    ){
-
-        return "If you've encountered something suspicious on Ultimate, I can guide you through reporting the listing, service, vendor, or activity.";
-
-    }
-
-
-    /* =========================================
-       DEFAULT
-    ========================================= */
-
-    return "Thanks for reaching out! I'm here to help with Ultimate. Tell me a little more about what you need help with.";
-
-}
-
-
-/* =========================================
-   GET FOLLOW-UP OPTIONS
-========================================= */
-
-function getFollowUpOptions(message){
-
-    const text = message.toLowerCase();
-
-
-    /* SELLING */
-
-    if(
-        text.includes("selling") ||
-        text === "vendor" ||
-        text.includes("become a vendor")
-    ){
-
-        return [
-
-            "Become a Vendor",
-            "Add a Product",
-            "Add a Service",
-            "Renew a Listing",
-            "Vendor Verification"
-
-        ];
-
-    }
-
-
-    /* BUYING */
-
-    if(
-        text.includes("buying") ||
-        text.includes("shopping")
-    ){
-
-        return [
-
-            "Find a Product",
-            "Find a Service",
-            "Contact a Vendor",
-            "Buying Help"
-
-        ];
-
-    }
-
-
-    /* ACCOUNT */
-
-    if(
-        text.includes("account") ||
-        text.includes("profile")
-    ){
-
-        return [
-
-            "Login Help",
-            "Reset My Password",
-            "Edit My Profile"
-
-        ];
-
-    }
-
-
-    /* PAYMENTS */
-
-    if(
-        text.includes("payment") ||
-        text.includes("transaction")
-    ){
-
-        return [
-
-            "Payment Issue",
-            "Transaction Help",
-            "Refund Help"
-
-        ];
-
-    }
-
-
-    /* ORDERS */
-
-    if(
-        text.includes("order") ||
-        text.includes("delivery")
-    ){
-
-        return [
-
-            "Check My Order",
-            "Delivery Help",
-            "Order Problem"
-
-        ];
-
-    }
-
-
-    /* SAFETY */
-
-    if(
-        text.includes("safety") ||
-        text.includes("report") ||
-        text.includes("scam") ||
-        text.includes("fraud")
-    ){
-
-        return [
-
-            "Report a Vendor",
-            "Report a Listing",
-            "Report Suspicious Activity"
-
-        ];
-
-    }
-
-
-    return [];
-
-}
-
-
-/* =========================================
+/* =========================================================
    SEND MESSAGE
-========================================= */
+========================================================= */
 
 function sendMessage(message){
 
     addUserMessage(message);
 
 
-    const typing = showTyping();
+    const typing =
+        showTyping();
 
 
     setTimeout(() => {
@@ -612,22 +912,75 @@ function sendMessage(message){
 }
 
 
-/* =========================================
-   QUICK QUESTIONS
-========================================= */
+/* =========================================================
+   QUICK OPTIONS
+========================================================= */
 
 quickOptions.forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener(
+        "click",
+        () => {
+
+            const message =
+                button.textContent.trim();
+
+
+            /*
+                Remove the original welcome message
+                when the user starts chatting.
+            */
+
+            if(
+                chatBody.querySelector(
+                    ".welcome-message"
+                )
+            ){
+
+                chatBody.innerHTML = "";
+
+            }
+
+
+            sendMessage(message);
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   TYPED MESSAGE
+========================================================= */
+
+chatForm.addEventListener(
+    "submit",
+    function(event){
+
+        event.preventDefault();
+
 
         const message =
-            button.textContent.trim();
+            chatInput.value.trim();
 
 
-        /* Remove initial welcome */
+        if(message === ""){
+
+            return;
+
+        }
+
+
+        /*
+            Remove the original welcome message
+            when the user starts chatting.
+        */
 
         if(
-            chatBody.querySelector(".welcome-message")
+            chatBody.querySelector(
+                ".welcome-message"
+            )
         ){
 
             chatBody.innerHTML = "";
@@ -635,52 +988,16 @@ quickOptions.forEach(button => {
         }
 
 
+        chatInput.value = "";
+
+
         sendMessage(message);
 
-    });
-
-});
-
-
-/* =========================================
-   TYPED MESSAGE
-========================================= */
-
-chatForm.addEventListener("submit", function(event){
-
-    event.preventDefault();
-
-
-    const message =
-        chatInput.value.trim();
-
-
-    if(message === ""){
-
-        return;
-
     }
-
-
-    /* Remove initial welcome */
-
-    if(
-        chatBody.querySelector(".welcome-message")
-    ){
-
-        chatBody.innerHTML = "";
-
-    }
-
-
-    chatInput.value = "";
-
-
-    sendMessage(message);
-
-});
+);
 
 </script>
+
 
 
 </body>
