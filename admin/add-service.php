@@ -68,6 +68,7 @@ if($serviceTypeColumn){
 // ==========================================
 
 $categoryId = "";
+$tier = "";
 $serviceName = "";
 $description = "";
 $price = "";
@@ -87,6 +88,7 @@ $showSuccessModal = false;
 if(isset($_POST["add_service"])){
 
     $categoryId = $_POST["category_id"] ?? "";
+    $tier = $_POST["tier"] ?? "";
     $serviceName = trim($_POST["service_name"] ?? "");
     $description = trim($_POST["description"] ?? "");
     $price = $_POST["price"] ?? "";
@@ -113,6 +115,10 @@ if(isset($_POST["add_service"])){
     }elseif(!is_numeric($categoryId)){
 
         $errorMessage = "Invalid category selected.";
+
+    }elseif(!in_array($tier, ["Essentials", "Royals"], true)){
+
+        $errorMessage = "Please select a valid service tier.";
 
     }elseif(!is_numeric($price) || $price < 0){
 
@@ -230,6 +236,7 @@ if(isset($_POST["add_service"])){
                             INSERT INTO services
                             (
                                 category_id,
+                                tier,
                                 service_name,
                                 description,
                                 price,
@@ -239,7 +246,7 @@ if(isset($_POST["add_service"])){
                                 image,
                                 status
                             )
-                            VALUES (?, ?, ?, ?, NULL, ?, ?, ?, ?)
+                            VALUES (?, ?, ?, ?, ?, NULL, ?, ?, ?, ?)
                         ";
 
                         $stmt = mysqli_prepare($conn, $insertQuery);
@@ -256,8 +263,9 @@ if(isset($_POST["add_service"])){
 
                             mysqli_stmt_bind_param(
                                 $stmt,
-                                "issdssss",
+                                "isssdssss",
                                 $categoryId,
+                                $tier,
                                 $serviceName,
                                 $description,
                                 $price,
@@ -277,6 +285,7 @@ if(isset($_POST["add_service"])){
                                 $price = "";
                                 $discountPrice = "";
                                 $duration = "";
+                                $tier = "";
                                 $serviceType = "";
                                 $status = "Active";
 
@@ -303,6 +312,7 @@ if(isset($_POST["add_service"])){
                             INSERT INTO services
                             (
                                 category_id,
+                                tier,
                                 service_name,
                                 description,
                                 price,
@@ -312,7 +322,7 @@ if(isset($_POST["add_service"])){
                                 image,
                                 status
                             )
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                         ";
 
                         $stmt = mysqli_prepare($conn, $insertQuery);
@@ -329,8 +339,9 @@ if(isset($_POST["add_service"])){
 
                             mysqli_stmt_bind_param(
                                 $stmt,
-                                "issddssss",
+                                "isssddssss",
                                 $categoryId,
+                                $tier,
                                 $serviceName,
                                 $description,
                                 $price,
@@ -769,6 +780,27 @@ if(isset($_POST["add_service"])){
                                         </option>
 
                                     <?php endwhile; ?>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- TIER -->
+
+                            <div class="form-group">
+
+                                <label>
+                                    Tier <span>*</span>
+                                </label>
+
+                                <select name="tier" required>
+
+                                    <option value="">Select Tier</option>
+
+                                    <option value="Essentials" <?= $tier === "Essentials" ? "selected" : ""; ?>>Essentials</option>
+
+                                    <option value="Royals" <?= $tier === "Royals" ? "selected" : ""; ?>>Royals</option>
 
                                 </select>
 

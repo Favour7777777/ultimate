@@ -33,7 +33,7 @@ $categoryQuery = "
         title,
         description,
         image
-    FROM product_categories
+    FROM categories
     WHERE id = ?
 ";
 
@@ -103,9 +103,10 @@ $productQuery = "
         stock_quantity,
         image,
         product_condition,
-        brand
+        brand,
+        tier
     FROM products
-    WHERE product_category_id = ?
+    WHERE category_id = ?
     AND status = 'Active'
     ORDER BY id DESC
 ";
@@ -517,6 +518,33 @@ $productResult =
             color:#ddd6e1;
 
             font-size:8px;
+
+        }
+
+
+        .tier-badge{
+
+            position:absolute;
+
+            top:12px;
+
+            right:12px;
+
+            z-index:2;
+
+            padding:6px 10px;
+
+            border:1px solid rgba(255,214,128,.45);
+
+            border-radius:20px;
+
+            background:rgba(35,25,8,.9);
+
+            color:#ffd680;
+
+            font-size:9px;
+
+            font-weight:700;
 
         }
 
@@ -991,6 +1019,10 @@ $productResult =
                                 </span>
 
                             <?php endif; ?>
+
+                            <span class="tier-badge">
+                                <?= htmlspecialchars($product["tier"]); ?>
+                            </span>
 
 
                         </div>

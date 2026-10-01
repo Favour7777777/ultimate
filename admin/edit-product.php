@@ -93,6 +93,8 @@ if(isset($_POST["update_product"])){
 
     $category_id = (int) $_POST["category_id"];
 
+    $tier = $_POST["tier"] ?? "";
+
     $product_name = trim($_POST["product_name"]);
     $description = trim($_POST["description"]);
 
@@ -135,6 +137,12 @@ if(isset($_POST["update_product"])){
     elseif($stock_quantity < 0){
 
         $error = "Stock quantity cannot be negative.";
+
+    }
+
+    elseif(!in_array($tier, ["Essentials", "Royals"], true)){
+
+        $error = "Please select a valid product tier.";
 
     }
 
@@ -257,6 +265,7 @@ if(isset($_POST["update_product"])){
                 UPDATE products
                 SET
                     category_id = ?,
+                    tier = ?,
                     product_name = ?,
                     description = ?,
                     price = ?,
@@ -274,8 +283,9 @@ if(isset($_POST["update_product"])){
 
             mysqli_stmt_bind_param(
                 $stmt,
-                "issddisssssi",
+                "isssddisssssi",
                 $category_id,
+                $tier,
                 $product_name,
                 $description,
                 $price,
@@ -297,6 +307,7 @@ if(isset($_POST["update_product"])){
                 UPDATE products
                 SET
                     category_id = ?,
+                    tier = ?,
                     product_name = ?,
                     description = ?,
                     price = ?,
@@ -314,8 +325,9 @@ if(isset($_POST["update_product"])){
 
             mysqli_stmt_bind_param(
                 $stmt,
-                "issdisssssi",
+                "isssdisssssi",
                 $category_id,
+                $tier,
                 $product_name,
                 $description,
                 $price,
@@ -353,6 +365,7 @@ if(isset($_POST["update_product"])){
 
             // Update displayed product values
             $product["category_id"] = $category_id;
+            $product["tier"] = $tier;
             $product["product_name"] = $product_name;
             $product["description"] = $description;
             $product["price"] = $price;
@@ -1090,6 +1103,33 @@ if(isset($_POST["update_product"])){
                                     </option>
 
                                 <?php endwhile; ?>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- TIER -->
+
+                        <div class="form-group">
+
+                            <label>
+                                Tier <span>*</span>
+                            </label>
+
+                            <select name="tier" required>
+
+                                <option value="">Select Tier</option>
+
+                                <option
+                                    value="Essentials"
+                                    <?= ($tier ?? $product["tier"]) === "Essentials" ? "selected" : ""; ?>
+                                >Essentials</option>
+
+                                <option
+                                    value="Royals"
+                                    <?= ($tier ?? $product["tier"]) === "Royals" ? "selected" : ""; ?>
+                                >Royals</option>
 
                             </select>
 

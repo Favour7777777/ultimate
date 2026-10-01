@@ -23,6 +23,7 @@ $handpickedQuery = "
         products.description,
         products.price,
         products.discount_price,
+        products.tier,
         products.image,
         categories.title AS category_name
     FROM products
@@ -54,6 +55,7 @@ $servicesQuery = "
         services.description,
         services.price,
         services.discount_price,
+        services.tier,
         services.duration,
         services.service_type,
         services.image,
@@ -380,6 +382,10 @@ CHOOSE YOUR EXPERIENCE
                             <?= htmlspecialchars($product['category_name']); ?>
                         </span>
 
+                        <span class="tier-badge tier-badge-overlay">
+                            <?= htmlspecialchars($product['tier']); ?>
+                        </span>
+
                     </div>
 
 
@@ -510,6 +516,10 @@ CHOOSE YOUR EXPERIENCE
                             src="admin/<?= htmlspecialchars($service['image']); ?>"
                             alt="<?= htmlspecialchars($service['service_name']); ?>"
                         >
+
+                        <span class="tier-badge tier-badge-overlay">
+                            <?= htmlspecialchars($service['tier']); ?>
+                        </span>
 
                         <div class="service-overlay">
 

@@ -20,6 +20,7 @@ $productQuery = "
     SELECT
         products.id,
         products.product_name,
+        products.tier,
         products.description,
         products.price,
         products.discount_price,
@@ -943,6 +944,10 @@ if(!$productResult){
                                                     <?= $productName; ?>
 
                                                 </div>
+
+                                                <span class="tier-badge">
+                                                    <?= htmlspecialchars($product["tier"]); ?>
+                                                </span>
 
 
                                                 <?php if(!empty($product["brand"])): ?>

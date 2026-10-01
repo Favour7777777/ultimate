@@ -267,6 +267,26 @@ $adminEmail = $_SESSION["admin_email"] ?? "";
 
             </a>
 
+            <a
+                href="classification-knowledge.php"
+                class="navigation-item <?= ($currentPage === 'Classification Knowledge') ? 'active' : ''; ?>"
+            >
+
+                <span class="navigation-icon">
+
+                    <i class="fa-solid fa-brain"></i>
+
+                </span>
+
+
+                <span class="navigation-text">
+
+                    Classification Knowledge
+
+                </span>
+
+            </a>
+
 
 
             <a

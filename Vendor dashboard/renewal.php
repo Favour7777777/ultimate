@@ -28,6 +28,7 @@ if($vendor_id){
         SELECT 
             id,
             product_name,
+            tier,
             price,
             image,
             status,
@@ -68,6 +69,7 @@ if($vendor_id){
         SELECT 
             id,
             service_name,
+            tier,
             price,
             image,
             status,
@@ -236,6 +238,10 @@ if($vendor_id){
                                 <h4>
                                     <?= htmlspecialchars($product['product_name']); ?>
                                 </h4>
+
+                                <span class="tier-badge">
+                                    <?= htmlspecialchars($product['tier']); ?>
+                                </span>
 
                                 <span class="renewal-price">
 
@@ -486,6 +492,10 @@ if($vendor_id){
                                 <h4>
                                     <?= htmlspecialchars($service['service_name']); ?>
                                 </h4>
+
+                                <span class="tier-badge">
+                                    <?= htmlspecialchars($service['tier']); ?>
+                                </span>
 
                                 <span class="renewal-price">
 

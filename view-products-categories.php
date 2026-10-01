@@ -21,7 +21,7 @@ $query = "
         title,
         description,
         image
-    FROM product_categories
+    FROM categories
     ORDER BY created_at DESC
 ";
 
@@ -695,7 +695,7 @@ if(!$result){
 
 
                             <a
-                                href="products-listing.php?id=<?= (int)$category["id"]; ?>"
+                                href="product-listing.php?id=<?= (int)$category["id"]; ?>"
                                 class="view-product-category"
                             >
 

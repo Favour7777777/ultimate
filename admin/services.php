@@ -23,6 +23,7 @@ $serviceQuery = "
     SELECT
         services.id,
         services.service_name,
+        services.tier,
         services.description,
         services.price,
         services.discount_price,
@@ -845,6 +846,10 @@ if(!$serviceResult){
                                                 <?= htmlspecialchars($service['service_name']); ?>
 
                                             </div>
+
+                                            <span class="tier-badge">
+                                                <?= htmlspecialchars($service['tier']); ?>
+                                            </span>
 
                                         </div>
 

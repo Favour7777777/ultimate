@@ -6,6 +6,20 @@
     padding:0;
 }
 
+.tier-badge{
+    display:inline-flex;
+    align-items:center;
+    width:max-content;
+    padding:5px 9px;
+    border:1px solid rgba(255,214,128,.35);
+    border-radius:20px;
+    background:rgba(255,214,128,.08);
+    color:#ffd680;
+    font-size:10px;
+    font-weight:600;
+    white-space:nowrap;
+}
+
 
 html{
     scroll-behavior:smooth;

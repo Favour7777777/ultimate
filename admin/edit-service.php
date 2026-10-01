@@ -94,6 +94,7 @@ if($serviceTypeColumn){
 if(isset($_POST["update_service"])){
 
     $categoryId = $_POST["category_id"] ?? "";
+    $tier = $_POST["tier"] ?? "";
     $serviceName = trim($_POST["service_name"] ?? "");
     $description = trim($_POST["description"] ?? "");
     $price = $_POST["price"] ?? "";
@@ -109,6 +110,10 @@ if(isset($_POST["update_service"])){
 
     if(!is_numeric($categoryId)){
         $errors[] = "Please select a category.";
+    }
+
+    if(!in_array($tier, ["Essentials", "Royals"], true)){
+        $errors[] = "Please select a valid service tier.";
     }
 
     if($serviceName === ""){
@@ -237,6 +242,7 @@ if(isset($_POST["update_service"])){
                 UPDATE services
                 SET
                     category_id = ?,
+                    tier = ?,
                     service_name = ?,
                     description = ?,
                     price = ?,
@@ -256,8 +262,9 @@ if(isset($_POST["update_service"])){
 
             mysqli_stmt_bind_param(
                 $stmt,
-                "issdssssi",
+                "isssdssssi",
                 $categoryId,
+                $tier,
                 $serviceName,
                 $description,
                 $price,
@@ -274,6 +281,7 @@ if(isset($_POST["update_service"])){
                 UPDATE services
                 SET
                     category_id = ?,
+                    tier = ?,
                     service_name = ?,
                     description = ?,
                     price = ?,
@@ -293,8 +301,9 @@ if(isset($_POST["update_service"])){
 
             mysqli_stmt_bind_param(
                 $stmt,
-                "issddssssi",
+                "isssddssssi",
                 $categoryId,
+                $tier,
                 $serviceName,
                 $description,
                 $price,
@@ -698,6 +707,25 @@ if(isset($_POST["update_service"])){
                                     </option>
 
                                 <?php endwhile; ?>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- TIER -->
+
+                        <div class="form-group">
+
+                            <label>Tier</label>
+
+                            <select name="tier" required>
+
+                                <option value="">Select Tier</option>
+
+                                <option value="Essentials" <?= (($tier ?? $service['tier']) === 'Essentials') ? 'selected' : ''; ?>>Essentials</option>
+
+                                <option value="Royals" <?= (($tier ?? $service['tier']) === 'Royals') ? 'selected' : ''; ?>>Royals</option>
 
                             </select>
 

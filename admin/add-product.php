@@ -53,6 +53,8 @@ if (isset($_POST["add_product"])) {
 
     $category_id = (int) $_POST["category_id"];
 
+    $tier = $_POST["tier"] ?? "";
+
     $product_name = trim($_POST["product_name"]);
 
     $description = trim($_POST["description"]);
@@ -97,6 +99,10 @@ if (isset($_POST["add_product"])) {
     } elseif ($stock_quantity < 0) {
 
         $error = "Stock quantity cannot be negative.";
+
+    } elseif (!in_array($tier, ["Essentials", "Royals"], true)) {
+
+        $error = "Please select a valid product tier.";
 
     } elseif (
         !in_array($product_condition, ["New", "Used"])
@@ -231,6 +237,7 @@ if (isset($_POST["add_product"])) {
                 $sql = "
                     INSERT INTO products (
                         category_id,
+                        tier,
                         product_name,
                         description,
                         price,
@@ -242,15 +249,16 @@ if (isset($_POST["add_product"])) {
                         image,
                         status
                     )
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ";
 
                 $stmt = mysqli_prepare($conn, $sql);
 
                 mysqli_stmt_bind_param(
                     $stmt,
-                    "issddisssss",
+                    "isssddisssss",
                     $category_id,
+                    $tier,
                     $product_name,
                     $description,
                     $price,
@@ -273,6 +281,7 @@ if (isset($_POST["add_product"])) {
                 $sql = "
                     INSERT INTO products (
                         category_id,
+                        tier,
                         product_name,
                         description,
                         price,
@@ -284,15 +293,16 @@ if (isset($_POST["add_product"])) {
                         image,
                         status
                     )
-                    VALUES (?, ?, ?, ?, NULL, ?, ?, ?, ?, ?, ?)
+                    VALUES (?, ?, ?, ?, ?, NULL, ?, ?, ?, ?, ?, ?)
                 ";
 
                 $stmt = mysqli_prepare($conn, $sql);
 
                 mysqli_stmt_bind_param(
                     $stmt,
-                    "issdisssss",
+                    "isssdisssss",
                     $category_id,
+                    $tier,
                     $product_name,
                     $description,
                     $price,
@@ -1114,6 +1124,31 @@ if (isset($_POST["add_product"])) {
                                 <?php endwhile; ?>
 
                             <?php endif; ?>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- TIER -->
+
+                    <div class="product-field">
+
+                        <label>
+
+                            Tier
+
+                            <span class="required-star">*</span>
+
+                        </label>
+
+                        <select name="tier" required>
+
+                            <option value="">Select Tier</option>
+
+                            <option value="Essentials" <?= ($tier ?? "") === "Essentials" ? "selected" : ""; ?>>Essentials</option>
+
+                            <option value="Royals" <?= ($tier ?? "") === "Royals" ? "selected" : ""; ?>>Royals</option>
 
                         </select>
 

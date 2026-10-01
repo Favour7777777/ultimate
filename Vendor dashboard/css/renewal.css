@@ -95,6 +95,19 @@
     line-height: 1.7;
 }
 
+.tier-badge {
+    display: inline-flex;
+    width: max-content;
+    margin-top: 7px;
+    padding: 5px 9px;
+    border: 1px solid rgba(255, 214, 128, 0.35);
+    border-radius: 20px;
+    background: rgba(255, 214, 128, 0.08);
+    color: #ffd680;
+    font-size: 10px;
+    font-weight: 600;
+}
+
 
 /* =========================================
    RENEWAL SECTION
